@@ -15,10 +15,10 @@
 python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-PYTHONPATH=. uvicorn backend.app:app --port 8765
+PYTHONPATH=. uvicorn backend.app:app --host 0.0.0.0 --port 8765
 ```
 
-Страница: [http://127.0.0.1:8765](http://127.0.0.1:8765).
+Страница: [http://127.0.0.1:8765](http://127.0.0.1:8765). Смартфон в той же сети открывает код рядом с ФИО и присылает карточку и файл на эту страницу.
 
 Разбор снимка и текста требует `LLM_API_KEY` или `OPENROUTER_API_KEY`. Без ключа этот канал отвечает 503.
 

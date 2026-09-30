@@ -250,6 +250,10 @@ README прямо называет формат `ecgdeli`. Кода ECGDeli, о�
 
 ## 9. Baseline для будущего regression test
 
-Эталонный CSV: `templates/another_ecg_features.csv`, первая строка, `ecg_id=513`.
+Эталонный CSV: `templates/another_ecg_features.csv`, первая строка, `ecg_id=513`. В новом проекте копия лежит в `tests/fixtures/another_ecg_features.csv`.
 
-Сравнение с новым движком имеет смысл только при полном ансамбле, том же порядке колонок, тех же `mean`/`std` и `eval()` на CPU. Допуск нужно зафиксировать после первого прогона (ожидаемо близко к машинному нулю, если перенос инференса точный). В этом аудите модели не исполнялись: сверка численного выхода ещё впереди, на шаге переноса сети.
+Сверка `tests/compare_with_ecg_web_up.py` на этой строке дала max и mean absolute difference 0 для MLP, CNN, ResNet и ensemble. Отчёт: `tests/regression/baseline_comparison.json`.
+
+## 10. Сервис нового проекта
+
+`POST /api/ecg/predict` принимает объект `features` с теми же 531 именами. Значение попадает в индекс своего имени. Порога нет. В ответе одновременно canonical English label и русская подпись из `ecg_web_up`, плюс сырые векторы `models.mlp`, `models.cnn`, `models.resnet1d`, `models.ensemble`. Поле `probability` — сигмоида ансамбля, не калиброванный риск. Таблица подписей: `docs/SCP_LABEL_MAPPING.md`.

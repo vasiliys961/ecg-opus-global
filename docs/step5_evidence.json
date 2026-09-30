@@ -1,0 +1,252 @@
+{
+  "status": "PARTIALLY_FOUND",
+  "question": "Найден ли исходный код, создающий 531 features PTB-XL+ ECGDeli?",
+  "answer": "Скрипт, который пишет features/ecgdeli_features.csv, не найден. Найдены beat-level функции ECGDeli 1.1 и текстовое описание агрегации в статье.",
+  "primary_sources": [
+    {
+      "role": "dataset_paper",
+      "citation": "Strodthoff et al., Scientific Data, 13 May 2023",
+      "doi": "10.1038/s41597-023-02153-8",
+      "url": "https://www.nature.com/articles/s41597-023-02153-8",
+      "what_it_contains": "Описание: признаки считаются по каждому комплексу, в таблицу попадают медиана, (0.25, 0.75)-IQR и count. Код агрегации не приложен."
+    },
+    {
+      "role": "dataset",
+      "name": "PTB-XL+ 1.0.1",
+      "doi": "10.13026/nqsf-pc74",
+      "url": "https://physionet.org/content/ptb-xl-plus/1.0.1/",
+      "what_it_contains": "Готовые features/ecgdeli_features.csv, features/feature_description.csv и fiducial_points/ecgdeli/*.atr. Скрипта сборки CSV в дереве файлов нет."
+    },
+    {
+      "role": "code_cited_by_paper",
+      "doi": "10.5281/zenodo.7817567",
+      "related_identifier": "https://github.com/tmehari/ptbxl_feature_benchmark/tree/v1.0.0",
+      "what_it_contains": "Код обучения и оценки моделей. Читает уже готовый CSV."
+    },
+    {
+      "role": "ecgdeli_software",
+      "doi": "10.5281/zenodo.7191379",
+      "related_identifier": "https://github.com/KIT-IBT/ECGdeli/tree/v1.1",
+      "what_it_contains": "Делинеация и beat-level матрицы. Не пишет 531-колоночный CSV."
+    }
+  ],
+  "repositories": [
+    {
+      "url": "https://github.com/tmehari/ptbxl_feature_benchmark",
+      "tag": "v1.0.0",
+      "commit": "e79c58e4fe962bb0e67be8ef878aa629a3177e56",
+      "role": "official_benchmark",
+      "creates_ecgdeli_features_csv": false,
+      "note": "Полная история просмотрена. Удалённые notebooks/evaluate_rfs.ipynb и notebooks/feature_comparison.ipynb — оценка уже готовых таблиц. Раньше загрузчик читал kit_features_final.csv, затем путь заменён на features/ecgdeli_features.csv."
+    },
+    {
+      "url": "https://github.com/KIT-IBT/ECGdeli",
+      "tag": "v1.1",
+      "commit": "3c13b1b2ff55152360f3cee992c1d1d66099aa14",
+      "role": "delineation_and_beat_features",
+      "creates_ecgdeli_features_csv": false,
+      "license": "GPL-3.0",
+      "checkout": "/tmp/ECGdeli",
+      "copied_into_product": false
+    },
+    {
+      "url": "https://github.com/KIT-IBT/ECGfeat",
+      "role": "different_feature_set",
+      "creates_ecgdeli_features_csv": false,
+      "note": "Признаки F1–F18, не схема PTB-XL+."
+    },
+    {
+      "url": "https://github.com/NPilia/pyECGdeli",
+      "role": "python_port_of_delineation",
+      "creates_ecgdeli_features_csv": false,
+      "files": ["ECGdeli.py", "README.md", "LICENSE", "citation.cff"]
+    },
+    {
+      "url": "https://github.com/axel-loewe/pyECGdeli",
+      "role": "same_python_port",
+      "creates_ecgdeli_features_csv": false
+    },
+    {
+      "url": "https://github.com/tmehari/ecg-selfsupervised",
+      "role": "unrelated_self_supervised_raw_models",
+      "creates_ecgdeli_features_csv": false
+    },
+    {
+      "url": "https://github.com/tmehari/feature_importance",
+      "role": "listed_on_author_profile",
+      "creates_ecgdeli_features_csv": false,
+      "note": "Публичная страница репозитория не содержит скрипта агрегации PTB-XL+."
+    },
+    {
+      "url": "https://github.com/tmehari/ssm_ecg",
+      "role": "listed_on_author_profile",
+      "creates_ecgdeli_features_csv": false
+    }
+  ],
+  "commits": [
+    {
+      "repo": "KIT-IBT/ECGdeli",
+      "commit": "3c13b1b2ff55152360f3cee992c1d1d66099aa14",
+      "date": "2022-10-12",
+      "message": "Add P-wave morphology estimator",
+      "tag": "v1.1"
+    },
+    {
+      "repo": "tmehari/ptbxl_feature_benchmark",
+      "commit": "e79c58e4fe962bb0e67be8ef878aa629a3177e56",
+      "date": "2022-11-15",
+      "message": "add LICENSE",
+      "tag": "v1.0.0"
+    },
+    {
+      "repo": "tmehari/ptbxl_feature_benchmark",
+      "commit": "80bca7afee8b43c360aeca9b8e6d83b795c7302b",
+      "date": "2022-11-11",
+      "message": "rm notebooks",
+      "deleted": [
+        "notebooks/evaluate_rfs.ipynb",
+        "notebooks/feature_comparison.ipynb"
+      ]
+    }
+  ],
+  "zenodo_records": [
+    {
+      "doi": "10.5281/zenodo.7817567",
+      "concept_doi": "10.5281/zenodo.7323536",
+      "title": "tmehari/ptbxl_feature_benchmark: First Release",
+      "version": "v1.0.0",
+      "publication_date": "2022-11-15",
+      "creators": ["Temesgen Mehari", "Nils Strodthoff"],
+      "versions_found": 1,
+      "files": [
+        {
+          "name": "ptbxl_feature_benchmark-v1.0.0.zip",
+          "size": 745006,
+          "checksum": "md5:5aa66a7934d7856fbc9435a0de7b66cf",
+          "download_http_status": 403
+        }
+      ],
+      "related_identifiers": [
+        "https://github.com/tmehari/ptbxl_feature_benchmark/tree/v1.0.0"
+      ],
+      "contains_aggregation_script": false,
+      "evidence": "Связанный git-тег склонирован и просмотрен целиком. Zip в этой сессии не скачан: HTTP 403."
+    },
+    {
+      "doi": "10.5281/zenodo.7191379",
+      "concept_doi": "10.5281/zenodo.3944620",
+      "title": "ECGdeli - ECG delineation algorithms",
+      "version": "v1.1",
+      "publication_date_metadata": "2020-07-01",
+      "record_created": "2022-10-12T20:09:35.822572+00:00",
+      "description": "Added functions to derive amplitude and duration features and estimate P-wave morphology",
+      "creators": ["Nicolas Pilia", "Claudia Nagel", "Gustavo Lenis", "Silvia Becker", "Olaf Dössel", "Axel Loewe"],
+      "files": [
+        {
+          "name": "KIT-IBT/ECGdeli-v1.1.zip",
+          "size": 3541203,
+          "checksum": "md5:d6e176cc0b1f12a17e0db5ce589c8ee1",
+          "byte_compared_to_git_tag": false
+        }
+      ],
+      "related_identifiers": [
+        "https://github.com/KIT-IBT/ECGdeli/tree/v1.1"
+      ],
+      "version_index_in_concept": 2,
+      "is_last_version": true,
+      "earlier_version_file_downloaded": false
+    }
+  ],
+  "aggregation_source": null,
+  "internal_filename_before_rename": "kit_features_final.csv",
+  "internal_filename_evidence": "tmehari/ptbxl_feature_benchmark code/feature_utils/utils.py: комментарий и более ранний путь загрузки. Файл в репозитории не лежит.",
+  "ecgdeli_source": {
+    "version": "1.1",
+    "commit": "3c13b1b2ff55152360f3cee992c1d1d66099aa14",
+    "tag": "v1.1",
+    "verified_by": "git rev-parse HEAD and git describe --tags --exact-match in /tmp/ECGdeli"
+  },
+  "published_intermediates": {
+    "fiducial_points": "PTB-XL+ 1.0.1 fiducial_points/ecgdeli/<folder>/<ecg_id>_points_global.atr and per-lead .atr",
+    "record_513_files_exist": true,
+    "record_513_prefix_seen": "00513 in https://physionet.org/files/ptb-xl-plus/1.0.1/fiducial_points/ecgdeli/00000/",
+    "aggregation_applied_to_these_files_by_us": false
+  },
+  "feature_families": [
+    {"name": "PQ_Int", "columns": 39, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "leadwise column 4; sync column 4", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "PQi_X / PQi_max", "dictionary_global_wording": "max PQ interval across all leads", "function_global_definition": "2nd-latest QRS onset minus 2nd-earliest P onset, not a call to max()", "which_global_definition_was_stored": "UNKNOWN"},
+    {"name": "PR_Int", "columns": 39, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "leadwise column 5; sync column 5", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "PRi"},
+    {"name": "QRS_Dur", "columns": 39, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "leadwise column 2; sync column 2", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "QRSd"},
+    {"name": "QT_Int", "columns": 39, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "leadwise column 6; sync column 6", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "QTi"},
+    {"name": "P_Amp", "columns": 36, "ecgdeli_function": "ExtractAmplitudeFeaturesFromFPT", "beat_level": "leadwise amplitude index 1, raw sample value", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "PWa_X", "adc_to_mV_inside_function": false},
+    {"name": "P_DurFull", "columns": 36, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "leadwise column 1, P offset minus P onset", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "PWd_X", "dictionary_wording": "Sum of P and P' wave duration", "function_mentions_p_prime": false},
+    {"name": "P_Morph", "columns": 36, "ecgdeli_function": "Get_P_Morphology", "beat_level": "integer codes -3,-2,-1,1,2,3 per beat and lead", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "PWm_X", "codes_match_dictionary": true, "how_categorical_values_are_reduced_to_one_median": "UNKNOWN"},
+    {"name": "Q_Amp", "columns": 36, "ecgdeli_function": "ExtractAmplitudeFeaturesFromFPT", "beat_level": "amplitude index 2", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "QPa_X"},
+    {"name": "QT_IntCorr", "columns": 36, "ecgdeli_function": null, "beat_level": "per-lead Framingham is named QTci_X in feature_description.csv", "derived_correction": true, "correction_formula_named_by_dictionary": "Framingham", "implemented_in_ExtractIntervalFeaturesFromFPT": false, "aggregation_script": "NOT_FOUND", "order_relative_to_aggregation": "UNKNOWN"},
+    {"name": "R_Amp", "columns": 36, "ecgdeli_function": "ExtractAmplitudeFeaturesFromFPT", "beat_level": "amplitude index 3", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "RPa_X"},
+    {"name": "S_Amp", "columns": 36, "ecgdeli_function": "ExtractAmplitudeFeaturesFromFPT", "beat_level": "amplitude index 4", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "SPa_X"},
+    {"name": "ST_Elev", "columns": 36, "ecgdeli_function": null, "dictionary_name": "STc_X", "dictionary_wording": "ST elevation/depression from multiple Gaussian fits in lead X", "function_named_STc_in_v1.1": false, "l_point_in_T_Detection": "sample index only, no exported ST amplitude", "ecgfeat_F16_is_this_column": false, "aggregation_script": "NOT_FOUND"},
+    {"name": "T_Amp", "columns": 36, "ecgdeli_function": "ExtractAmplitudeFeaturesFromFPT", "beat_level": "amplitude index 5", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "TWa_X"},
+    {"name": "T_DurFull", "columns": 36, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "leadwise column 3", "derived_correction": false, "aggregation_script": "NOT_FOUND", "dictionary_name": "TWd_X"},
+    {"name": "P_Dur", "columns": 3, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "sync column 1", "dictionary_name": "PWd_max", "dictionary_wording_says_max": true, "function_uses_second_order_statistic": true, "which_definition_was_stored": "UNKNOWN", "aggregation_script": "NOT_FOUND"},
+    {"name": "QT_IntFramingham", "columns": 3, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "sync column 7, Framingham of that beat's sync QT and RR", "derived_correction": true, "correction_before_cross_beat_median_inside_this_function": true, "dictionary_name": "QTci_max", "this_column_proven_equal_to_median_of_sync_column_7": false, "aggregation_script": "NOT_FOUND"},
+    {"name": "RR_Mean", "columns": 3, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "leadwise column 7 and sync column 8", "dictionary_name": "RRi_max", "unified_name_says_mean": true, "paper_says_reported_value_is_median_across_beats": true, "which_rr_series_was_reduced": "UNKNOWN", "aggregation_script": "NOT_FOUND"},
+    {"name": "T_Dur", "columns": 3, "ecgdeli_function": "ExtractIntervalFeaturesFromFPT", "beat_level": "sync column 3", "dictionary_name": "TWd_max", "which_global_definition_was_stored": "UNKNOWN", "aggregation_script": "NOT_FOUND"},
+    {"name": "HA", "columns": 3, "ecgdeli_function": null, "dictionary_name": "elHA", "dictionary_wording": "integer axis 1 left, 2 horizontal, 3 normal, 4 vertical, 5 right, 6 extreme right", "implementation_in_v1.1": false, "aggregation_script": "NOT_FOUND"}
+  ],
+  "formula_order": {
+    "hypothesis_A_feature_per_beat_then_median_iqr_count": "SUPPORTED_BY_PAPER_PROSE",
+    "hypothesis_A_for_sync_qtc_inside_ecgdeli": "IMPLEMENTED_PER_BEAT_BEFORE_ANY_MEDIAN_IN_ExtractIntervalFeaturesFromFPT",
+    "hypothesis_B_correct_after_taking_median_qt_and_median_rr": "NOT_IMPLEMENTED_IN_THE_PUBLIC_FUNCTION",
+    "hypothesis_B_on_stored_medians_of_record_513": "DOES_NOT_MATCH_PUBLISHED_QT_IntFramingham_Global",
+    "published_column_proven_to_be_median_of_the_public_sync_qtc": false
+  },
+  "confirmed_parameters": {
+    "paper_reports": "median across beats, (0.25, 0.75) interquartile range as one reported variability number, and beat count",
+    "units_after_harmonization": "mV for amplitudes, ms for intervals",
+    "interval_function_sample_scale": "differences of fiducial sample indices are multiplied by 2; the function does not take a sampling frequency",
+    "sync_qtc_formula": "per beat: QTc_ms = QT_ms + 154 * (1 - RR_ms/1000), using the synchronized QT and RR of that beat",
+    "p_morphology_codes": [-3, -2, -1, 1, 2, 3],
+    "iqr_numeric_algorithm": "UNKNOWN",
+    "empty_beat_rule": "UNKNOWN",
+    "ptbxl_sampling_frequency_used_by_authors": "UNKNOWN",
+    "filter_notch_isoline_and_annotate_arguments_used_by_authors": "UNKNOWN",
+    "lead_order_conversion_from_wfdb_to_csv": "UNKNOWN"
+  },
+  "unknown_parameters": [
+    "script that writes ecgdeli_features.csv or kit_features_final.csv",
+    "percentile algorithm for the (0.25, 0.75) IQR",
+    "whether IQR is exactly q75-q25 and how ties and NaNs are handled",
+    "which beats are excluded before count",
+    "whether global columns are the sync features or a max across leads",
+    "per-lead QT_IntCorr implementation and whether correction is before or after aggregation",
+    "whether QT_IntFramingham_Global is the median of sync column 7",
+    "implementation of STc_X",
+    "implementation of elHA",
+    "sampling frequency passed to ECGDeli for PTB-XL+",
+    "resampling, if any",
+    "filter, notch, isoline, baseline and Annotate_ECG_Multi process_flag used for the dataset",
+    "where ADC counts become mV",
+    "lead reorder from WFDB order to the CSV lead order",
+    "byte equality of Zenodo ECGDeli zip md5 d6e176cc0b1f12a17e0db5ce589c8ee1 and git tag v1.1",
+    "contents of the earlier concept version of DOI 10.5281/zenodo.3944620"
+  ],
+  "authors_checked": [
+    {"name": "Temesgen Mehari", "github": "tmehari", "public_repos_relevant": ["ptbxl_feature_benchmark", "ecg-selfsupervised", "feature_importance", "ssm_ecg"]},
+    {"name": "Nils Strodthoff", "github": "nstrodt", "public_repos_relevant": [], "note": "Public repositories on the profile are protein models, not an ECGDeli aggregator."},
+    {"name": "Claudia Nagel", "github": "cnagel94", "public_repos_listed": 0, "note": "Profile exists. No public repository list was exposed. She is the author comment inside ExtractIntervalFeaturesFromFPT.m and ExtractAmplitudeFeaturesFromFPT.m, dated 2022-10-12."},
+    {"name": "Nicolas Pilia", "github": "NPilia", "public_repos_relevant": ["pyECGdeli"]},
+    {"name": "Axel Loewe", "github": "axel-loewe", "public_repos_relevant": ["pyECGdeli"]},
+    {"name": "KIT-IBT", "github": "KIT-IBT", "public_repos_relevant": ["ECGdeli", "ECGfeat", "ECG-Synthesization", "ECGconc"]}
+  ],
+  "searches_blocked": [
+    "GitHub code search for kit_features_final, elHA and QTci_max returned a login page, not a hit list.",
+    "Unauthenticated GitHub API search of user repositories hit HTTP 403 rate limit; user pages were then read as HTML.",
+    "Zenodo file download for 7817567 returned HTTP 403.",
+    "A second request to the ECGDeli versions endpoint returned HTTP 403."
+  ],
+  "reproduction_ready": false,
+  "reproduction_readiness": "NOT_READY",
+  "raw_to_531_status": "NOT_PROVEN",
+  "production_extractor_written": false,
+  "network_changed": false
+}

@@ -1,0 +1,68 @@
+{
+  "record": "00513",
+  "observed_on_this_record": false,
+  "reason": "ECGDeli 1.1 did not start. The fields below are the outputs declared by the v1.1 source, not files produced for 00513.",
+  "ecgdeli_commit": "3c13b1b2ff55152360f3cee992c1d1d66099aa14",
+  "declared_outputs": [
+    {
+      "function": "Annotate_ECG_Multi",
+      "name": "FPT_Cell",
+      "shape": "one fiducial table per lead",
+      "per_beat": true,
+      "per_lead": true,
+      "fields": ["P onset", "P peak", "P offset", "QRS onset", "Q peak", "R peak", "S peak", "QRS offset", "L point", "T onset", "T peak", "T offset"]
+    },
+    {
+      "function": "Annotate_ECG_Multi",
+      "name": "FPT_MultiChannel",
+      "shape": "beats by fiducial columns",
+      "per_beat": true,
+      "global": true
+    },
+    {
+      "function": "ExtractIntervalFeaturesFromFPT",
+      "name": "features_leadwise",
+      "shape": "leads by beats by 7",
+      "per_beat": true,
+      "per_lead": true,
+      "columns": ["P duration", "QRS duration", "T duration", "PQ interval", "PR interval", "QT interval", "RR interval"],
+      "sample_scale": "index differences are multiplied by 2 inside the function; the function has no sampling-frequency argument"
+    },
+    {
+      "function": "ExtractIntervalFeaturesFromFPT",
+      "name": "features_sync",
+      "shape": "beats by 8",
+      "per_beat": true,
+      "global": true,
+      "columns": ["P duration", "QRS duration", "T duration", "PQ interval", "PR interval", "QT interval", "Framingham QTc", "RR interval"],
+      "sync_rule": "2nd-latest boundary minus 2nd-earliest boundary",
+      "qtc": "computed on that beat before any cross-beat median"
+    },
+    {
+      "function": "ExtractAmplitudeFeaturesFromFPT",
+      "name": "feature_12leads",
+      "shape": "12 by beats by 5",
+      "per_beat": true,
+      "per_lead": true,
+      "columns": ["P amplitude", "Q amplitude", "R amplitude", "S amplitude", "T amplitude"],
+      "unit_conversion": "returns the sample value already stored in the signal matrix"
+    },
+    {
+      "function": "Get_P_Morphology",
+      "name": "PMorph",
+      "shape": "beats by leads",
+      "per_beat": true,
+      "per_lead": true,
+      "codes": [-3, -2, -1, 1, 2, 3],
+      "code_meaning": {
+        "-3": "negative M-shaped",
+        "-2": "negative biphasic",
+        "-1": "negative monophasic",
+        "1": "positive monophasic",
+        "2": "positive biphasic",
+        "3": "positive M-shaped"
+      }
+    }
+  ],
+  "not_declared_by_these_functions": ["ST_Elev", "STc", "HA__Global", "elHA", "per-lead QT_IntCorr", "median", "IQR", "count", "531-column CSV"]
+}

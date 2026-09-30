@@ -1,0 +1,7 @@
+feature,candidate_formula,reconstructed_value,published_value,absolute_error,exact_match
+HA__Global,atan2_median_RplusS_aVF_I__raw500_index_zero,5.976037227998785,2.0,3.976037227998785,False
+HA__Global,atan2_median_RplusS_aVF_I__raw500_index_one,6.9552274530190905,2.0,4.9552274530190905,False
+HA__Global,ptbxl_metadata_heart_axis_string,EMPTY,2.0,,False
+HA__Global,single_label_not_12_beat_aggregate,,2.0,,False
+HA__Global_iqr,single_label_not_12_beat_aggregate,,0.0,,False
+HA__Global_count,single_label_not_12_beat_aggregate,,1.0,,False

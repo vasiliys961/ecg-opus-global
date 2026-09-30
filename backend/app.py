@@ -4,12 +4,16 @@ from __future__ import annotations
 
 import csv
 import io
+import socket
 from pathlib import Path
+from urllib.parse import quote
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi.responses import FileResponse, JSONResponse, Response
 from pydantic import BaseModel
 
+from backend.bridge import MAX_FILE_BYTES, BridgeError, bridge
+from backend.dicom_image import DicomOpenError, open_dicom_image
 from backend.vision import (
     EmptyCase,
     UnsupportedImage,
@@ -20,6 +24,7 @@ from backend.vision import (
     form_signal_conclusion,
 )
 from ecg_engine.delineation import measure_tracing
+from ecg_engine.intake import IntakeError, Sheet, Waveform, open_upload
 from ecg_engine.ecgfounder import SignalError, WeightsMissing, arrange, predict_signal
 from ecg_engine.feature_compatibility import FeatureCompatibilityEngine, json_ready
 from ecg_engine.preprocessing import PreprocessingError
@@ -27,8 +32,7 @@ from ecg_engine.raw_extractor import RawECGExtractor
 
 ROOT = Path(__file__).resolve().parents[1]
 FRONTEND = ROOT / "frontend" / "index.html"
-CABLE = ROOT / "frontend" / "cable.js"
-CONNECT_GUIDE = ROOT / "frontend" / "ecg-connect.html"
+PHONE = ROOT / "frontend" / "phone.html"
 EXAMPLE_CSV = ROOT / "examples2" / "00001_норма.csv"
 
 app = FastAPI(title="Doctor Opus ECG Engine", version="0.2.0")
@@ -37,11 +41,13 @@ app = FastAPI(title="Doctor Opus ECG Engine", version="0.2.0")
 class ProtocolBody(BaseModel):
     interpretation: str
     extraction: dict | None = None
+    locale: str = "en"
 
 
 class SignalConclusionBody(BaseModel):
     measurements: dict
     scores: list
+    locale: str = "en"
 
 
 class ExampleBody(BaseModel):
@@ -125,6 +131,52 @@ def _columns_from_csv(text: str) -> tuple[list[str], list[list[float]]]:
     return lead_names, columns
 
 
+@app.post("/api/ecg/intake")
+async def intake_file(
+    file: UploadFile = File(...),
+    sampling_rate: float = Form(500),
+    notes: str = Form(""),
+    clinical_context: str = Form(""),
+    locale: str = Form("en"),
+):
+    payload = await file.read()
+    try:
+        opened = open_upload(payload, file.filename or "", sampling_rate)
+    except IntakeError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if isinstance(opened, Waveform):
+        try:
+            report = _digital_report(opened.columns, opened.lead_names, opened.sampling_rate)
+        except (SignalError, WeightsMissing) as exc:
+            raise _signal_error(exc) from exc
+        report["stream"] = opened.stream
+        report["format"] = opened.format_name
+        return report
+    if not isinstance(opened, Sheet):
+        raise HTTPException(status_code=400, detail="Файл не попал ни в один поток.")
+    try:
+        if opened.text:
+            result = analyze_case(notes=opened.text, clinical_context=clinical_context, locale=locale)
+        else:
+            result = analyze_case(
+                image=opened.payload,
+                filename=opened.filename,
+                mime_type=opened.mime,
+                notes=notes,
+                clinical_context=clinical_context,
+                locale=locale,
+            )
+    except EmptyCase as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except UnsupportedImage as exc:
+        raise HTTPException(status_code=415, detail=str(exc)) from exc
+    except VisionUnavailable as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    result["stream"] = opened.stream
+    result["format"] = opened.format_name
+    return result
+
+
 @app.post("/api/ecg/signal/csv")
 async def score_signal_csv(
     file: UploadFile = File(...),
@@ -154,7 +206,7 @@ def score_example(body: ExampleBody):
 @app.post("/api/ecg/signal/conclusion")
 def signal_conclusion(body: SignalConclusionBody):
     try:
-        return form_signal_conclusion(body.measurements, body.scores)
+        return form_signal_conclusion(body.measurements, body.scores, body.locale)
     except EmptyCase as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     except VisionUnavailable as exc:
@@ -166,36 +218,172 @@ def index():
     return FileResponse(FRONTEND, headers={"Cache-Control": "no-store"})
 
 
-@app.get("/cable.js")
-def cable_script():
-    if not CABLE.is_file():
-        raise HTTPException(status_code=404, detail="Скрипт кабеля не найден.")
-    return FileResponse(CABLE, media_type="application/javascript", headers={"Cache-Control": "no-store"})
+@app.get("/phone")
+def phone_page():
+    return FileResponse(PHONE, headers={"Cache-Control": "no-store"})
 
 
-@app.get("/ecg-connect.html")
-def connect_guide():
-    if not CONNECT_GUIDE.is_file():
-        raise HTTPException(status_code=404, detail="Инструкция по подключению не найдена.")
-    return FileResponse(CONNECT_GUIDE, media_type="text/html", headers={"Cache-Control": "no-store"})
+@app.get("/i18n.js")
+def i18n_script():
+    return FileResponse(ROOT / "frontend" / "i18n.js", media_type="text/javascript", headers={"Cache-Control": "no-store"})
+
+
+def _lan_host() -> str:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        sock.connect(("192.0.2.1", 9))
+        return sock.getsockname()[0]
+    except OSError:
+        return "127.0.0.1"
+    finally:
+        sock.close()
+
+
+def _phone_url(request: Request, token: str) -> str:
+    hostname = request.url.hostname or "127.0.0.1"
+    if hostname in {"127.0.0.1", "localhost", "::1"}:
+        hostname = _lan_host()
+    port = request.url.port
+    scheme = request.url.scheme or "http"
+    origin = f"{scheme}://{hostname}" if port in {None, 80, 443} else f"{scheme}://{hostname}:{port}"
+    return f"{origin}/phone?token={quote(token)}"
+
+
+def _qr_png(text: str) -> bytes:
+    import qrcode
+
+    image = qrcode.make(text, border=1)
+    buffer = io.BytesIO()
+    image.save(buffer, format="PNG")
+    return buffer.getvalue()
+
+
+def _bridge_http(exc: BridgeError) -> HTTPException:
+    missing = "не найдена" in str(exc)
+    return HTTPException(status_code=404 if missing else 400, detail=str(exc))
+
+
+@app.post("/api/bridge/session")
+def bridge_session(request: Request):
+    token = bridge.create()
+    return {"token": token, "phone_url": _phone_url(request, token)}
+
+
+@app.get("/api/bridge/qr.png")
+def bridge_qr(request: Request, token: str):
+    try:
+        bridge.since(token, 0)
+    except BridgeError as exc:
+        raise _bridge_http(exc) from exc
+    return Response(
+        content=_qr_png(_phone_url(request, token)),
+        media_type="image/png",
+        headers={"Cache-Control": "no-store"},
+    )
+
+
+@app.get("/api/bridge/events")
+def bridge_events(token: str, since: int = 0):
+    try:
+        events = bridge.since(token, max(0, since))
+    except BridgeError as exc:
+        raise _bridge_http(exc) from exc
+    return {"events": events}
+
+
+@app.get("/api/bridge/file/{event_id}")
+def bridge_file(event_id: int, token: str):
+    try:
+        payload, filename, mime = bridge.read_file(token, event_id)
+    except BridgeError as exc:
+        raise _bridge_http(exc) from exc
+    return Response(
+        content=payload,
+        media_type=mime or "application/octet-stream",
+        headers={
+            "Cache-Control": "no-store",
+            "Content-Disposition": f"inline; filename*=UTF-8''{quote(filename)}",
+        },
+    )
+
+
+@app.post("/api/bridge/upload")
+async def bridge_upload(
+    token: str = Form(...),
+    name: str = Form(""),
+    year: str = Form(""),
+    sex: str = Form(""),
+    study_date: str = Form(""),
+    file: UploadFile | None = File(None),
+):
+    try:
+        patient_id = bridge.add_patient(token, name, year, sex, study_date)
+        file_id = None
+        if file is not None:
+            payload = await _read_limited(file)
+            if payload:
+                file_id = bridge.add_file(token, file.filename or "ecg", file.content_type or "", payload)
+        if patient_id is None and file_id is None:
+            raise BridgeError("Заполните карточку или выберите файл.")
+    except BridgeError as exc:
+        raise _bridge_http(exc) from exc
+    return {"ok": True}
+
+
+async def _read_limited(file: UploadFile) -> bytes:
+    chunks: list[bytes] = []
+    total = 0
+    while True:
+        block = await file.read(1024 * 1024)
+        if not block:
+            break
+        total += len(block)
+        if total > MAX_FILE_BYTES:
+            raise BridgeError("Файл с телефона больше 20 МБ.")
+        chunks.append(block)
+    return b"".join(chunks)
+
+
+@app.post("/api/ecg/dicom/image")
+async def dicom_image(file: UploadFile = File(...)):
+    payload = await file.read()
+    try:
+        png = open_dicom_image(payload)
+    except DicomOpenError as exc:
+        raise HTTPException(status_code=415, detail=str(exc)) from exc
+    return Response(content=png, media_type="image/png")
+
+
+async def _strip_frames(frames: list[UploadFile] | None) -> list[tuple[bytes, str, str]]:
+    images: list[tuple[bytes, str, str]] = []
+    for item in frames or []:
+        payload = await item.read()
+        if payload:
+            images.append((payload, item.filename or "", item.content_type or ""))
+    return images
 
 
 @app.post("/api/ecg/analyze")
 async def analyze(
     file: UploadFile | None = File(None),
+    frames: list[UploadFile] | None = File(None),
     notes: str = Form(""),
     clinical_context: str = Form(""),
+    locale: str = Form("en"),
 ):
-    payload = await file.read() if file is not None else None
-    if payload == b"":
-        payload = None
+    images = await _strip_frames(frames)
+    payload = None
+    if not images and file is not None:
+        payload = await file.read() or None
     try:
         return analyze_case(
             image=payload,
             filename=file.filename if file is not None else "",
             mime_type=file.content_type if file is not None else "",
+            images=images or None,
             notes=notes,
             clinical_context=clinical_context,
+            locale=locale,
         )
     except EmptyCase as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -208,7 +396,7 @@ async def analyze(
 @app.post("/api/ecg/protocol")
 def protocol(body: ProtocolBody):
     try:
-        return form_protocol(body.interpretation, body.extraction)
+        return form_protocol(body.interpretation, body.extraction, body.locale)
     except EmptyCase as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     except VisionUnavailable as exc:

@@ -1,0 +1,15 @@
+{
+  "total_features": 531,
+  "direct": 0,
+  "derivable": 0,
+  "requires_raw": 180,
+  "requires_fiducials": 240,
+  "unknown": 111,
+  "median_12sl_complete_pairs": 7979,
+  "fiducial_ids_with_13_files": 2991,
+  "ids_with_median_pair_and_13_fiducials": 1996,
+  "full_531_vector_available": false,
+  "ensemble_inference_run": false,
+  "atr_bytes_read": false,
+  "official_feature_csv_present": false
+}

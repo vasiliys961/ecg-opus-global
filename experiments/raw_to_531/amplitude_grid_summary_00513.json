@@ -1,0 +1,340 @@
+{
+  "record": "00513",
+  "sampling_frequency_hz": 500,
+  "n_samples": 5000,
+  "header": "00513_hr 12 500 5000\n00513_hr.dat 16 1000.0(0)/mV 16 0 -95 61887 0 I\n00513_hr.dat 16 1000.0(0)/mV 16 0 0 25249 0 II\n00513_hr.dat 16 1000.0(0)/mV 16 0 95 28870 0 III\n00513_hr.dat 16 1000.0(0)/mV 16 0 47 54293 0 AVR\n00513_hr.dat 16 1000.0(0)/mV 16 0 -95 49361 0 AVL\n00513_hr.dat 16 1000.0(0)/mV 16 0 47 26900 0 AVF\n00513_hr.dat 16 1000.0(0)/mV 16 0 -10 53270 0 V1\n00513_hr.dat 16 1000.0(0)/mV 16 0 -150 5567 0 V2\n00513_hr.dat 16 1000.0(0)/mV 16 0 -170 45765 0 V3\n00513_hr.dat 16 1000.0(0)/mV 16 0 -105 60200 0 V4\n00513_hr.dat 16 1000.0(0)/mV 16 0 -5 49974 0 V5\n00513_hr.dat 16 1000.0(0)/mV 16 0 -20 5106 0 V6\n",
+  "matlab": "absent",
+  "octave": "absent",
+  "pmorph": "NOT_EXECUTED",
+  "summaries": [
+    {
+      "pipeline": "P0_mV__csv_name__wfdb0",
+      "exact": 64,
+      "mae": 0.00780833333333333,
+      "median_absolute_error": 0.0017500000000000024,
+      "max_absolute_error": 0.1595000000000001,
+      "columns": 180
+    },
+    {
+      "pipeline": "P0_mV__csv_name__matlab1",
+      "exact": 67,
+      "mae": 0.0016444444444444425,
+      "median_absolute_error": 0.0010000000000000009,
+      "max_absolute_error": 0.008499999999999995,
+      "columns": 180
+    },
+    {
+      "pipeline": "P0_mV__file_name__wfdb0",
+      "exact": 64,
+      "mae": 0.020406944444444443,
+      "median_absolute_error": 0.002499999999999997,
+      "max_absolute_error": 0.992,
+      "columns": 180
+    },
+    {
+      "pipeline": "P0_mV__file_name__matlab1",
+      "exact": 66,
+      "mae": 0.01617222222222222,
+      "median_absolute_error": 0.0013749999999999579,
+      "max_absolute_error": 1.0614999999999999,
+      "columns": 180
+    },
+    {
+      "pipeline": "P0_ADC__csv_name__wfdb0",
+      "exact": 60,
+      "mae": 125.19754166666668,
+      "median_absolute_error": 35.962500000000006,
+      "max_absolute_error": 1894.665,
+      "columns": 180
+    },
+    {
+      "pipeline": "P0_ADC__csv_name__matlab1",
+      "exact": 60,
+      "mae": 124.69198611111112,
+      "median_absolute_error": 36.59,
+      "max_absolute_error": 1837.665,
+      "columns": 180
+    },
+    {
+      "pipeline": "P0_ADC__file_name__wfdb0",
+      "exact": 60,
+      "mae": 120.57920833333336,
+      "median_absolute_error": 34.8475,
+      "max_absolute_error": 1894.665,
+      "columns": 180
+    },
+    {
+      "pipeline": "P0_ADC__file_name__matlab1",
+      "exact": 60,
+      "mae": 120.20559722222224,
+      "median_absolute_error": 32.89125,
+      "max_absolute_error": 1837.665,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_isoline__csv_name__wfdb0",
+      "exact": 60,
+      "mae": 0.017396226671006935,
+      "median_absolute_error": 0.0042499999999999465,
+      "max_absolute_error": 0.22002148437500002,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_isoline__csv_name__matlab1",
+      "exact": 62,
+      "mae": 0.011870998806423606,
+      "median_absolute_error": 0.0024999999999999935,
+      "max_absolute_error": 0.06717431640624993,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_isoline__file_name__wfdb0",
+      "exact": 60,
+      "mae": 0.028549872504340268,
+      "median_absolute_error": 0.004499999999999933,
+      "max_absolute_error": 1.03902978515625,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_isoline__file_name__matlab1",
+      "exact": 62,
+      "mae": 0.024748255750868045,
+      "median_absolute_error": 0.0027499999999999487,
+      "max_absolute_error": 1.10852978515625,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_baseline_example_1s_0.5__csv_name__wfdb0",
+      "exact": 60,
+      "mae": 0.020547630915566214,
+      "median_absolute_error": 0.013710264151888987,
+      "max_absolute_error": 0.2152340248488438,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_baseline_example_1s_0.5__csv_name__matlab1",
+      "exact": 60,
+      "mae": 0.016798373611982463,
+      "median_absolute_error": 0.012215556347713829,
+      "max_absolute_error": 0.08847580537290889,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_baseline_example_1s_0.5__file_name__wfdb0",
+      "exact": 60,
+      "mae": 0.03175202069803824,
+      "median_absolute_error": 0.012621476582050532,
+      "max_absolute_error": 1.0136038473702302,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_baseline_example_1s_0.5__file_name__matlab1",
+      "exact": 60,
+      "mae": 0.02933998179839218,
+      "median_absolute_error": 0.012167081434551953,
+      "max_absolute_error": 1.0677486517428991,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_baseline_morph_0.3_0.3__csv_name__wfdb0",
+      "exact": 60,
+      "mae": 0.02220676116082392,
+      "median_absolute_error": 0.01144844293366647,
+      "max_absolute_error": 0.2133465291537906,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_baseline_morph_0.3_0.3__csv_name__matlab1",
+      "exact": 60,
+      "mae": 0.018396478654808115,
+      "median_absolute_error": 0.011153027941580376,
+      "max_absolute_error": 0.08383685991003101,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_baseline_morph_0.3_0.3__file_name__wfdb0",
+      "exact": 60,
+      "mae": 0.033460203985325336,
+      "median_absolute_error": 0.011779329070296645,
+      "max_absolute_error": 1.0144203900597257,
+      "columns": 180
+    },
+    {
+      "pipeline": "P2_baseline_morph_0.3_0.3__file_name__matlab1",
+      "exact": 60,
+      "mae": 0.031079909594478133,
+      "median_absolute_error": 0.010981376065732724,
+      "max_absolute_error": 1.0775321715240223,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_highlow_1_40__csv_name__wfdb0",
+      "exact": 60,
+      "mae": 0.021382558133816894,
+      "median_absolute_error": 0.013623095139925837,
+      "max_absolute_error": 0.15437723015883975,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_highlow_1_40__csv_name__matlab1",
+      "exact": 60,
+      "mae": 0.020872449434172668,
+      "median_absolute_error": 0.013604993441391211,
+      "max_absolute_error": 0.13592483829012414,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_highlow_1_40__file_name__wfdb0",
+      "exact": 60,
+      "mae": 0.03258666739932134,
+      "median_absolute_error": 0.013301517268803754,
+      "max_absolute_error": 1.0057305970381871,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_highlow_1_40__file_name__matlab1",
+      "exact": 60,
+      "mae": 0.03322600776484299,
+      "median_absolute_error": 0.014164529425279591,
+      "max_absolute_error": 1.0356585176359452,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_qrs_0.5_30__csv_name__wfdb0",
+      "exact": 60,
+      "mae": 0.024732901999225183,
+      "median_absolute_error": 0.01354146711107527,
+      "max_absolute_error": 0.19855262753833913,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_qrs_0.5_30__csv_name__matlab1",
+      "exact": 60,
+      "mae": 0.023991933953937474,
+      "median_absolute_error": 0.014433685809384362,
+      "max_absolute_error": 0.17137378730987285,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_qrs_0.5_30__file_name__wfdb0",
+      "exact": 60,
+      "mae": 0.03562780664539186,
+      "median_absolute_error": 0.012988589928290124,
+      "max_absolute_error": 1.0143242961258472,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_qrs_0.5_30__file_name__matlab1",
+      "exact": 60,
+      "mae": 0.03544212011868494,
+      "median_absolute_error": 0.012297899134233837,
+      "max_absolute_error": 1.0334822293718848,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_t_0.3_20__csv_name__wfdb0",
+      "exact": 60,
+      "mae": 0.042825589299422796,
+      "median_absolute_error": 0.015056474949373344,
+      "max_absolute_error": 0.5346455978331268,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_t_0.3_20__csv_name__matlab1",
+      "exact": 60,
+      "mae": 0.04057419554720568,
+      "median_absolute_error": 0.014459503855848065,
+      "max_absolute_error": 0.5191876235183277,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_t_0.3_20__file_name__wfdb0",
+      "exact": 60,
+      "mae": 0.05303410189456954,
+      "median_absolute_error": 0.014565269482636357,
+      "max_absolute_error": 1.0433100059655973,
+      "columns": 180
+    },
+    {
+      "pipeline": "P3_t_0.3_20__file_name__matlab1",
+      "exact": 60,
+      "mae": 0.05129457522170162,
+      "median_absolute_error": 0.014884218273538946,
+      "max_absolute_error": 1.0531632019273012,
+      "columns": 180
+    },
+    {
+      "pipeline": "P1_example_forward__csv_name__wfdb0",
+      "exact": 60,
+      "mae": 0.020431608487543523,
+      "median_absolute_error": 0.01329859562549001,
+      "max_absolute_error": 0.15741292771107473,
+      "columns": 180
+    },
+    {
+      "pipeline": "P1_example_forward__csv_name__matlab1",
+      "exact": 60,
+      "mae": 0.019875829399160494,
+      "median_absolute_error": 0.012988004054061031,
+      "max_absolute_error": 0.1390752751537747,
+      "columns": 180
+    },
+    {
+      "pipeline": "P1_example_forward__file_name__wfdb0",
+      "exact": 60,
+      "mae": 0.031538925882911184,
+      "median_absolute_error": 0.013152939211435002,
+      "max_absolute_error": 1.0094611373914562,
+      "columns": 180
+    },
+    {
+      "pipeline": "P1_example_forward__file_name__matlab1",
+      "exact": 60,
+      "mae": 0.03206302952389613,
+      "median_absolute_error": 0.01290409959515243,
+      "max_absolute_error": 1.0391401422790083,
+      "columns": 180
+    },
+    {
+      "pipeline": "P4_baseline_then_example_forward__csv_name__wfdb0",
+      "exact": 60,
+      "mae": 0.020354452324919756,
+      "median_absolute_error": 0.013305292788599586,
+      "max_absolute_error": 0.15659019589135204,
+      "columns": 180
+    },
+    {
+      "pipeline": "P4_baseline_then_example_forward__csv_name__matlab1",
+      "exact": 60,
+      "mae": 0.01974988030296796,
+      "median_absolute_error": 0.012825455301473249,
+      "max_absolute_error": 0.13678188901527633,
+      "columns": 180
+    },
+    {
+      "pipeline": "P4_baseline_then_example_forward__file_name__wfdb0",
+      "exact": 60,
+      "mae": 0.03163865743297012,
+      "median_absolute_error": 0.01352607929846775,
+      "max_absolute_error": 1.0018654001284517,
+      "columns": 180
+    },
+    {
+      "pipeline": "P4_baseline_then_example_forward__file_name__matlab1",
+      "exact": 60,
+      "mae": 0.03219715053565571,
+      "median_absolute_error": 0.013148466309632683,
+      "max_absolute_error": 1.0309897638513865,
+      "columns": 180
+    }
+  ],
+  "best_numerical_candidate": {
+    "pipeline": "P0_mV__csv_name__matlab1",
+    "exact": 67,
+    "mae": 0.0016444444444444425,
+    "median_absolute_error": 0.0010000000000000009,
+    "max_absolute_error": 0.008499999999999995,
+    "columns": 180
+  },
+  "network_called": false
+}

@@ -1,0 +1,18 @@
+{
+  "record": "00513",
+  "csv_column_to_file": {
+    "I": "00513_points_lead_I.atr",
+    "II": "00513_points_lead_II.atr",
+    "III": "00513_points_lead_III.atr",
+    "aVR": "00513_points_lead_aVR.atr",
+    "aVL": "00513_points_lead_aVF.atr",
+    "aVF": "00513_points_lead_aVL.atr",
+    "V1": "00513_points_lead_V1.atr",
+    "V2": "00513_points_lead_V2.atr",
+    "V3": "00513_points_lead_V3.atr",
+    "V4": "00513_points_lead_V4.atr",
+    "V5": "00513_points_lead_V5.atr",
+    "V6": "00513_points_lead_V6.atr"
+  },
+  "note": "aVL and aVF filenames are exchanged relative to the CSV columns. Other names match. The published CSV was not edited."
+}

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#143d32">
+  <title>ECG — phone</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17352c;
+      --muted: #4e6b60;
+      --line: #b7dcc8;
+      --page: #e4f2ea;
+      --card: #f7fbf8;
+      --field: #f3faf6;
+      --forest: #143d32;
+      --on-forest: #f4fff8;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; font: 19px/1.45 "Iowan Old Style", Palatino, Georgia, serif; color: var(--ink); background: var(--page); }
+    main { max-width: 36rem; margin: 0 auto; padding: 20px 16px 48px; }
+    h1 { margin: 0 0 8px; font-size: 1.6rem; color: var(--forest); }
+    .lang { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; }
+    .lang select { width: auto; min-width: 11rem; font: inherit; }
+    h2 { margin: 18px 0 8px; font-size: 1.25rem; color: var(--forest); }
+    h3 { margin: 14px 0 6px; font-size: 1.05rem; color: var(--forest); }
+    .note { color: var(--muted); margin: 0 0 16px; }
+    form, #result { display: flex; flex-direction: column; gap: 12px; padding: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+    label { display: flex; flex-direction: column; gap: 6px; }
+    input, select, button { font: inherit; }
+    input, select { padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--field); color: var(--ink); }
+    button { padding: 12px 14px; border: 0; border-radius: 12px; background: var(--forest); color: var(--on-forest); }
+    button.optional { background: transparent; color: var(--forest); border: 1px solid var(--forest); }
+    button:disabled { opacity: 0.6; }
+    .error { color: #8d1d1d; min-height: 1.4em; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    #result p, #result li { margin: 0 0 8px; }
+    video { position: fixed; width: 2px; height: 2px; opacity: 0; pointer-events: none; }
+  </style>
+</head>
+<body>
+<main>
+  <label class="lang"><span data-i18n="language">Language</span>
+    <select id="locale-select" aria-label="Language"></select>
+  </label>
+  <h1 data-i18n="phoneTitle">ECG</h1>
+  <p class="note" data-i18n="phoneNote">The review stays on this phone until you press Send to computer. The name is not sent into the model.</p>
+  <form id="phone-form">
+    <label><span data-i18n="fio">Name</span> <input id="name" type="text" autocomplete="name"></label>
+    <label><span data-i18n="birthYear">Year of birth</span> <input id="year" type="number" inputmode="numeric" min="1900" max="2100" step="1"></label>
+    <label><span data-i18n="sex">Sex</span>
+      <select id="sex">
+        <option value="" data-i18n="sexUnset">not stated</option>
+        <option value="муж." data-i18n="sexMale">male</option>
+        <option value="жен." data-i18n="sexFemale">female</option>
+      </select>
+    </label>
+    <label><span data-i18n="studyDate">ECG date</span> <input id="study_date" type="date"></label>
+    <label><span data-i18n="photo">Sheet photo</span> <input id="photo" type="file" accept="image/*"></label>
+    <label><span data-i18n="recordFile">Recording file</span> <input id="record" type="file"></label>
+    <label><span data-i18n="video">Strip video</span> <input id="video" type="file" accept="video/mp4,video/quicktime,video/webm,video/*"></label>
+    <label><span data-i18n="rate">Rate, if the file has none</span> <input id="rate" type="number" min="1" step="1" value="500"></label>
+    <button id="review" type="button" data-i18n="review">Review</button>
+    <button id="send" class="optional" type="button" hidden data-i18n="send">Send to computer</button>
+    <p id="send-note" class="note" data-i18n="sendNote">Send appears when this page was opened from the computer code.</p>
+    <p id="status" class="note"></p>
+    <p id="error" class="error"></p>
+  </form>
+  <section id="result" hidden>
+    <h2 data-i18n="result">Reading</h2>
+    <p id="result-format" class="note"></p>
+    <table id="result-table" hidden><tbody id="result-rows"></tbody></table>
+    <article id="result-text"></article>
+    <button id="conclude" type="button" hidden data-i18n="conclude">Write the conclusion</button>
+    <p id="conclusion-status" class="note"></p>
+    <article id="conclusion"></article>
+  </section>
+</main>
+<video id="player" playsinline muted></video>
+<script src="/i18n.js"></script>
+<script>
+function t(key) {
+  return (window.ECG_I18N && ECG_I18N.text(key)) || "";
+}
+function pageLocale() {
+  return (window.ECG_I18N && ECG_I18N.locale) || "en";
+}
+const params = new URLSearchParams(location.search);
+const token = (params.get("token") || "").trim();
+const status = document.getElementById("status");
+const error = document.getElementById("error");
+const shownLines = ["Ритм", "ЧСС", "Электрическая ось сердца", "Зубец P", "Интервал PQ", "Комплекс QRS", "Сегмент ST", "Зубец T", "Интервал QT", "Внеочередные комплексы"];
+let digitalReading = null;
+
+if (token) {
+  document.getElementById("send").hidden = false;
+  document.getElementById("send-note").hidden = true;
+}
+
+function chosenFile() {
+  return document.getElementById("record").files[0]
+    || document.getElementById("photo").files[0]
+    || null;
+}
+
+function isVideo(file) {
+  const name = (file.name || "").toLowerCase();
+  return (file.type || "").startsWith("video/") || /\.(mp4|mov|webm|m4v)$/.test(name);
+}
+
+document.getElementById("record").onchange = () => {
+  document.getElementById("video").value = "";
+  status.textContent = t("fileChosen");
+  error.textContent = "";
+};
+document.getElementById("photo").onchange = () => {
+  document.getElementById("video").value = "";
+  status.textContent = t("photoPicked");
+  error.textContent = "";
+};
+document.getElementById("video").onchange = () => {
+  document.getElementById("record").value = "";
+  document.getElementById("photo").value = "";
+  status.textContent = t("videoPicked");
+  error.textContent = "";
+};
+
+function detailText(payload, fallback) {
+  const detail = payload && payload.detail;
+  if (typeof detail === "string" && detail.trim()) return detail;
+  return fallback;
+}
+
+function showLines(lines) {
+  const body = document.getElementById("result-rows");
+  const table = document.getElementById("result-table");
+  body.replaceChildren();
+  lines.forEach((item) => {
+    if (!shownLines.includes(item.name)) return;
+    const row = document.createElement("tr");
+    const name = document.createElement("td");
+    const value = document.createElement("td");
+    const shown = pageLocale() === "ru" ? [item.name, item.value] : [
+      ({ "Ритм": "Rhythm", "ЧСС": "Rate", "Электрическая ось сердца": "QRS axis", "Зубец P": "P wave", "Интервал PQ": "PQ interval", "Комплекс QRS": "QRS complex", "Сегмент ST": "ST segment", "Зубец T": "T wave", "Интервал QT": "QT interval", "Внеочередные комплексы": "Premature beats" })[item.name] || item.name,
+      String(item.value || "").split("уд/мин").join("/min").split("мс").join("ms").split("нет").join("none"),
+    ];
+    name.textContent = shown[0];
+    value.textContent = shown[1];
+    row.append(name, value);
+    body.appendChild(row);
+  });
+  table.hidden = body.children.length === 0;
+}
+
+function showText(text) {
+  const root = document.getElementById("result-text");
+  root.replaceChildren();
+  String(text || "").replace(/\*\*/g, "").split("\n").forEach((raw) => {
+    const line = raw.trim();
+    if (!line || /не указано/i.test(line)) return;
+    const paragraph = document.createElement("p");
+    paragraph.textContent = line.replace(/^[-•]\s*/, "");
+    root.appendChild(paragraph);
+  });
+}
+
+function seek(player, time) {
+  return new Promise((resolve, reject) => {
+    const target = Math.min(Math.max(time, 0), Math.max(player.duration - 0.05, 0));
+    const finish = () => {
+      player.removeEventListener("seeked", finish);
+      player.removeEventListener("error", fail);
+      resolve();
+    };
+    const fail = () => {
+      player.removeEventListener("seeked", finish);
+      player.removeEventListener("error", fail);
+      reject(new Error("seek"));
+    };
+    if (Math.abs(player.currentTime - target) < 0.03) {
+      resolve();
+      return;
+    }
+    player.addEventListener("seeked", finish);
+    player.addEventListener("error", fail);
+    player.currentTime = target;
+  });
+}
+
+function paint(player) {
+  const scale = Math.min(1, 1100 / player.videoWidth);
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.round(player.videoWidth * scale));
+  canvas.height = Math.max(1, Math.round(player.videoHeight * scale));
+  canvas.getContext("2d").drawImage(player, 0, 0, canvas.width, canvas.height);
+  return canvas;
+}
+
+async function framesFromVideo(file) {
+  const player = document.getElementById("player");
+  const url = URL.createObjectURL(file);
+  try {
+    await new Promise((resolve, reject) => {
+      player.onloadedmetadata = resolve;
+      player.onerror = () => reject(new Error("video"));
+      player.src = url;
+      player.load();
+    });
+    const span = Math.min(player.duration, 25);
+    const count = Math.min(8, Math.max(4, Math.round(span / 0.8)));
+    const files = [];
+    for (let i = 0; i < count; i += 1) {
+      await seek(player, (span * (i + 0.5)) / count);
+      const blob = await new Promise((resolve, reject) => {
+        paint(player).toBlob((item) => (item ? resolve(item) : reject(new Error("jpeg"))), "image/jpeg", 0.74);
+      });
+      files.push(new File([blob], "strip-" + (i + 1) + ".jpg", { type: "image/jpeg" }));
+    }
+    return files;
+  } finally {
+    player.removeAttribute("src");
+    player.load();
+    URL.revokeObjectURL(url);
+  }
+}
+
+async function asJpeg(file) {
+  const name = (file.name || "").toLowerCase();
+  const heic = /heic|heif/.test(name) || file.type === "image/heic" || file.type === "image/heif";
+  if (!heic) return file;
+  const url = URL.createObjectURL(file);
+  try {
+    const image = await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error("heic"));
+      img.src = url;
+    });
+    const canvas = document.createElement("canvas");
+    canvas.width = image.naturalWidth || image.width;
+    canvas.height = image.naturalHeight || image.height;
+    canvas.getContext("2d").drawImage(image, 0, 0);
+    const blob = await new Promise((resolve, reject) => {
+      canvas.toBlob((item) => (item ? resolve(item) : reject(new Error("jpeg"))), "image/jpeg", 0.9);
+    });
+    return new File([blob], "photo.jpg", { type: "image/jpeg" });
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
+function resetResult() {
+  digitalReading = null;
+  document.getElementById("result").hidden = false;
+  document.getElementById("result-format").textContent = "";
+  document.getElementById("result-text").replaceChildren();
+  document.getElementById("result-rows").replaceChildren();
+  document.getElementById("result-table").hidden = true;
+  document.getElementById("conclude").hidden = true;
+  document.getElementById("conclusion").replaceChildren();
+  document.getElementById("conclusion-status").textContent = "";
+}
+
+async function showPayload(payload) {
+  resetResult();
+  if (payload.stream === "signal") {
+    document.getElementById("result-format").textContent = "Waveform stream, format " + (payload.format || "") + ".";
+    const measurements = payload.measurements || {};
+    showLines(measurements.lines || []);
+    if (measurements.available && payload.scores && payload.scores.length) {
+      digitalReading = { measurements, scores: payload.scores };
+      document.getElementById("conclude").hidden = false;
+    }
+    return;
+  }
+  showText(payload.interpretation || "");
+}
+
+document.getElementById("review").onclick = async () => {
+  error.textContent = "";
+  const video = document.getElementById("video").files[0];
+  const file = chosenFile();
+  if (!video && !file) {
+    error.textContent = t("needAny");
+    return;
+  }
+  const button = document.getElementById("review");
+  button.disabled = true;
+  status.textContent = video ? t("stripReview") : t("reviewing");
+  try {
+    const body = new FormData();
+    let address = "/api/ecg/intake";
+    if (video || (file && isVideo(file))) {
+      const frames = await framesFromVideo(video || file);
+      frames.forEach((frame) => body.append("frames", frame));
+      address = "/api/ecg/analyze";
+    } else {
+      const ready = await asJpeg(file);
+      body.append("file", ready, ready.name);
+      body.append("sampling_rate", document.getElementById("rate").value);
+    }
+    body.append("locale", pageLocale());
+    const response = await fetch(address, { method: "POST", body });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      error.textContent = detailText(payload, t("reviewFail"));
+      status.textContent = "";
+      return;
+    }
+    await showPayload(payload);
+    status.textContent = t("reviewReady");
+    document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "start" });
+  } catch (reviewError) {
+    error.textContent = t("reviewFailPhone");
+    status.textContent = "";
+  } finally {
+    button.disabled = false;
+  }
+};
+
+document.getElementById("conclude").onclick = async () => {
+  const note = document.getElementById("conclusion-status");
+  if (!digitalReading) return;
+  const button = document.getElementById("conclude");
+  button.disabled = true;
+  note.textContent = t("concluding");
+  try {
+    const response = await fetch("/api/ecg/signal/conclusion", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...digitalReading, locale: pageLocale() }),
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      note.textContent = detailText(payload, t("concludeFail"));
+      return;
+    }
+    const article = document.getElementById("conclusion");
+    article.replaceChildren();
+    String(payload.protocol || "").split("\n").forEach((raw) => {
+      const line = raw.trim();
+      if (!line) return;
+      const paragraph = document.createElement("p");
+      paragraph.textContent = line;
+      article.appendChild(paragraph);
+    });
+    note.textContent = "";
+  } catch (concludeError) {
+    note.textContent = t("concludeFail");
+  } finally {
+    button.disabled = false;
+  }
+};
+
+document.getElementById("send").onclick = async () => {
+  if (!token) return;
+  error.textContent = "";
+  const file = document.getElementById("video").files[0] || chosenFile();
+  const name = document.getElementById("name").value.trim();
+  const year = document.getElementById("year").value.trim();
+  const sex = document.getElementById("sex").value;
+  const studyDate = document.getElementById("study_date").value;
+  if (!file && !name && !year && !sex && !studyDate) {
+    error.textContent = "Fill in the card or choose a file.";
+    return;
+  }
+  const body = new FormData();
+  body.append("token", token);
+  body.append("name", name);
+  body.append("year", year);
+  body.append("sex", sex);
+  body.append("study_date", studyDate);
+  if (file) body.append("file", file, file.name);
+  const button = document.getElementById("send");
+  button.disabled = true;
+  status.textContent = "Sending to the computer.";
+  try {
+    const response = await fetch("/api/bridge/upload", { method: "POST", body });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      error.textContent = detailText(payload, "It was not sent.");
+      status.textContent = "";
+      return;
+    }
+    status.textContent = "It is on the computer. Review does not start there by itself.";
+  } catch (sendError) {
+    error.textContent = "The phone did not reach the computer. Both need the same network.";
+    status.textContent = "";
+  } finally {
+    button.disabled = false;
+  }
+};
+</script>
+</body>
+</html>

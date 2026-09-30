@@ -1,10 +1,6 @@
 from __future__ import annotations
 
-import json
 import math
-import shutil
-import subprocess
-from pathlib import Path
 
 import numpy as np
 import pytest
@@ -14,9 +10,6 @@ from backend.app import app
 from ecg_engine.ecgfounder import LEADS
 from ecg_engine.raw_extractor import RAW_TO_531_STATUS
 from ecg_engine.recording_table import RecordingTableError, to_csv
-
-ROOT = Path(__file__).resolve().parents[1]
-CABLE_JS = ROOT / "frontend" / "cable.js"
 
 
 def _columns() -> list[list[float]]:
@@ -68,65 +61,15 @@ def test_assembled_table_uses_the_existing_csv_route(monkeypatch):
     assert RAW_TO_531_STATUS == "NOT_PROVEN"
 
 
-def test_page_keeps_the_cable_closed_until_a_model_is_named():
-    script = CABLE_JS.read_text(encoding="utf-8")
-    assert "profiles.set(profile.model" not in script
-    assert script.count("profiles.set(") == 1
-    for literal in ("115200", "9600", "57600", "usbVendorId", "0x"):
-        assert literal not in script
+def test_page_has_no_cable_module():
     with TestClient(app) as client:
         page = client.get("/")
         cable = client.get("/cable.js")
         guide = client.get("/ecg-connect.html")
     assert page.status_code == 200
-    assert 'id="score-cable"' in page.text
-    assert "Подключить" in page.text
-    assert "Инструкция по подключению ЭКГ" in page.text
-    assert 'src="/cable.js"' in page.text
-    assert guide.status_code == 200
-    assert "Аппарат по кабелю" in guide.text
-    assert "cu.Bluetooth-Incoming-Port" in guide.text
-    assert "не нажимайте" in guide.text
-    assert "BTL-08" in guide.text
-    assert "Поли-Спектр" in guide.text
-    assert cable.status_code == 200
-    assert cable.headers["cache-control"] == "no-store"
-    assert "Модель аппарата не названа" in cable.text
-    assert "BTL-08" in cable.text
-    assert "Поли-Спектр" in cable.text
-
-
-def test_browser_table_matches_python_and_registers_no_device():
-    columns = _columns()
-    expression = (
-        "JSON.stringify({names: globalThis.cable.profileNames(),"
-        f"csv: globalThis.cable.samplesToCsv({json.dumps(columns)})}})"
-    )
-    raw = _eval_cable(expression)
-    body = json.loads(raw)
-    assert body["names"] == []
-    listed = _eval_cable("JSON.stringify(globalThis.cable.devices())")
-    devices = json.loads(listed)
-    assert devices
-    assert {item["action"] for item in devices} == {"file"}
-    assert any(item["title"] == "BTL-08" for item in devices)
-    parsed = [[float(cell) for cell in row.split(",")] for row in body["csv"].splitlines()[1:]]
-    np.testing.assert_allclose(np.array(parsed).T, columns)
-    assert body["csv"].splitlines()[0].split(",") == list(LEADS)
-
-
-def _eval_cable(expression: str) -> str:
-    source = CABLE_JS.read_text(encoding="utf-8")
-    node = shutil.which("node")
-    if node:
-        program = source + f"\nconsole.log({expression});\n"
-        completed = subprocess.run([node, "-e", program], check=True, capture_output=True, text=True)
-        return completed.stdout.strip()
-    program = source + "\n" + expression + "\n"
-    completed = subprocess.run(
-        ["osascript", "-l", "JavaScript", "-e", program],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    return completed.stdout.strip()
+    assert 'id="panel-signal"' not in page.text
+    assert 'id="score-cable"' not in page.text
+    assert 'src="/cable.js"' not in page.text
+    assert "Инструкция по подключению ЭКГ" not in page.text
+    assert cable.status_code == 404
+    assert guide.status_code == 404

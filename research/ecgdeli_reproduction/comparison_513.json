@@ -1,0 +1,97 @@
+{
+  "record_id": 513,
+  "feature_count": 531,
+  "comparison_executed": false,
+  "exact_match": false,
+  "max_abs_difference": null,
+  "mean_abs_difference": null,
+  "matching_features": null,
+  "different_features": null,
+  "missing_features": 531,
+  "tolerance": 1e-06,
+  "reason": "ECGDeli 1.1 was not executed: matlab and octave are not installed. The original PTB-XL+ aggregation script was not found, so no reproduced 531-vector exists.",
+  "published_row_source": "PTB-XL+ 1.0.1 features/ecgdeli_features.csv bytes 0-2999999, ecg_id 513",
+  "published_row_matches_project_fixture": true,
+  "experiments": {
+    "500_hz": "NOT_RUN",
+    "100_hz": "NOT_RUN"
+  },
+  "family_status": {
+    "PQ_Int": {
+      "columns": 39,
+      "status": "MISSING"
+    },
+    "PR_Int": {
+      "columns": 39,
+      "status": "MISSING"
+    },
+    "P_Amp": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "P_DurFull": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "P_Dur": {
+      "columns": 3,
+      "status": "MISSING"
+    },
+    "P_Morph": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "Q_Amp": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "QRS_Dur": {
+      "columns": 39,
+      "status": "MISSING"
+    },
+    "QT_IntCorr": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "QT_IntFramingham": {
+      "columns": 3,
+      "status": "MISSING"
+    },
+    "QT_Int": {
+      "columns": 39,
+      "status": "MISSING"
+    },
+    "R_Amp": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "RR_Mean": {
+      "columns": 3,
+      "status": "MISSING"
+    },
+    "S_Amp": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "ST_Elev": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "T_Amp": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "T_DurFull": {
+      "columns": 36,
+      "status": "MISSING"
+    },
+    "T_Dur": {
+      "columns": 3,
+      "status": "MISSING"
+    },
+    "HA": {
+      "columns": 3,
+      "status": "MISSING"
+    }
+  }
+}

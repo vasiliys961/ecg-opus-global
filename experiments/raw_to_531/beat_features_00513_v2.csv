@@ -1,0 +1,959 @@
+lead,beat,feature,later,earlier,value_ms,rule
+I,0,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+I,1,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+I,2,P_DurFull,p-wave offset,p-wave onset,124.0,leadwise sample difference times 2
+I,3,P_DurFull,p-wave offset,p-wave onset,116.0,leadwise sample difference times 2
+I,4,P_DurFull,p-wave offset,p-wave onset,120.0,leadwise sample difference times 2
+I,5,P_DurFull,p-wave offset,p-wave onset,118.0,leadwise sample difference times 2
+I,6,P_DurFull,p-wave offset,p-wave onset,120.0,leadwise sample difference times 2
+I,7,P_DurFull,p-wave offset,p-wave onset,120.0,leadwise sample difference times 2
+I,8,P_DurFull,p-wave offset,p-wave onset,126.0,leadwise sample difference times 2
+I,9,P_DurFull,p-wave offset,p-wave onset,116.0,leadwise sample difference times 2
+I,10,P_DurFull,p-wave offset,p-wave onset,120.0,leadwise sample difference times 2
+I,11,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+II,0,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+II,1,P_DurFull,p-wave offset,p-wave onset,130.0,leadwise sample difference times 2
+II,2,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+II,3,P_DurFull,p-wave offset,p-wave onset,126.0,leadwise sample difference times 2
+II,4,P_DurFull,p-wave offset,p-wave onset,138.0,leadwise sample difference times 2
+II,5,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+II,6,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+II,7,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+II,8,P_DurFull,p-wave offset,p-wave onset,132.0,leadwise sample difference times 2
+II,9,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+II,10,P_DurFull,p-wave offset,p-wave onset,132.0,leadwise sample difference times 2
+II,11,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+III,0,P_DurFull,p-wave offset,p-wave onset,156.0,leadwise sample difference times 2
+III,1,P_DurFull,p-wave offset,p-wave onset,108.0,leadwise sample difference times 2
+III,2,P_DurFull,p-wave offset,p-wave onset,154.0,leadwise sample difference times 2
+III,3,P_DurFull,p-wave offset,p-wave onset,102.0,leadwise sample difference times 2
+III,4,P_DurFull,p-wave offset,p-wave onset,156.0,leadwise sample difference times 2
+III,5,P_DurFull,p-wave offset,p-wave onset,154.0,leadwise sample difference times 2
+III,6,P_DurFull,p-wave offset,p-wave onset,180.0,leadwise sample difference times 2
+III,7,P_DurFull,p-wave offset,p-wave onset,180.0,leadwise sample difference times 2
+III,8,P_DurFull,p-wave offset,p-wave onset,200.0,leadwise sample difference times 2
+III,9,P_DurFull,p-wave offset,p-wave onset,198.0,leadwise sample difference times 2
+III,10,P_DurFull,p-wave offset,p-wave onset,138.0,leadwise sample difference times 2
+III,11,P_DurFull,p-wave offset,p-wave onset,156.0,leadwise sample difference times 2
+aVR,0,P_DurFull,p-wave offset,p-wave onset,126.0,leadwise sample difference times 2
+aVR,1,P_DurFull,p-wave offset,p-wave onset,130.0,leadwise sample difference times 2
+aVR,2,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+aVR,3,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+aVR,4,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+aVR,5,P_DurFull,p-wave offset,p-wave onset,126.0,leadwise sample difference times 2
+aVR,6,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+aVR,7,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+aVR,8,P_DurFull,p-wave offset,p-wave onset,130.0,leadwise sample difference times 2
+aVR,9,P_DurFull,p-wave offset,p-wave onset,120.0,leadwise sample difference times 2
+aVR,10,P_DurFull,p-wave offset,p-wave onset,126.0,leadwise sample difference times 2
+aVR,11,P_DurFull,p-wave offset,p-wave onset,126.0,leadwise sample difference times 2
+aVL,0,P_DurFull,p-wave offset,p-wave onset,116.0,leadwise sample difference times 2
+aVL,1,P_DurFull,p-wave offset,p-wave onset,126.0,leadwise sample difference times 2
+aVL,2,P_DurFull,p-wave offset,p-wave onset,118.0,leadwise sample difference times 2
+aVL,3,P_DurFull,p-wave offset,p-wave onset,110.0,leadwise sample difference times 2
+aVL,4,P_DurFull,p-wave offset,p-wave onset,112.0,leadwise sample difference times 2
+aVL,5,P_DurFull,p-wave offset,p-wave onset,112.0,leadwise sample difference times 2
+aVL,6,P_DurFull,p-wave offset,p-wave onset,114.0,leadwise sample difference times 2
+aVL,7,P_DurFull,p-wave offset,p-wave onset,114.0,leadwise sample difference times 2
+aVL,8,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+aVL,9,P_DurFull,p-wave offset,p-wave onset,108.0,leadwise sample difference times 2
+aVL,10,P_DurFull,p-wave offset,p-wave onset,114.0,leadwise sample difference times 2
+aVL,11,P_DurFull,p-wave offset,p-wave onset,116.0,leadwise sample difference times 2
+aVF,0,P_DurFull,p-wave offset,p-wave onset,148.0,leadwise sample difference times 2
+aVF,1,P_DurFull,p-wave offset,p-wave onset,124.0,leadwise sample difference times 2
+aVF,2,P_DurFull,p-wave offset,p-wave onset,210.0,leadwise sample difference times 2
+aVF,3,P_DurFull,p-wave offset,p-wave onset,112.0,leadwise sample difference times 2
+aVF,4,P_DurFull,p-wave offset,p-wave onset,162.0,leadwise sample difference times 2
+aVF,5,P_DurFull,p-wave offset,p-wave onset,138.0,leadwise sample difference times 2
+aVF,6,P_DurFull,p-wave offset,p-wave onset,144.0,leadwise sample difference times 2
+aVF,7,P_DurFull,p-wave offset,p-wave onset,150.0,leadwise sample difference times 2
+aVF,8,P_DurFull,p-wave offset,p-wave onset,142.0,leadwise sample difference times 2
+aVF,9,P_DurFull,p-wave offset,p-wave onset,212.0,leadwise sample difference times 2
+aVF,10,P_DurFull,p-wave offset,p-wave onset,216.0,leadwise sample difference times 2
+aVF,11,P_DurFull,p-wave offset,p-wave onset,148.0,leadwise sample difference times 2
+V1,0,P_DurFull,p-wave offset,p-wave onset,176.0,leadwise sample difference times 2
+V1,1,P_DurFull,p-wave offset,p-wave onset,164.0,leadwise sample difference times 2
+V1,2,P_DurFull,p-wave offset,p-wave onset,186.0,leadwise sample difference times 2
+V1,3,P_DurFull,p-wave offset,p-wave onset,176.0,leadwise sample difference times 2
+V1,4,P_DurFull,p-wave offset,p-wave onset,114.0,leadwise sample difference times 2
+V1,5,P_DurFull,p-wave offset,p-wave onset,174.0,leadwise sample difference times 2
+V1,6,P_DurFull,p-wave offset,p-wave onset,162.0,leadwise sample difference times 2
+V1,7,P_DurFull,p-wave offset,p-wave onset,184.0,leadwise sample difference times 2
+V1,8,P_DurFull,p-wave offset,p-wave onset,176.0,leadwise sample difference times 2
+V1,9,P_DurFull,p-wave offset,p-wave onset,174.0,leadwise sample difference times 2
+V1,10,P_DurFull,p-wave offset,p-wave onset,178.0,leadwise sample difference times 2
+V1,11,P_DurFull,p-wave offset,p-wave onset,176.0,leadwise sample difference times 2
+V2,0,P_DurFull,p-wave offset,p-wave onset,132.0,leadwise sample difference times 2
+V2,1,P_DurFull,p-wave offset,p-wave onset,124.0,leadwise sample difference times 2
+V2,2,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+V2,3,P_DurFull,p-wave offset,p-wave onset,120.0,leadwise sample difference times 2
+V2,4,P_DurFull,p-wave offset,p-wave onset,172.0,leadwise sample difference times 2
+V2,5,P_DurFull,p-wave offset,p-wave onset,130.0,leadwise sample difference times 2
+V2,6,P_DurFull,p-wave offset,p-wave onset,198.0,leadwise sample difference times 2
+V2,7,P_DurFull,p-wave offset,p-wave onset,138.0,leadwise sample difference times 2
+V2,8,P_DurFull,p-wave offset,p-wave onset,186.0,leadwise sample difference times 2
+V2,9,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+V2,10,P_DurFull,p-wave offset,p-wave onset,206.0,leadwise sample difference times 2
+V2,11,P_DurFull,p-wave offset,p-wave onset,132.0,leadwise sample difference times 2
+V3,0,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+V3,1,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+V3,2,P_DurFull,p-wave offset,p-wave onset,156.0,leadwise sample difference times 2
+V3,3,P_DurFull,p-wave offset,p-wave onset,120.0,leadwise sample difference times 2
+V3,4,P_DurFull,p-wave offset,p-wave onset,146.0,leadwise sample difference times 2
+V3,5,P_DurFull,p-wave offset,p-wave onset,144.0,leadwise sample difference times 2
+V3,6,P_DurFull,p-wave offset,p-wave onset,152.0,leadwise sample difference times 2
+V3,7,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+V3,8,P_DurFull,p-wave offset,p-wave onset,140.0,leadwise sample difference times 2
+V3,9,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+V3,10,P_DurFull,p-wave offset,p-wave onset,116.0,leadwise sample difference times 2
+V3,11,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+V4,0,P_DurFull,p-wave offset,p-wave onset,136.0,leadwise sample difference times 2
+V4,1,P_DurFull,p-wave offset,p-wave onset,132.0,leadwise sample difference times 2
+V4,2,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+V4,3,P_DurFull,p-wave offset,p-wave onset,132.0,leadwise sample difference times 2
+V4,4,P_DurFull,p-wave offset,p-wave onset,130.0,leadwise sample difference times 2
+V4,5,P_DurFull,p-wave offset,p-wave onset,144.0,leadwise sample difference times 2
+V4,6,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+V4,7,P_DurFull,p-wave offset,p-wave onset,198.0,leadwise sample difference times 2
+V4,8,P_DurFull,p-wave offset,p-wave onset,194.0,leadwise sample difference times 2
+V4,9,P_DurFull,p-wave offset,p-wave onset,130.0,leadwise sample difference times 2
+V4,10,P_DurFull,p-wave offset,p-wave onset,136.0,leadwise sample difference times 2
+V4,11,P_DurFull,p-wave offset,p-wave onset,136.0,leadwise sample difference times 2
+V5,0,P_DurFull,p-wave offset,p-wave onset,138.0,leadwise sample difference times 2
+V5,1,P_DurFull,p-wave offset,p-wave onset,122.0,leadwise sample difference times 2
+V5,2,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+V5,3,P_DurFull,p-wave offset,p-wave onset,126.0,leadwise sample difference times 2
+V5,4,P_DurFull,p-wave offset,p-wave onset,142.0,leadwise sample difference times 2
+V5,5,P_DurFull,p-wave offset,p-wave onset,214.0,leadwise sample difference times 2
+V5,6,P_DurFull,p-wave offset,p-wave onset,150.0,leadwise sample difference times 2
+V5,7,P_DurFull,p-wave offset,p-wave onset,174.0,leadwise sample difference times 2
+V5,8,P_DurFull,p-wave offset,p-wave onset,144.0,leadwise sample difference times 2
+V5,9,P_DurFull,p-wave offset,p-wave onset,146.0,leadwise sample difference times 2
+V5,10,P_DurFull,p-wave offset,p-wave onset,132.0,leadwise sample difference times 2
+V5,11,P_DurFull,p-wave offset,p-wave onset,138.0,leadwise sample difference times 2
+V6,0,P_DurFull,p-wave offset,p-wave onset,132.0,leadwise sample difference times 2
+V6,1,P_DurFull,p-wave offset,p-wave onset,126.0,leadwise sample difference times 2
+V6,2,P_DurFull,p-wave offset,p-wave onset,136.0,leadwise sample difference times 2
+V6,3,P_DurFull,p-wave offset,p-wave onset,140.0,leadwise sample difference times 2
+V6,4,P_DurFull,p-wave offset,p-wave onset,134.0,leadwise sample difference times 2
+V6,5,P_DurFull,p-wave offset,p-wave onset,138.0,leadwise sample difference times 2
+V6,6,P_DurFull,p-wave offset,p-wave onset,150.0,leadwise sample difference times 2
+V6,7,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+V6,8,P_DurFull,p-wave offset,p-wave onset,136.0,leadwise sample difference times 2
+V6,9,P_DurFull,p-wave offset,p-wave onset,130.0,leadwise sample difference times 2
+V6,10,P_DurFull,p-wave offset,p-wave onset,128.0,leadwise sample difference times 2
+V6,11,P_DurFull,p-wave offset,p-wave onset,132.0,leadwise sample difference times 2
+I,0,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+I,1,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+I,2,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+I,3,T_DurFull,t-wave offset,t-wave onset,148.0,leadwise sample difference times 2
+I,4,T_DurFull,t-wave offset,t-wave onset,146.0,leadwise sample difference times 2
+I,5,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+I,6,T_DurFull,t-wave offset,t-wave onset,240.0,leadwise sample difference times 2
+I,7,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+I,8,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+I,9,T_DurFull,t-wave offset,t-wave onset,152.0,leadwise sample difference times 2
+I,10,T_DurFull,t-wave offset,t-wave onset,240.0,leadwise sample difference times 2
+I,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+II,0,T_DurFull,t-wave offset,t-wave onset,214.0,leadwise sample difference times 2
+II,1,T_DurFull,t-wave offset,t-wave onset,330.0,leadwise sample difference times 2
+II,2,T_DurFull,t-wave offset,t-wave onset,146.0,leadwise sample difference times 2
+II,3,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+II,4,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+II,5,T_DurFull,t-wave offset,t-wave onset,148.0,leadwise sample difference times 2
+II,6,T_DurFull,t-wave offset,t-wave onset,222.0,leadwise sample difference times 2
+II,7,T_DurFull,t-wave offset,t-wave onset,144.0,leadwise sample difference times 2
+II,8,T_DurFull,t-wave offset,t-wave onset,264.0,leadwise sample difference times 2
+II,9,T_DurFull,t-wave offset,t-wave onset,208.0,leadwise sample difference times 2
+II,10,T_DurFull,t-wave offset,t-wave onset,220.0,leadwise sample difference times 2
+II,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+III,0,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+III,1,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+III,2,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+III,3,T_DurFull,t-wave offset,t-wave onset,146.0,leadwise sample difference times 2
+III,4,T_DurFull,t-wave offset,t-wave onset,146.0,leadwise sample difference times 2
+III,5,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+III,6,T_DurFull,t-wave offset,t-wave onset,152.0,leadwise sample difference times 2
+III,7,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+III,8,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+III,9,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+III,10,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+III,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+aVR,0,T_DurFull,t-wave offset,t-wave onset,272.0,leadwise sample difference times 2
+aVR,1,T_DurFull,t-wave offset,t-wave onset,226.0,leadwise sample difference times 2
+aVR,2,T_DurFull,t-wave offset,t-wave onset,198.0,leadwise sample difference times 2
+aVR,3,T_DurFull,t-wave offset,t-wave onset,220.0,leadwise sample difference times 2
+aVR,4,T_DurFull,t-wave offset,t-wave onset,148.0,leadwise sample difference times 2
+aVR,5,T_DurFull,t-wave offset,t-wave onset,202.0,leadwise sample difference times 2
+aVR,6,T_DurFull,t-wave offset,t-wave onset,218.0,leadwise sample difference times 2
+aVR,7,T_DurFull,t-wave offset,t-wave onset,152.0,leadwise sample difference times 2
+aVR,8,T_DurFull,t-wave offset,t-wave onset,328.0,leadwise sample difference times 2
+aVR,9,T_DurFull,t-wave offset,t-wave onset,146.0,leadwise sample difference times 2
+aVR,10,T_DurFull,t-wave offset,t-wave onset,228.0,leadwise sample difference times 2
+aVR,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+aVL,0,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+aVL,1,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+aVL,2,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+aVL,3,T_DurFull,t-wave offset,t-wave onset,146.0,leadwise sample difference times 2
+aVL,4,T_DurFull,t-wave offset,t-wave onset,144.0,leadwise sample difference times 2
+aVL,5,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+aVL,6,T_DurFull,t-wave offset,t-wave onset,154.0,leadwise sample difference times 2
+aVL,7,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+aVL,8,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+aVL,9,T_DurFull,t-wave offset,t-wave onset,146.0,leadwise sample difference times 2
+aVL,10,T_DurFull,t-wave offset,t-wave onset,236.0,leadwise sample difference times 2
+aVL,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+aVF,0,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+aVF,1,T_DurFull,t-wave offset,t-wave onset,244.0,leadwise sample difference times 2
+aVF,2,T_DurFull,t-wave offset,t-wave onset,144.0,leadwise sample difference times 2
+aVF,3,T_DurFull,t-wave offset,t-wave onset,144.0,leadwise sample difference times 2
+aVF,4,T_DurFull,t-wave offset,t-wave onset,144.0,leadwise sample difference times 2
+aVF,5,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+aVF,6,T_DurFull,t-wave offset,t-wave onset,150.0,leadwise sample difference times 2
+aVF,7,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+aVF,8,T_DurFull,t-wave offset,t-wave onset,146.0,leadwise sample difference times 2
+aVF,9,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+aVF,10,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+aVF,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+V1,0,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+V1,1,T_DurFull,t-wave offset,t-wave onset,244.0,leadwise sample difference times 2
+V1,2,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V1,3,T_DurFull,t-wave offset,t-wave onset,236.0,leadwise sample difference times 2
+V1,4,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+V1,5,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V1,6,T_DurFull,t-wave offset,t-wave onset,232.0,leadwise sample difference times 2
+V1,7,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V1,8,T_DurFull,t-wave offset,t-wave onset,236.0,leadwise sample difference times 2
+V1,9,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+V1,10,T_DurFull,t-wave offset,t-wave onset,236.0,leadwise sample difference times 2
+V1,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+V2,0,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V2,1,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V2,2,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+V2,3,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V2,4,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V2,5,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V2,6,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+V2,7,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V2,8,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V2,9,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V2,10,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V2,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+V3,0,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V3,1,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V3,2,T_DurFull,t-wave offset,t-wave onset,132.0,leadwise sample difference times 2
+V3,3,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V3,4,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V3,5,T_DurFull,t-wave offset,t-wave onset,140.0,leadwise sample difference times 2
+V3,6,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V3,7,T_DurFull,t-wave offset,t-wave onset,130.0,leadwise sample difference times 2
+V3,8,T_DurFull,t-wave offset,t-wave onset,136.0,leadwise sample difference times 2
+V3,9,T_DurFull,t-wave offset,t-wave onset,134.0,leadwise sample difference times 2
+V3,10,T_DurFull,t-wave offset,t-wave onset,134.0,leadwise sample difference times 2
+V3,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+V4,0,T_DurFull,t-wave offset,t-wave onset,288.0,leadwise sample difference times 2
+V4,1,T_DurFull,t-wave offset,t-wave onset,132.0,leadwise sample difference times 2
+V4,2,T_DurFull,t-wave offset,t-wave onset,134.0,leadwise sample difference times 2
+V4,3,T_DurFull,t-wave offset,t-wave onset,134.0,leadwise sample difference times 2
+V4,4,T_DurFull,t-wave offset,t-wave onset,246.0,leadwise sample difference times 2
+V4,5,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+V4,6,T_DurFull,t-wave offset,t-wave onset,206.0,leadwise sample difference times 2
+V4,7,T_DurFull,t-wave offset,t-wave onset,196.0,leadwise sample difference times 2
+V4,8,T_DurFull,t-wave offset,t-wave onset,200.0,leadwise sample difference times 2
+V4,9,T_DurFull,t-wave offset,t-wave onset,218.0,leadwise sample difference times 2
+V4,10,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V4,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+V5,0,T_DurFull,t-wave offset,t-wave onset,156.0,leadwise sample difference times 2
+V5,1,T_DurFull,t-wave offset,t-wave onset,236.0,leadwise sample difference times 2
+V5,2,T_DurFull,t-wave offset,t-wave onset,138.0,leadwise sample difference times 2
+V5,3,T_DurFull,t-wave offset,t-wave onset,218.0,leadwise sample difference times 2
+V5,4,T_DurFull,t-wave offset,t-wave onset,146.0,leadwise sample difference times 2
+V5,5,T_DurFull,t-wave offset,t-wave onset,160.0,leadwise sample difference times 2
+V5,6,T_DurFull,t-wave offset,t-wave onset,132.0,leadwise sample difference times 2
+V5,7,T_DurFull,t-wave offset,t-wave onset,172.0,leadwise sample difference times 2
+V5,8,T_DurFull,t-wave offset,t-wave onset,208.0,leadwise sample difference times 2
+V5,9,T_DurFull,t-wave offset,t-wave onset,234.0,leadwise sample difference times 2
+V5,10,T_DurFull,t-wave offset,t-wave onset,158.0,leadwise sample difference times 2
+V5,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+V6,0,T_DurFull,t-wave offset,t-wave onset,256.0,leadwise sample difference times 2
+V6,1,T_DurFull,t-wave offset,t-wave onset,150.0,leadwise sample difference times 2
+V6,2,T_DurFull,t-wave offset,t-wave onset,156.0,leadwise sample difference times 2
+V6,3,T_DurFull,t-wave offset,t-wave onset,182.0,leadwise sample difference times 2
+V6,4,T_DurFull,t-wave offset,t-wave onset,282.0,leadwise sample difference times 2
+V6,5,T_DurFull,t-wave offset,t-wave onset,176.0,leadwise sample difference times 2
+V6,6,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+V6,7,T_DurFull,t-wave offset,t-wave onset,142.0,leadwise sample difference times 2
+V6,8,T_DurFull,t-wave offset,t-wave onset,258.0,leadwise sample difference times 2
+V6,9,T_DurFull,t-wave offset,t-wave onset,156.0,leadwise sample difference times 2
+V6,10,T_DurFull,t-wave offset,t-wave onset,150.0,leadwise sample difference times 2
+V6,11,T_DurFull,t-wave offset,t-wave onset,4.0,leadwise sample difference times 2
+I,0,PQ_Int,QRS onset,p-wave onset,134.0,leadwise sample difference times 2
+I,1,PQ_Int,QRS onset,p-wave onset,140.0,leadwise sample difference times 2
+I,2,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+I,3,PQ_Int,QRS onset,p-wave onset,130.0,leadwise sample difference times 2
+I,4,PQ_Int,QRS onset,p-wave onset,128.0,leadwise sample difference times 2
+I,5,PQ_Int,QRS onset,p-wave onset,130.0,leadwise sample difference times 2
+I,6,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+I,7,PQ_Int,QRS onset,p-wave onset,130.0,leadwise sample difference times 2
+I,8,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+I,9,PQ_Int,QRS onset,p-wave onset,126.0,leadwise sample difference times 2
+I,10,PQ_Int,QRS onset,p-wave onset,130.0,leadwise sample difference times 2
+I,11,PQ_Int,QRS onset,p-wave onset,162.0,leadwise sample difference times 2
+II,0,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+II,1,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+II,2,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+II,3,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+II,4,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+II,5,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+II,6,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+II,7,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+II,8,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+II,9,PQ_Int,QRS onset,p-wave onset,140.0,leadwise sample difference times 2
+II,10,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+II,11,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+III,0,PQ_Int,QRS onset,p-wave onset,154.0,leadwise sample difference times 2
+III,1,PQ_Int,QRS onset,p-wave onset,90.0,leadwise sample difference times 2
+III,2,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+III,3,PQ_Int,QRS onset,p-wave onset,120.0,leadwise sample difference times 2
+III,4,PQ_Int,QRS onset,p-wave onset,156.0,leadwise sample difference times 2
+III,5,PQ_Int,QRS onset,p-wave onset,156.0,leadwise sample difference times 2
+III,6,PQ_Int,QRS onset,p-wave onset,168.0,leadwise sample difference times 2
+III,7,PQ_Int,QRS onset,p-wave onset,170.0,leadwise sample difference times 2
+III,8,PQ_Int,QRS onset,p-wave onset,222.0,leadwise sample difference times 2
+III,9,PQ_Int,QRS onset,p-wave onset,198.0,leadwise sample difference times 2
+III,10,PQ_Int,QRS onset,p-wave onset,188.0,leadwise sample difference times 2
+III,11,PQ_Int,QRS onset,p-wave onset,144.0,leadwise sample difference times 2
+aVR,0,PQ_Int,QRS onset,p-wave onset,116.0,leadwise sample difference times 2
+aVR,1,PQ_Int,QRS onset,p-wave onset,144.0,leadwise sample difference times 2
+aVR,2,PQ_Int,QRS onset,p-wave onset,142.0,leadwise sample difference times 2
+aVR,3,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+aVR,4,PQ_Int,QRS onset,p-wave onset,136.0,leadwise sample difference times 2
+aVR,5,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+aVR,6,PQ_Int,QRS onset,p-wave onset,140.0,leadwise sample difference times 2
+aVR,7,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+aVR,8,PQ_Int,QRS onset,p-wave onset,142.0,leadwise sample difference times 2
+aVR,9,PQ_Int,QRS onset,p-wave onset,132.0,leadwise sample difference times 2
+aVR,10,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+aVR,11,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+aVL,0,PQ_Int,QRS onset,p-wave onset,124.0,leadwise sample difference times 2
+aVL,1,PQ_Int,QRS onset,p-wave onset,134.0,leadwise sample difference times 2
+aVL,2,PQ_Int,QRS onset,p-wave onset,128.0,leadwise sample difference times 2
+aVL,3,PQ_Int,QRS onset,p-wave onset,122.0,leadwise sample difference times 2
+aVL,4,PQ_Int,QRS onset,p-wave onset,118.0,leadwise sample difference times 2
+aVL,5,PQ_Int,QRS onset,p-wave onset,120.0,leadwise sample difference times 2
+aVL,6,PQ_Int,QRS onset,p-wave onset,130.0,leadwise sample difference times 2
+aVL,7,PQ_Int,QRS onset,p-wave onset,122.0,leadwise sample difference times 2
+aVL,8,PQ_Int,QRS onset,p-wave onset,132.0,leadwise sample difference times 2
+aVL,9,PQ_Int,QRS onset,p-wave onset,118.0,leadwise sample difference times 2
+aVL,10,PQ_Int,QRS onset,p-wave onset,124.0,leadwise sample difference times 2
+aVL,11,PQ_Int,QRS onset,p-wave onset,158.0,leadwise sample difference times 2
+aVF,0,PQ_Int,QRS onset,p-wave onset,160.0,leadwise sample difference times 2
+aVF,1,PQ_Int,QRS onset,p-wave onset,158.0,leadwise sample difference times 2
+aVF,2,PQ_Int,QRS onset,p-wave onset,204.0,leadwise sample difference times 2
+aVF,3,PQ_Int,QRS onset,p-wave onset,160.0,leadwise sample difference times 2
+aVF,4,PQ_Int,QRS onset,p-wave onset,162.0,leadwise sample difference times 2
+aVF,5,PQ_Int,QRS onset,p-wave onset,162.0,leadwise sample difference times 2
+aVF,6,PQ_Int,QRS onset,p-wave onset,158.0,leadwise sample difference times 2
+aVF,7,PQ_Int,QRS onset,p-wave onset,158.0,leadwise sample difference times 2
+aVF,8,PQ_Int,QRS onset,p-wave onset,158.0,leadwise sample difference times 2
+aVF,9,PQ_Int,QRS onset,p-wave onset,220.0,leadwise sample difference times 2
+aVF,10,PQ_Int,QRS onset,p-wave onset,222.0,leadwise sample difference times 2
+aVF,11,PQ_Int,QRS onset,p-wave onset,158.0,leadwise sample difference times 2
+V1,0,PQ_Int,QRS onset,p-wave onset,180.0,leadwise sample difference times 2
+V1,1,PQ_Int,QRS onset,p-wave onset,172.0,leadwise sample difference times 2
+V1,2,PQ_Int,QRS onset,p-wave onset,188.0,leadwise sample difference times 2
+V1,3,PQ_Int,QRS onset,p-wave onset,190.0,leadwise sample difference times 2
+V1,4,PQ_Int,QRS onset,p-wave onset,182.0,leadwise sample difference times 2
+V1,5,PQ_Int,QRS onset,p-wave onset,170.0,leadwise sample difference times 2
+V1,6,PQ_Int,QRS onset,p-wave onset,176.0,leadwise sample difference times 2
+V1,7,PQ_Int,QRS onset,p-wave onset,178.0,leadwise sample difference times 2
+V1,8,PQ_Int,QRS onset,p-wave onset,172.0,leadwise sample difference times 2
+V1,9,PQ_Int,QRS onset,p-wave onset,178.0,leadwise sample difference times 2
+V1,10,PQ_Int,QRS onset,p-wave onset,180.0,leadwise sample difference times 2
+V1,11,PQ_Int,QRS onset,p-wave onset,152.0,leadwise sample difference times 2
+V2,0,PQ_Int,QRS onset,p-wave onset,124.0,leadwise sample difference times 2
+V2,1,PQ_Int,QRS onset,p-wave onset,120.0,leadwise sample difference times 2
+V2,2,PQ_Int,QRS onset,p-wave onset,112.0,leadwise sample difference times 2
+V2,3,PQ_Int,QRS onset,p-wave onset,106.0,leadwise sample difference times 2
+V2,4,PQ_Int,QRS onset,p-wave onset,160.0,leadwise sample difference times 2
+V2,5,PQ_Int,QRS onset,p-wave onset,118.0,leadwise sample difference times 2
+V2,6,PQ_Int,QRS onset,p-wave onset,192.0,leadwise sample difference times 2
+V2,7,PQ_Int,QRS onset,p-wave onset,136.0,leadwise sample difference times 2
+V2,8,PQ_Int,QRS onset,p-wave onset,184.0,leadwise sample difference times 2
+V2,9,PQ_Int,QRS onset,p-wave onset,130.0,leadwise sample difference times 2
+V2,10,PQ_Int,QRS onset,p-wave onset,206.0,leadwise sample difference times 2
+V2,11,PQ_Int,QRS onset,p-wave onset,130.0,leadwise sample difference times 2
+V3,0,PQ_Int,QRS onset,p-wave onset,154.0,leadwise sample difference times 2
+V3,1,PQ_Int,QRS onset,p-wave onset,144.0,leadwise sample difference times 2
+V3,2,PQ_Int,QRS onset,p-wave onset,170.0,leadwise sample difference times 2
+V3,3,PQ_Int,QRS onset,p-wave onset,142.0,leadwise sample difference times 2
+V3,4,PQ_Int,QRS onset,p-wave onset,158.0,leadwise sample difference times 2
+V3,5,PQ_Int,QRS onset,p-wave onset,156.0,leadwise sample difference times 2
+V3,6,PQ_Int,QRS onset,p-wave onset,180.0,leadwise sample difference times 2
+V3,7,PQ_Int,QRS onset,p-wave onset,150.0,leadwise sample difference times 2
+V3,8,PQ_Int,QRS onset,p-wave onset,156.0,leadwise sample difference times 2
+V3,9,PQ_Int,QRS onset,p-wave onset,154.0,leadwise sample difference times 2
+V3,10,PQ_Int,QRS onset,p-wave onset,142.0,leadwise sample difference times 2
+V3,11,PQ_Int,QRS onset,p-wave onset,154.0,leadwise sample difference times 2
+V4,0,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+V4,1,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+V4,2,PQ_Int,QRS onset,p-wave onset,140.0,leadwise sample difference times 2
+V4,3,PQ_Int,QRS onset,p-wave onset,144.0,leadwise sample difference times 2
+V4,4,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+V4,5,PQ_Int,QRS onset,p-wave onset,156.0,leadwise sample difference times 2
+V4,6,PQ_Int,QRS onset,p-wave onset,144.0,leadwise sample difference times 2
+V4,7,PQ_Int,QRS onset,p-wave onset,206.0,leadwise sample difference times 2
+V4,8,PQ_Int,QRS onset,p-wave onset,198.0,leadwise sample difference times 2
+V4,9,PQ_Int,QRS onset,p-wave onset,142.0,leadwise sample difference times 2
+V4,10,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+V4,11,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+V5,0,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+V5,1,PQ_Int,QRS onset,p-wave onset,134.0,leadwise sample difference times 2
+V5,2,PQ_Int,QRS onset,p-wave onset,142.0,leadwise sample difference times 2
+V5,3,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+V5,4,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+V5,5,PQ_Int,QRS onset,p-wave onset,216.0,leadwise sample difference times 2
+V5,6,PQ_Int,QRS onset,p-wave onset,156.0,leadwise sample difference times 2
+V5,7,PQ_Int,QRS onset,p-wave onset,180.0,leadwise sample difference times 2
+V5,8,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+V5,9,PQ_Int,QRS onset,p-wave onset,156.0,leadwise sample difference times 2
+V5,10,PQ_Int,QRS onset,p-wave onset,144.0,leadwise sample difference times 2
+V5,11,PQ_Int,QRS onset,p-wave onset,148.0,leadwise sample difference times 2
+V6,0,PQ_Int,QRS onset,p-wave onset,98.0,leadwise sample difference times 2
+V6,1,PQ_Int,QRS onset,p-wave onset,142.0,leadwise sample difference times 2
+V6,2,PQ_Int,QRS onset,p-wave onset,140.0,leadwise sample difference times 2
+V6,3,PQ_Int,QRS onset,p-wave onset,154.0,leadwise sample difference times 2
+V6,4,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+V6,5,PQ_Int,QRS onset,p-wave onset,142.0,leadwise sample difference times 2
+V6,6,PQ_Int,QRS onset,p-wave onset,154.0,leadwise sample difference times 2
+V6,7,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+V6,8,PQ_Int,QRS onset,p-wave onset,146.0,leadwise sample difference times 2
+V6,9,PQ_Int,QRS onset,p-wave onset,136.0,leadwise sample difference times 2
+V6,10,PQ_Int,QRS onset,p-wave onset,138.0,leadwise sample difference times 2
+V6,11,PQ_Int,QRS onset,p-wave onset,140.0,leadwise sample difference times 2
+I,0,PR_Int,R peak,p-wave onset,190.0,leadwise sample difference times 2
+I,1,PR_Int,R peak,p-wave onset,198.0,leadwise sample difference times 2
+I,2,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+I,3,PR_Int,R peak,p-wave onset,188.0,leadwise sample difference times 2
+I,4,PR_Int,R peak,p-wave onset,184.0,leadwise sample difference times 2
+I,5,PR_Int,R peak,p-wave onset,186.0,leadwise sample difference times 2
+I,6,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+I,7,PR_Int,R peak,p-wave onset,188.0,leadwise sample difference times 2
+I,8,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+I,9,PR_Int,R peak,p-wave onset,184.0,leadwise sample difference times 2
+I,10,PR_Int,R peak,p-wave onset,188.0,leadwise sample difference times 2
+I,11,PR_Int,R peak,p-wave onset,220.0,leadwise sample difference times 2
+II,0,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+II,1,PR_Int,R peak,p-wave onset,204.0,leadwise sample difference times 2
+II,2,PR_Int,R peak,p-wave onset,204.0,leadwise sample difference times 2
+II,3,PR_Int,R peak,p-wave onset,204.0,leadwise sample difference times 2
+II,4,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+II,5,PR_Int,R peak,p-wave onset,204.0,leadwise sample difference times 2
+II,6,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+II,7,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+II,8,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+II,9,PR_Int,R peak,p-wave onset,196.0,leadwise sample difference times 2
+II,10,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+II,11,PR_Int,R peak,p-wave onset,204.0,leadwise sample difference times 2
+III,0,PR_Int,R peak,p-wave onset,218.0,leadwise sample difference times 2
+III,1,PR_Int,R peak,p-wave onset,176.0,leadwise sample difference times 2
+III,2,PR_Int,R peak,p-wave onset,256.0,leadwise sample difference times 2
+III,3,PR_Int,R peak,p-wave onset,216.0,leadwise sample difference times 2
+III,4,PR_Int,R peak,p-wave onset,220.0,leadwise sample difference times 2
+III,5,PR_Int,R peak,p-wave onset,216.0,leadwise sample difference times 2
+III,6,PR_Int,R peak,p-wave onset,282.0,leadwise sample difference times 2
+III,7,PR_Int,R peak,p-wave onset,282.0,leadwise sample difference times 2
+III,8,PR_Int,R peak,p-wave onset,320.0,leadwise sample difference times 2
+III,9,PR_Int,R peak,p-wave onset,262.0,leadwise sample difference times 2
+III,10,PR_Int,R peak,p-wave onset,252.0,leadwise sample difference times 2
+III,11,PR_Int,R peak,p-wave onset,258.0,leadwise sample difference times 2
+aVR,0,PR_Int,R peak,p-wave onset,174.0,leadwise sample difference times 2
+aVR,1,PR_Int,R peak,p-wave onset,200.0,leadwise sample difference times 2
+aVR,2,PR_Int,R peak,p-wave onset,200.0,leadwise sample difference times 2
+aVR,3,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+aVR,4,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+aVR,5,PR_Int,R peak,p-wave onset,196.0,leadwise sample difference times 2
+aVR,6,PR_Int,R peak,p-wave onset,196.0,leadwise sample difference times 2
+aVR,7,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+aVR,8,PR_Int,R peak,p-wave onset,200.0,leadwise sample difference times 2
+aVR,9,PR_Int,R peak,p-wave onset,188.0,leadwise sample difference times 2
+aVR,10,PR_Int,R peak,p-wave onset,196.0,leadwise sample difference times 2
+aVR,11,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+aVL,0,PR_Int,R peak,p-wave onset,182.0,leadwise sample difference times 2
+aVL,1,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+aVL,2,PR_Int,R peak,p-wave onset,188.0,leadwise sample difference times 2
+aVL,3,PR_Int,R peak,p-wave onset,180.0,leadwise sample difference times 2
+aVL,4,PR_Int,R peak,p-wave onset,176.0,leadwise sample difference times 2
+aVL,5,PR_Int,R peak,p-wave onset,178.0,leadwise sample difference times 2
+aVL,6,PR_Int,R peak,p-wave onset,188.0,leadwise sample difference times 2
+aVL,7,PR_Int,R peak,p-wave onset,180.0,leadwise sample difference times 2
+aVL,8,PR_Int,R peak,p-wave onset,190.0,leadwise sample difference times 2
+aVL,9,PR_Int,R peak,p-wave onset,176.0,leadwise sample difference times 2
+aVL,10,PR_Int,R peak,p-wave onset,182.0,leadwise sample difference times 2
+aVL,11,PR_Int,R peak,p-wave onset,216.0,leadwise sample difference times 2
+aVF,0,PR_Int,R peak,p-wave onset,216.0,leadwise sample difference times 2
+aVF,1,PR_Int,R peak,p-wave onset,214.0,leadwise sample difference times 2
+aVF,2,PR_Int,R peak,p-wave onset,262.0,leadwise sample difference times 2
+aVF,3,PR_Int,R peak,p-wave onset,216.0,leadwise sample difference times 2
+aVF,4,PR_Int,R peak,p-wave onset,218.0,leadwise sample difference times 2
+aVF,5,PR_Int,R peak,p-wave onset,218.0,leadwise sample difference times 2
+aVF,6,PR_Int,R peak,p-wave onset,214.0,leadwise sample difference times 2
+aVF,7,PR_Int,R peak,p-wave onset,214.0,leadwise sample difference times 2
+aVF,8,PR_Int,R peak,p-wave onset,214.0,leadwise sample difference times 2
+aVF,9,PR_Int,R peak,p-wave onset,274.0,leadwise sample difference times 2
+aVF,10,PR_Int,R peak,p-wave onset,278.0,leadwise sample difference times 2
+aVF,11,PR_Int,R peak,p-wave onset,214.0,leadwise sample difference times 2
+V1,0,PR_Int,R peak,p-wave onset,238.0,leadwise sample difference times 2
+V1,1,PR_Int,R peak,p-wave onset,230.0,leadwise sample difference times 2
+V1,2,PR_Int,R peak,p-wave onset,248.0,leadwise sample difference times 2
+V1,3,PR_Int,R peak,p-wave onset,248.0,leadwise sample difference times 2
+V1,4,PR_Int,R peak,p-wave onset,240.0,leadwise sample difference times 2
+V1,5,PR_Int,R peak,p-wave onset,228.0,leadwise sample difference times 2
+V1,6,PR_Int,R peak,p-wave onset,236.0,leadwise sample difference times 2
+V1,7,PR_Int,R peak,p-wave onset,238.0,leadwise sample difference times 2
+V1,8,PR_Int,R peak,p-wave onset,230.0,leadwise sample difference times 2
+V1,9,PR_Int,R peak,p-wave onset,236.0,leadwise sample difference times 2
+V1,10,PR_Int,R peak,p-wave onset,238.0,leadwise sample difference times 2
+V1,11,PR_Int,R peak,p-wave onset,210.0,leadwise sample difference times 2
+V2,0,PR_Int,R peak,p-wave onset,220.0,leadwise sample difference times 2
+V2,1,PR_Int,R peak,p-wave onset,206.0,leadwise sample difference times 2
+V2,2,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+V2,3,PR_Int,R peak,p-wave onset,208.0,leadwise sample difference times 2
+V2,4,PR_Int,R peak,p-wave onset,260.0,leadwise sample difference times 2
+V2,5,PR_Int,R peak,p-wave onset,220.0,leadwise sample difference times 2
+V2,6,PR_Int,R peak,p-wave onset,282.0,leadwise sample difference times 2
+V2,7,PR_Int,R peak,p-wave onset,222.0,leadwise sample difference times 2
+V2,8,PR_Int,R peak,p-wave onset,280.0,leadwise sample difference times 2
+V2,9,PR_Int,R peak,p-wave onset,216.0,leadwise sample difference times 2
+V2,10,PR_Int,R peak,p-wave onset,292.0,leadwise sample difference times 2
+V2,11,PR_Int,R peak,p-wave onset,222.0,leadwise sample difference times 2
+V3,0,PR_Int,R peak,p-wave onset,212.0,leadwise sample difference times 2
+V3,1,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+V3,2,PR_Int,R peak,p-wave onset,228.0,leadwise sample difference times 2
+V3,3,PR_Int,R peak,p-wave onset,200.0,leadwise sample difference times 2
+V3,4,PR_Int,R peak,p-wave onset,214.0,leadwise sample difference times 2
+V3,5,PR_Int,R peak,p-wave onset,214.0,leadwise sample difference times 2
+V3,6,PR_Int,R peak,p-wave onset,238.0,leadwise sample difference times 2
+V3,7,PR_Int,R peak,p-wave onset,206.0,leadwise sample difference times 2
+V3,8,PR_Int,R peak,p-wave onset,212.0,leadwise sample difference times 2
+V3,9,PR_Int,R peak,p-wave onset,210.0,leadwise sample difference times 2
+V3,10,PR_Int,R peak,p-wave onset,200.0,leadwise sample difference times 2
+V3,11,PR_Int,R peak,p-wave onset,212.0,leadwise sample difference times 2
+V4,0,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+V4,1,PR_Int,R peak,p-wave onset,204.0,leadwise sample difference times 2
+V4,2,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+V4,3,PR_Int,R peak,p-wave onset,200.0,leadwise sample difference times 2
+V4,4,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+V4,5,PR_Int,R peak,p-wave onset,210.0,leadwise sample difference times 2
+V4,6,PR_Int,R peak,p-wave onset,200.0,leadwise sample difference times 2
+V4,7,PR_Int,R peak,p-wave onset,262.0,leadwise sample difference times 2
+V4,8,PR_Int,R peak,p-wave onset,252.0,leadwise sample difference times 2
+V4,9,PR_Int,R peak,p-wave onset,198.0,leadwise sample difference times 2
+V4,10,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+V4,11,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+V5,0,PR_Int,R peak,p-wave onset,204.0,leadwise sample difference times 2
+V5,1,PR_Int,R peak,p-wave onset,190.0,leadwise sample difference times 2
+V5,2,PR_Int,R peak,p-wave onset,198.0,leadwise sample difference times 2
+V5,3,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+V5,4,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+V5,5,PR_Int,R peak,p-wave onset,270.0,leadwise sample difference times 2
+V5,6,PR_Int,R peak,p-wave onset,212.0,leadwise sample difference times 2
+V5,7,PR_Int,R peak,p-wave onset,236.0,leadwise sample difference times 2
+V5,8,PR_Int,R peak,p-wave onset,204.0,leadwise sample difference times 2
+V5,9,PR_Int,R peak,p-wave onset,212.0,leadwise sample difference times 2
+V5,10,PR_Int,R peak,p-wave onset,198.0,leadwise sample difference times 2
+V5,11,PR_Int,R peak,p-wave onset,204.0,leadwise sample difference times 2
+V6,0,PR_Int,R peak,p-wave onset,154.0,leadwise sample difference times 2
+V6,1,PR_Int,R peak,p-wave onset,198.0,leadwise sample difference times 2
+V6,2,PR_Int,R peak,p-wave onset,196.0,leadwise sample difference times 2
+V6,3,PR_Int,R peak,p-wave onset,210.0,leadwise sample difference times 2
+V6,4,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+V6,5,PR_Int,R peak,p-wave onset,198.0,leadwise sample difference times 2
+V6,6,PR_Int,R peak,p-wave onset,210.0,leadwise sample difference times 2
+V6,7,PR_Int,R peak,p-wave onset,196.0,leadwise sample difference times 2
+V6,8,PR_Int,R peak,p-wave onset,202.0,leadwise sample difference times 2
+V6,9,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+V6,10,PR_Int,R peak,p-wave onset,194.0,leadwise sample difference times 2
+V6,11,PR_Int,R peak,p-wave onset,196.0,leadwise sample difference times 2
+I,0,QRS_Dur,QRS offset,QRS onset,146.0,leadwise sample difference times 2
+I,1,QRS_Dur,QRS offset,QRS onset,156.0,leadwise sample difference times 2
+I,2,QRS_Dur,QRS offset,QRS onset,150.0,leadwise sample difference times 2
+I,3,QRS_Dur,QRS offset,QRS onset,166.0,leadwise sample difference times 2
+I,4,QRS_Dur,QRS offset,QRS onset,150.0,leadwise sample difference times 2
+I,5,QRS_Dur,QRS offset,QRS onset,144.0,leadwise sample difference times 2
+I,6,QRS_Dur,QRS offset,QRS onset,142.0,leadwise sample difference times 2
+I,7,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+I,8,QRS_Dur,QRS offset,QRS onset,146.0,leadwise sample difference times 2
+I,9,QRS_Dur,QRS offset,QRS onset,142.0,leadwise sample difference times 2
+I,10,QRS_Dur,QRS offset,QRS onset,134.0,leadwise sample difference times 2
+I,11,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+II,0,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+II,1,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+II,2,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+II,3,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+II,4,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+II,5,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+II,6,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+II,7,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+II,8,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+II,9,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+II,10,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+II,11,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+III,0,QRS_Dur,QRS offset,QRS onset,154.0,leadwise sample difference times 2
+III,1,QRS_Dur,QRS offset,QRS onset,138.0,leadwise sample difference times 2
+III,2,QRS_Dur,QRS offset,QRS onset,160.0,leadwise sample difference times 2
+III,3,QRS_Dur,QRS offset,QRS onset,150.0,leadwise sample difference times 2
+III,4,QRS_Dur,QRS offset,QRS onset,154.0,leadwise sample difference times 2
+III,5,QRS_Dur,QRS offset,QRS onset,146.0,leadwise sample difference times 2
+III,6,QRS_Dur,QRS offset,QRS onset,164.0,leadwise sample difference times 2
+III,7,QRS_Dur,QRS offset,QRS onset,162.0,leadwise sample difference times 2
+III,8,QRS_Dur,QRS offset,QRS onset,186.0,leadwise sample difference times 2
+III,9,QRS_Dur,QRS offset,QRS onset,148.0,leadwise sample difference times 2
+III,10,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+III,11,QRS_Dur,QRS offset,QRS onset,164.0,leadwise sample difference times 2
+aVR,0,QRS_Dur,QRS offset,QRS onset,146.0,leadwise sample difference times 2
+aVR,1,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+aVR,2,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+aVR,3,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+aVR,4,QRS_Dur,QRS offset,QRS onset,152.0,leadwise sample difference times 2
+aVR,5,QRS_Dur,QRS offset,QRS onset,148.0,leadwise sample difference times 2
+aVR,6,QRS_Dur,QRS offset,QRS onset,120.0,leadwise sample difference times 2
+aVR,7,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+aVR,8,QRS_Dur,QRS offset,QRS onset,146.0,leadwise sample difference times 2
+aVR,9,QRS_Dur,QRS offset,QRS onset,140.0,leadwise sample difference times 2
+aVR,10,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+aVR,11,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+aVL,0,QRS_Dur,QRS offset,QRS onset,148.0,leadwise sample difference times 2
+aVL,1,QRS_Dur,QRS offset,QRS onset,156.0,leadwise sample difference times 2
+aVL,2,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+aVL,3,QRS_Dur,QRS offset,QRS onset,164.0,leadwise sample difference times 2
+aVL,4,QRS_Dur,QRS offset,QRS onset,150.0,leadwise sample difference times 2
+aVL,5,QRS_Dur,QRS offset,QRS onset,144.0,leadwise sample difference times 2
+aVL,6,QRS_Dur,QRS offset,QRS onset,144.0,leadwise sample difference times 2
+aVL,7,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+aVL,8,QRS_Dur,QRS offset,QRS onset,146.0,leadwise sample difference times 2
+aVL,9,QRS_Dur,QRS offset,QRS onset,142.0,leadwise sample difference times 2
+aVL,10,QRS_Dur,QRS offset,QRS onset,168.0,leadwise sample difference times 2
+aVL,11,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+aVF,0,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+aVF,1,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+aVF,2,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+aVF,3,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+aVF,4,QRS_Dur,QRS offset,QRS onset,106.0,leadwise sample difference times 2
+aVF,5,QRS_Dur,QRS offset,QRS onset,106.0,leadwise sample difference times 2
+aVF,6,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+aVF,7,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+aVF,8,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+aVF,9,QRS_Dur,QRS offset,QRS onset,106.0,leadwise sample difference times 2
+aVF,10,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+aVF,11,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+V1,0,QRS_Dur,QRS offset,QRS onset,134.0,leadwise sample difference times 2
+V1,1,QRS_Dur,QRS offset,QRS onset,134.0,leadwise sample difference times 2
+V1,2,QRS_Dur,QRS offset,QRS onset,136.0,leadwise sample difference times 2
+V1,3,QRS_Dur,QRS offset,QRS onset,134.0,leadwise sample difference times 2
+V1,4,QRS_Dur,QRS offset,QRS onset,154.0,leadwise sample difference times 2
+V1,5,QRS_Dur,QRS offset,QRS onset,134.0,leadwise sample difference times 2
+V1,6,QRS_Dur,QRS offset,QRS onset,150.0,leadwise sample difference times 2
+V1,7,QRS_Dur,QRS offset,QRS onset,136.0,leadwise sample difference times 2
+V1,8,QRS_Dur,QRS offset,QRS onset,134.0,leadwise sample difference times 2
+V1,9,QRS_Dur,QRS offset,QRS onset,134.0,leadwise sample difference times 2
+V1,10,QRS_Dur,QRS offset,QRS onset,134.0,leadwise sample difference times 2
+V1,11,QRS_Dur,QRS offset,QRS onset,162.0,leadwise sample difference times 2
+V2,0,QRS_Dur,QRS offset,QRS onset,148.0,leadwise sample difference times 2
+V2,1,QRS_Dur,QRS offset,QRS onset,136.0,leadwise sample difference times 2
+V2,2,QRS_Dur,QRS offset,QRS onset,142.0,leadwise sample difference times 2
+V2,3,QRS_Dur,QRS offset,QRS onset,154.0,leadwise sample difference times 2
+V2,4,QRS_Dur,QRS offset,QRS onset,152.0,leadwise sample difference times 2
+V2,5,QRS_Dur,QRS offset,QRS onset,154.0,leadwise sample difference times 2
+V2,6,QRS_Dur,QRS offset,QRS onset,142.0,leadwise sample difference times 2
+V2,7,QRS_Dur,QRS offset,QRS onset,136.0,leadwise sample difference times 2
+V2,8,QRS_Dur,QRS offset,QRS onset,148.0,leadwise sample difference times 2
+V2,9,QRS_Dur,QRS offset,QRS onset,136.0,leadwise sample difference times 2
+V2,10,QRS_Dur,QRS offset,QRS onset,138.0,leadwise sample difference times 2
+V2,11,QRS_Dur,QRS offset,QRS onset,142.0,leadwise sample difference times 2
+V3,0,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V3,1,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V3,2,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+V3,3,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V3,4,QRS_Dur,QRS offset,QRS onset,106.0,leadwise sample difference times 2
+V3,5,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V3,6,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V3,7,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V3,8,QRS_Dur,QRS offset,QRS onset,106.0,leadwise sample difference times 2
+V3,9,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V3,10,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V3,11,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V4,0,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V4,1,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+V4,2,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V4,3,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+V4,4,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+V4,5,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V4,6,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+V4,7,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V4,8,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V4,9,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V4,10,QRS_Dur,QRS offset,QRS onset,108.0,leadwise sample difference times 2
+V4,11,QRS_Dur,QRS offset,QRS onset,110.0,leadwise sample difference times 2
+V5,0,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+V5,1,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+V5,2,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+V5,3,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+V5,4,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+V5,5,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+V5,6,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+V5,7,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+V5,8,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+V5,9,QRS_Dur,QRS offset,QRS onset,116.0,leadwise sample difference times 2
+V5,10,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+V5,11,QRS_Dur,QRS offset,QRS onset,114.0,leadwise sample difference times 2
+V6,0,QRS_Dur,QRS offset,QRS onset,162.0,leadwise sample difference times 2
+V6,1,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+V6,2,QRS_Dur,QRS offset,QRS onset,120.0,leadwise sample difference times 2
+V6,3,QRS_Dur,QRS offset,QRS onset,152.0,leadwise sample difference times 2
+V6,4,QRS_Dur,QRS offset,QRS onset,120.0,leadwise sample difference times 2
+V6,5,QRS_Dur,QRS offset,QRS onset,120.0,leadwise sample difference times 2
+V6,6,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+V6,7,QRS_Dur,QRS offset,QRS onset,122.0,leadwise sample difference times 2
+V6,8,QRS_Dur,QRS offset,QRS onset,150.0,leadwise sample difference times 2
+V6,9,QRS_Dur,QRS offset,QRS onset,120.0,leadwise sample difference times 2
+V6,10,QRS_Dur,QRS offset,QRS onset,118.0,leadwise sample difference times 2
+V6,11,QRS_Dur,QRS offset,QRS onset,120.0,leadwise sample difference times 2
+I,0,QT_Int,t-wave offset,QRS onset,430.0,leadwise sample difference times 2
+I,1,QT_Int,t-wave offset,QRS onset,420.0,leadwise sample difference times 2
+I,2,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+I,3,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+I,4,QT_Int,t-wave offset,QRS onset,420.0,leadwise sample difference times 2
+I,5,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+I,6,QT_Int,t-wave offset,QRS onset,510.0,leadwise sample difference times 2
+I,7,QT_Int,t-wave offset,QRS onset,418.0,leadwise sample difference times 2
+I,8,QT_Int,t-wave offset,QRS onset,410.0,leadwise sample difference times 2
+I,9,QT_Int,t-wave offset,QRS onset,426.0,leadwise sample difference times 2
+I,10,QT_Int,t-wave offset,QRS onset,516.0,leadwise sample difference times 2
+I,11,QT_Int,t-wave offset,QRS onset,292.0,leadwise sample difference times 2
+II,0,QT_Int,t-wave offset,QRS onset,458.0,leadwise sample difference times 2
+II,1,QT_Int,t-wave offset,QRS onset,516.0,leadwise sample difference times 2
+II,2,QT_Int,t-wave offset,QRS onset,394.0,leadwise sample difference times 2
+II,3,QT_Int,t-wave offset,QRS onset,382.0,leadwise sample difference times 2
+II,4,QT_Int,t-wave offset,QRS onset,390.0,leadwise sample difference times 2
+II,5,QT_Int,t-wave offset,QRS onset,390.0,leadwise sample difference times 2
+II,6,QT_Int,t-wave offset,QRS onset,470.0,leadwise sample difference times 2
+II,7,QT_Int,t-wave offset,QRS onset,392.0,leadwise sample difference times 2
+II,8,QT_Int,t-wave offset,QRS onset,480.0,leadwise sample difference times 2
+II,9,QT_Int,t-wave offset,QRS onset,396.0,leadwise sample difference times 2
+II,10,QT_Int,t-wave offset,QRS onset,464.0,leadwise sample difference times 2
+II,11,QT_Int,t-wave offset,QRS onset,288.0,leadwise sample difference times 2
+III,0,QT_Int,t-wave offset,QRS onset,420.0,leadwise sample difference times 2
+III,1,QT_Int,t-wave offset,QRS onset,444.0,leadwise sample difference times 2
+III,2,QT_Int,t-wave offset,QRS onset,468.0,leadwise sample difference times 2
+III,3,QT_Int,t-wave offset,QRS onset,446.0,leadwise sample difference times 2
+III,4,QT_Int,t-wave offset,QRS onset,414.0,leadwise sample difference times 2
+III,5,QT_Int,t-wave offset,QRS onset,412.0,leadwise sample difference times 2
+III,6,QT_Int,t-wave offset,QRS onset,472.0,leadwise sample difference times 2
+III,7,QT_Int,t-wave offset,QRS onset,466.0,leadwise sample difference times 2
+III,8,QT_Int,t-wave offset,QRS onset,448.0,leadwise sample difference times 2
+III,9,QT_Int,t-wave offset,QRS onset,420.0,leadwise sample difference times 2
+III,10,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+III,11,QT_Int,t-wave offset,QRS onset,352.0,leadwise sample difference times 2
+aVR,0,QT_Int,t-wave offset,QRS onset,502.0,leadwise sample difference times 2
+aVR,1,QT_Int,t-wave offset,QRS onset,528.0,leadwise sample difference times 2
+aVR,2,QT_Int,t-wave offset,QRS onset,482.0,leadwise sample difference times 2
+aVR,3,QT_Int,t-wave offset,QRS onset,420.0,leadwise sample difference times 2
+aVR,4,QT_Int,t-wave offset,QRS onset,446.0,leadwise sample difference times 2
+aVR,5,QT_Int,t-wave offset,QRS onset,492.0,leadwise sample difference times 2
+aVR,6,QT_Int,t-wave offset,QRS onset,522.0,leadwise sample difference times 2
+aVR,7,QT_Int,t-wave offset,QRS onset,442.0,leadwise sample difference times 2
+aVR,8,QT_Int,t-wave offset,QRS onset,534.0,leadwise sample difference times 2
+aVR,9,QT_Int,t-wave offset,QRS onset,440.0,leadwise sample difference times 2
+aVR,10,QT_Int,t-wave offset,QRS onset,518.0,leadwise sample difference times 2
+aVR,11,QT_Int,t-wave offset,QRS onset,290.0,leadwise sample difference times 2
+aVL,0,QT_Int,t-wave offset,QRS onset,422.0,leadwise sample difference times 2
+aVL,1,QT_Int,t-wave offset,QRS onset,418.0,leadwise sample difference times 2
+aVL,2,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+aVL,3,QT_Int,t-wave offset,QRS onset,410.0,leadwise sample difference times 2
+aVL,4,QT_Int,t-wave offset,QRS onset,412.0,leadwise sample difference times 2
+aVL,5,QT_Int,t-wave offset,QRS onset,412.0,leadwise sample difference times 2
+aVL,6,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+aVL,7,QT_Int,t-wave offset,QRS onset,412.0,leadwise sample difference times 2
+aVL,8,QT_Int,t-wave offset,QRS onset,408.0,leadwise sample difference times 2
+aVL,9,QT_Int,t-wave offset,QRS onset,418.0,leadwise sample difference times 2
+aVL,10,QT_Int,t-wave offset,QRS onset,508.0,leadwise sample difference times 2
+aVL,11,QT_Int,t-wave offset,QRS onset,294.0,leadwise sample difference times 2
+aVF,0,QT_Int,t-wave offset,QRS onset,396.0,leadwise sample difference times 2
+aVF,1,QT_Int,t-wave offset,QRS onset,504.0,leadwise sample difference times 2
+aVF,2,QT_Int,t-wave offset,QRS onset,400.0,leadwise sample difference times 2
+aVF,3,QT_Int,t-wave offset,QRS onset,392.0,leadwise sample difference times 2
+aVF,4,QT_Int,t-wave offset,QRS onset,392.0,leadwise sample difference times 2
+aVF,5,QT_Int,t-wave offset,QRS onset,394.0,leadwise sample difference times 2
+aVF,6,QT_Int,t-wave offset,QRS onset,396.0,leadwise sample difference times 2
+aVF,7,QT_Int,t-wave offset,QRS onset,396.0,leadwise sample difference times 2
+aVF,8,QT_Int,t-wave offset,QRS onset,398.0,leadwise sample difference times 2
+aVF,9,QT_Int,t-wave offset,QRS onset,398.0,leadwise sample difference times 2
+aVF,10,QT_Int,t-wave offset,QRS onset,394.0,leadwise sample difference times 2
+aVF,11,QT_Int,t-wave offset,QRS onset,284.0,leadwise sample difference times 2
+V1,0,QT_Int,t-wave offset,QRS onset,386.0,leadwise sample difference times 2
+V1,1,QT_Int,t-wave offset,QRS onset,492.0,leadwise sample difference times 2
+V1,2,QT_Int,t-wave offset,QRS onset,386.0,leadwise sample difference times 2
+V1,3,QT_Int,t-wave offset,QRS onset,484.0,leadwise sample difference times 2
+V1,4,QT_Int,t-wave offset,QRS onset,388.0,leadwise sample difference times 2
+V1,5,QT_Int,t-wave offset,QRS onset,386.0,leadwise sample difference times 2
+V1,6,QT_Int,t-wave offset,QRS onset,480.0,leadwise sample difference times 2
+V1,7,QT_Int,t-wave offset,QRS onset,390.0,leadwise sample difference times 2
+V1,8,QT_Int,t-wave offset,QRS onset,486.0,leadwise sample difference times 2
+V1,9,QT_Int,t-wave offset,QRS onset,396.0,leadwise sample difference times 2
+V1,10,QT_Int,t-wave offset,QRS onset,484.0,leadwise sample difference times 2
+V1,11,QT_Int,t-wave offset,QRS onset,282.0,leadwise sample difference times 2
+V2,0,QT_Int,t-wave offset,QRS onset,452.0,leadwise sample difference times 2
+V2,1,QT_Int,t-wave offset,QRS onset,444.0,leadwise sample difference times 2
+V2,2,QT_Int,t-wave offset,QRS onset,448.0,leadwise sample difference times 2
+V2,3,QT_Int,t-wave offset,QRS onset,454.0,leadwise sample difference times 2
+V2,4,QT_Int,t-wave offset,QRS onset,452.0,leadwise sample difference times 2
+V2,5,QT_Int,t-wave offset,QRS onset,458.0,leadwise sample difference times 2
+V2,6,QT_Int,t-wave offset,QRS onset,448.0,leadwise sample difference times 2
+V2,7,QT_Int,t-wave offset,QRS onset,442.0,leadwise sample difference times 2
+V2,8,QT_Int,t-wave offset,QRS onset,448.0,leadwise sample difference times 2
+V2,9,QT_Int,t-wave offset,QRS onset,442.0,leadwise sample difference times 2
+V2,10,QT_Int,t-wave offset,QRS onset,440.0,leadwise sample difference times 2
+V2,11,QT_Int,t-wave offset,QRS onset,332.0,leadwise sample difference times 2
+V3,0,QT_Int,t-wave offset,QRS onset,418.0,leadwise sample difference times 2
+V3,1,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+V3,2,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+V3,3,QT_Int,t-wave offset,QRS onset,410.0,leadwise sample difference times 2
+V3,4,QT_Int,t-wave offset,QRS onset,412.0,leadwise sample difference times 2
+V3,5,QT_Int,t-wave offset,QRS onset,418.0,leadwise sample difference times 2
+V3,6,QT_Int,t-wave offset,QRS onset,418.0,leadwise sample difference times 2
+V3,7,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+V3,8,QT_Int,t-wave offset,QRS onset,412.0,leadwise sample difference times 2
+V3,9,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+V3,10,QT_Int,t-wave offset,QRS onset,416.0,leadwise sample difference times 2
+V3,11,QT_Int,t-wave offset,QRS onset,294.0,leadwise sample difference times 2
+V4,0,QT_Int,t-wave offset,QRS onset,508.0,leadwise sample difference times 2
+V4,1,QT_Int,t-wave offset,QRS onset,430.0,leadwise sample difference times 2
+V4,2,QT_Int,t-wave offset,QRS onset,432.0,leadwise sample difference times 2
+V4,3,QT_Int,t-wave offset,QRS onset,428.0,leadwise sample difference times 2
+V4,4,QT_Int,t-wave offset,QRS onset,540.0,leadwise sample difference times 2
+V4,5,QT_Int,t-wave offset,QRS onset,436.0,leadwise sample difference times 2
+V4,6,QT_Int,t-wave offset,QRS onset,434.0,leadwise sample difference times 2
+V4,7,QT_Int,t-wave offset,QRS onset,430.0,leadwise sample difference times 2
+V4,8,QT_Int,t-wave offset,QRS onset,424.0,leadwise sample difference times 2
+V4,9,QT_Int,t-wave offset,QRS onset,440.0,leadwise sample difference times 2
+V4,10,QT_Int,t-wave offset,QRS onset,434.0,leadwise sample difference times 2
+V4,11,QT_Int,t-wave offset,QRS onset,292.0,leadwise sample difference times 2
+V5,0,QT_Int,t-wave offset,QRS onset,380.0,leadwise sample difference times 2
+V5,1,QT_Int,t-wave offset,QRS onset,464.0,leadwise sample difference times 2
+V5,2,QT_Int,t-wave offset,QRS onset,382.0,leadwise sample difference times 2
+V5,3,QT_Int,t-wave offset,QRS onset,446.0,leadwise sample difference times 2
+V5,4,QT_Int,t-wave offset,QRS onset,378.0,leadwise sample difference times 2
+V5,5,QT_Int,t-wave offset,QRS onset,378.0,leadwise sample difference times 2
+V5,6,QT_Int,t-wave offset,QRS onset,382.0,leadwise sample difference times 2
+V5,7,QT_Int,t-wave offset,QRS onset,386.0,leadwise sample difference times 2
+V5,8,QT_Int,t-wave offset,QRS onset,378.0,leadwise sample difference times 2
+V5,9,QT_Int,t-wave offset,QRS onset,464.0,leadwise sample difference times 2
+V5,10,QT_Int,t-wave offset,QRS onset,378.0,leadwise sample difference times 2
+V5,11,QT_Int,t-wave offset,QRS onset,290.0,leadwise sample difference times 2
+V6,0,QT_Int,t-wave offset,QRS onset,394.0,leadwise sample difference times 2
+V6,1,QT_Int,t-wave offset,QRS onset,388.0,leadwise sample difference times 2
+V6,2,QT_Int,t-wave offset,QRS onset,386.0,leadwise sample difference times 2
+V6,3,QT_Int,t-wave offset,QRS onset,390.0,leadwise sample difference times 2
+V6,4,QT_Int,t-wave offset,QRS onset,512.0,leadwise sample difference times 2
+V6,5,QT_Int,t-wave offset,QRS onset,388.0,leadwise sample difference times 2
+V6,6,QT_Int,t-wave offset,QRS onset,382.0,leadwise sample difference times 2
+V6,7,QT_Int,t-wave offset,QRS onset,388.0,leadwise sample difference times 2
+V6,8,QT_Int,t-wave offset,QRS onset,470.0,leadwise sample difference times 2
+V6,9,QT_Int,t-wave offset,QRS onset,392.0,leadwise sample difference times 2
+V6,10,QT_Int,t-wave offset,QRS onset,384.0,leadwise sample difference times 2
+V6,11,QT_Int,t-wave offset,QRS onset,288.0,leadwise sample difference times 2
+Global,0,P_Dur,p-wave offset,p-wave onset,180.0,"2nd latest minus 2nd earliest, then times 2"
+Global,1,P_Dur,p-wave offset,p-wave onset,144.0,"2nd latest minus 2nd earliest, then times 2"
+Global,2,P_Dur,p-wave offset,p-wave onset,204.0,"2nd latest minus 2nd earliest, then times 2"
+Global,3,P_Dur,p-wave offset,p-wave onset,150.0,"2nd latest minus 2nd earliest, then times 2"
+Global,4,P_Dur,p-wave offset,p-wave onset,172.0,"2nd latest minus 2nd earliest, then times 2"
+Global,5,P_Dur,p-wave offset,p-wave onset,170.0,"2nd latest minus 2nd earliest, then times 2"
+Global,6,P_Dur,p-wave offset,p-wave onset,224.0,"2nd latest minus 2nd earliest, then times 2"
+Global,7,P_Dur,p-wave offset,p-wave onset,206.0,"2nd latest minus 2nd earliest, then times 2"
+Global,8,P_Dur,p-wave offset,p-wave onset,228.0,"2nd latest minus 2nd earliest, then times 2"
+Global,9,P_Dur,p-wave offset,p-wave onset,206.0,"2nd latest minus 2nd earliest, then times 2"
+Global,10,P_Dur,p-wave offset,p-wave onset,216.0,"2nd latest minus 2nd earliest, then times 2"
+Global,11,P_Dur,p-wave offset,p-wave onset,168.0,"2nd latest minus 2nd earliest, then times 2"
+Global,0,T_Dur,t-wave offset,t-wave onset,282.0,"2nd latest minus 2nd earliest, then times 2"
+Global,1,T_Dur,t-wave offset,t-wave onset,290.0,"2nd latest minus 2nd earliest, then times 2"
+Global,2,T_Dur,t-wave offset,t-wave onset,188.0,"2nd latest minus 2nd earliest, then times 2"
+Global,3,T_Dur,t-wave offset,t-wave onset,236.0,"2nd latest minus 2nd earliest, then times 2"
+Global,4,T_Dur,t-wave offset,t-wave onset,280.0,"2nd latest minus 2nd earliest, then times 2"
+Global,5,T_Dur,t-wave offset,t-wave onset,216.0,"2nd latest minus 2nd earliest, then times 2"
+Global,6,T_Dur,t-wave offset,t-wave onset,268.0,"2nd latest minus 2nd earliest, then times 2"
+Global,7,T_Dur,t-wave offset,t-wave onset,196.0,"2nd latest minus 2nd earliest, then times 2"
+Global,8,T_Dur,t-wave offset,t-wave onset,288.0,"2nd latest minus 2nd earliest, then times 2"
+Global,9,T_Dur,t-wave offset,t-wave onset,220.0,"2nd latest minus 2nd earliest, then times 2"
+Global,10,T_Dur,t-wave offset,t-wave onset,278.0,"2nd latest minus 2nd earliest, then times 2"
+Global,11,T_Dur,t-wave offset,t-wave onset,4.0,"2nd latest minus 2nd earliest, then times 2"
+Global,0,PQ_Int,QRS onset,p-wave onset,178.0,"2nd latest minus 2nd earliest, then times 2"
+Global,1,PQ_Int,QRS onset,p-wave onset,164.0,"2nd latest minus 2nd earliest, then times 2"
+Global,2,PQ_Int,QRS onset,p-wave onset,204.0,"2nd latest minus 2nd earliest, then times 2"
+Global,3,PQ_Int,QRS onset,p-wave onset,168.0,"2nd latest minus 2nd earliest, then times 2"
+Global,4,PQ_Int,QRS onset,p-wave onset,182.0,"2nd latest minus 2nd earliest, then times 2"
+Global,5,PQ_Int,QRS onset,p-wave onset,178.0,"2nd latest minus 2nd earliest, then times 2"
+Global,6,PQ_Int,QRS onset,p-wave onset,238.0,"2nd latest minus 2nd earliest, then times 2"
+Global,7,PQ_Int,QRS onset,p-wave onset,214.0,"2nd latest minus 2nd earliest, then times 2"
+Global,8,PQ_Int,QRS onset,p-wave onset,236.0,"2nd latest minus 2nd earliest, then times 2"
+Global,9,PQ_Int,QRS onset,p-wave onset,214.0,"2nd latest minus 2nd earliest, then times 2"
+Global,10,PQ_Int,QRS onset,p-wave onset,222.0,"2nd latest minus 2nd earliest, then times 2"
+Global,11,PQ_Int,QRS onset,p-wave onset,178.0,"2nd latest minus 2nd earliest, then times 2"
+Global,0,PR_Int,R peak,p-wave onset,234.0,"2nd latest minus 2nd earliest, then times 2"
+Global,1,PR_Int,R peak,p-wave onset,220.0,"2nd latest minus 2nd earliest, then times 2"
+Global,2,PR_Int,R peak,p-wave onset,262.0,"2nd latest minus 2nd earliest, then times 2"
+Global,3,PR_Int,R peak,p-wave onset,224.0,"2nd latest minus 2nd earliest, then times 2"
+Global,4,PR_Int,R peak,p-wave onset,238.0,"2nd latest minus 2nd earliest, then times 2"
+Global,5,PR_Int,R peak,p-wave onset,234.0,"2nd latest minus 2nd earliest, then times 2"
+Global,6,PR_Int,R peak,p-wave onset,294.0,"2nd latest minus 2nd earliest, then times 2"
+Global,7,PR_Int,R peak,p-wave onset,270.0,"2nd latest minus 2nd earliest, then times 2"
+Global,8,PR_Int,R peak,p-wave onset,292.0,"2nd latest minus 2nd earliest, then times 2"
+Global,9,PR_Int,R peak,p-wave onset,268.0,"2nd latest minus 2nd earliest, then times 2"
+Global,10,PR_Int,R peak,p-wave onset,278.0,"2nd latest minus 2nd earliest, then times 2"
+Global,11,PR_Int,R peak,p-wave onset,234.0,"2nd latest minus 2nd earliest, then times 2"
+Global,0,QRS_Dur,QRS offset,QRS onset,154.0,"2nd latest minus 2nd earliest, then times 2"
+Global,1,QRS_Dur,QRS offset,QRS onset,184.0,"2nd latest minus 2nd earliest, then times 2"
+Global,2,QRS_Dur,QRS offset,QRS onset,184.0,"2nd latest minus 2nd earliest, then times 2"
+Global,3,QRS_Dur,QRS offset,QRS onset,204.0,"2nd latest minus 2nd earliest, then times 2"
+Global,4,QRS_Dur,QRS offset,QRS onset,160.0,"2nd latest minus 2nd earliest, then times 2"
+Global,5,QRS_Dur,QRS offset,QRS onset,150.0,"2nd latest minus 2nd earliest, then times 2"
+Global,6,QRS_Dur,QRS offset,QRS onset,182.0,"2nd latest minus 2nd earliest, then times 2"
+Global,7,QRS_Dur,QRS offset,QRS onset,158.0,"2nd latest minus 2nd earliest, then times 2"
+Global,8,QRS_Dur,QRS offset,QRS onset,188.0,"2nd latest minus 2nd earliest, then times 2"
+Global,9,QRS_Dur,QRS offset,QRS onset,150.0,"2nd latest minus 2nd earliest, then times 2"
+Global,10,QRS_Dur,QRS offset,QRS onset,152.0,"2nd latest minus 2nd earliest, then times 2"
+Global,11,QRS_Dur,QRS offset,QRS onset,164.0,"2nd latest minus 2nd earliest, then times 2"
+Global,0,QT_Int,t-wave offset,QRS onset,510.0,"2nd latest minus 2nd earliest, then times 2"
+Global,1,QT_Int,t-wave offset,QRS onset,550.0,"2nd latest minus 2nd earliest, then times 2"
+Global,2,QT_Int,t-wave offset,QRS onset,472.0,"2nd latest minus 2nd earliest, then times 2"
+Global,3,QT_Int,t-wave offset,QRS onset,488.0,"2nd latest minus 2nd earliest, then times 2"
+Global,4,QT_Int,t-wave offset,QRS onset,522.0,"2nd latest minus 2nd earliest, then times 2"
+Global,5,QT_Int,t-wave offset,QRS onset,442.0,"2nd latest minus 2nd earliest, then times 2"
+Global,6,QT_Int,t-wave offset,QRS onset,550.0,"2nd latest minus 2nd earliest, then times 2"
+Global,7,QT_Int,t-wave offset,QRS onset,464.0,"2nd latest minus 2nd earliest, then times 2"
+Global,8,QT_Int,t-wave offset,QRS onset,536.0,"2nd latest minus 2nd earliest, then times 2"
+Global,9,QT_Int,t-wave offset,QRS onset,450.0,"2nd latest minus 2nd earliest, then times 2"
+Global,10,QT_Int,t-wave offset,QRS onset,524.0,"2nd latest minus 2nd earliest, then times 2"
+Global,11,QT_Int,t-wave offset,QRS onset,332.0,"2nd latest minus 2nd earliest, then times 2"
+Global,0,RR_Mean,next R peak,R peak,922.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,1,RR_Mean,next R peak,R peak,890.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,2,RR_Mean,next R peak,R peak,820.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,3,RR_Mean,next R peak,R peak,820.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,4,RR_Mean,next R peak,R peak,858.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,5,RR_Mean,next R peak,R peak,862.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,6,RR_Mean,next R peak,R peak,870.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,7,RR_Mean,next R peak,R peak,834.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,8,RR_Mean,next R peak,R peak,888.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,9,RR_Mean,next R peak,R peak,862.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,10,RR_Mean,next R peak,R peak,850.0,2 times the gap between successive global R peaks; the trailing copy used inside ECGDeli is not included
+Global,0,QT_IntFramingham,sync QT,sync RR,522.0120000000001,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,1,QT_IntFramingham,sync QT,sync RR,566.94,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,2,QT_IntFramingham,sync QT,sync RR,499.7199999999999,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,3,QT_IntFramingham,sync QT,sync RR,515.7199999999999,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,4,QT_IntFramingham,sync QT,sync RR,543.868,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,5,QT_IntFramingham,sync QT,sync RR,463.252,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,6,QT_IntFramingham,sync QT,sync RR,570.0200000000001,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,7,QT_IntFramingham,sync QT,sync RR,489.5640000000001,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,8,QT_IntFramingham,sync QT,sync RR,553.248,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,9,QT_IntFramingham,sync QT,sync RR,471.252,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted
+Global,10,QT_IntFramingham,sync QT,sync RR,547.1,Framingham of sync QT at beat i and the RR gap that starts at that R; the last beat has no following R and is omitted

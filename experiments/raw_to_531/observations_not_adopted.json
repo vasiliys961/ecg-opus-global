@@ -1,0 +1,28 @@
+{
+  "adopted_into_comparison": false,
+  "reason": "These equalities were noticed after the source-faithful reconstruction had already been written. The comparison file was not edited.",
+  "rr_without_repeated_last_interval": {
+    "value": 862.0,
+    "iqr": 37.0,
+    "count": 11,
+    "published_RR_Mean_Global": {
+      "value": 862.0,
+      "iqr": 37.0,
+      "count": 11
+    },
+    "source_line_that_was_used_instead": "rr_multi(end+1) = rr_multi(end), which yields value 860, iqr 28.5, count 12"
+  },
+  "framingham_on_the_11_successive_intervals": {
+    "value": 522.012,
+    "iqr": 55.532,
+    "count": 11,
+    "published_QT_IntFramingham_Global": {
+      "value": 522.01,
+      "iqr": 55.535,
+      "count": 11
+    },
+    "absolute_difference_value": 0.002,
+    "variant_2_on_those_11_medians": 531.252
+  },
+  "avl_avf": "Aggregated aVF series from 00513_points_lead_aVF.atr equals the published aVL columns, and the reverse. Filenames were not swapped."
+}

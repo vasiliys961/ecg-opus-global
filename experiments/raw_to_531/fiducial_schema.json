@@ -1,0 +1,25 @@
+{
+  "record": "00513",
+  "format": "WFDB MIT annotation",
+  "time_resolution_stated_in_file": 500,
+  "time_resolution_unit": "samples per second, from the aux note '## time resolution: 500'",
+  "coordinate_unit": "WFDB sample number",
+  "coordinate_is_milliseconds": false,
+  "sample_index_base": "UNKNOWN. Interval differences do not depend on a constant shift. The last stored sample number in these files reaches 5000, while the 500 Hz signal has 5000 samples.",
+  "fields": [
+    {"name": "## time resolution: 500", "description": "sampling declaration inside the annotation", "unit": "Hz", "scope": "file", "coordinate": "sample 0", "source": "aux note in every 00513 atr file"},
+    {"name": "p-wave onset", "description": "P onset, ECGDeli FPT column 1", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "p-wave peak", "description": "P peak, ECGDeli FPT column 2", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "p-wave offset", "description": "P offset, ECGDeli FPT column 3", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "QRS onset", "description": "QRS onset, ECGDeli FPT column 4", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "Q peak", "description": "Q peak, ECGDeli FPT column 5", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "R peak", "description": "R peak, ECGDeli FPT column 6", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "S peak", "description": "S peak, ECGDeli FPT column 7", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "QRS offset", "description": "QRS offset, ECGDeli FPT column 8", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "L point (for STEMI)", "description": "L point placed between QRS offset and T onset. Not an ST amplitude and not a set of Gaussian parameters.", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "t-wave onset", "description": "T onset, ECGDeli FPT column 10", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "t-wave peak", "description": "T peak, ECGDeli FPT column 11", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"},
+    {"name": "t-wave offset", "description": "T offset, ECGDeli FPT column 12", "unit": "sample", "scope": "lead and global", "coordinate": "sample", "source": "aux note"}
+  ],
+  "absent": ["morphology code", "amplitude in mV", "Gaussian ST parameters", "heart-axis class", "per-lead QTc"]
+}

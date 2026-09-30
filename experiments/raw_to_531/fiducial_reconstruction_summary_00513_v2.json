@@ -1,0 +1,24 @@
+{
+  "record": "00513",
+  "total": 531,
+  "exact": 238,
+  "close": 0,
+  "different": 2,
+  "missing": 0,
+  "not_reproducible": 291,
+  "coverage": 0.4519774011299435,
+  "mae": 2.0833333333551234e-05,
+  "median_absolute_error": 0.0,
+  "max_absolute_error": 0.002999999999985903,
+  "paired_features": 240,
+  "qt_variant_1_correction_then_median": {
+    "value": 522.0120000000001,
+    "iqr": 55.53199999999998,
+    "count": 11,
+    "percentile_method": "linear"
+  },
+  "qt_variant_2_median_then_correction": 531.2520000000001,
+  "winner_selected": false,
+  "percentile_method": "linear",
+  "network_called": false
+}

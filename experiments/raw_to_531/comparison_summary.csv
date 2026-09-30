@@ -1,0 +1,6 @@
+record,pipeline,coverage,exact_percent,close_percent,mae,median_ae,max_ae,note
+00513,not_started,0,0,0,,,,ECGDeli did not start. No paired absolute errors.
+00514,NOT_RUN,,,,,,,Not started. Record 00513 did not produce a beat table.
+00515,NOT_RUN,,,,,,,Not started. Record 00513 did not produce a beat table.
+00516,NOT_RUN,,,,,,,Not started. Record 00513 did not produce a beat table.
+00517,NOT_RUN,,,,,,,Not started. Record 00513 did not produce a beat table.

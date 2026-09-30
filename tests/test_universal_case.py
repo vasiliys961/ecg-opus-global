@@ -36,7 +36,8 @@ def test_text_goes_eyes_then_analyzer_without_ensemble(monkeypatch):
     assert [model for model, _text in calls] == [EYES_MODEL, ANALYZER_MODEL]
     assert "ЧСС 70" in calls[0][1]
     assert "heart_rate" in calls[1][1]
-    assert "Что видно" in calls[1][1]
+    assert "What is visible" in calls[1][1]
+    assert "Reply strictly in English" in calls[1][1]
     assert result["extraction"]["measurements"]["heart_rate"] == 70
     assert "ритм по тексту" in result["interpretation"]
 
@@ -64,14 +65,16 @@ def test_protocol_is_a_cheap_standard_form(monkeypatch):
     assert empty.status_code == 400
     assert ready.status_code == 200
     assert calls[0][0] == EYES_MODEL
-    assert "Ритм" in calls[0][1]
-    assert "Миннесота" in calls[0][1]
+    assert "Rhythm" in calls[0][1]
+    assert "Minnesota" in calls[0][1]
     assert "Minnesota Code" in calls[0][1]
-    assert "Интервалы" in calls[0][1]
-    assert "Патологические зубцы" in calls[0][1]
+    assert "Intervals" in calls[0][1]
+    assert "Abnormal waves" in calls[0][1]
+    assert "Reply strictly in English" in calls[0][1]
     assert "Дифференциальный диагноз" not in body
     assert "Артефакт" not in body
     assert "реанимац" not in body.lower()
+    assert "Rhythm" in body
     assert "Фибрилляция желудочков." in body
 
 
@@ -107,11 +110,12 @@ def test_signal_conclusion_uses_gemini_protocol_form(monkeypatch):
     assert calls[0][0] == EYES_MODEL
     assert "SINUS RHYTHM" in calls[0][1]
     assert "64 уд/мин" in calls[0][1]
-    assert "Миннесота" in calls[0][1]
+    assert "Minnesota" in calls[0][1]
     assert "8-3-1" in calls[0][1]
-    assert "Важные соотношения" in calls[0][1]
-    assert "Депрессии и элевации" in calls[0][1]
-    assert "Ритм" in body
+    assert "Important ratios" in calls[0][1]
+    assert "ST depression and elevation" in calls[0][1]
+    assert "Reply strictly in English" in calls[0][1]
+    assert "Rhythm" in body
     assert "SINUS RHYTHM" in body
     assert "Дифференциальный диагноз" not in body
     assert "реанимац" not in body.lower()

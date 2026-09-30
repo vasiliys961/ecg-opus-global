@@ -6,7 +6,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.app import app
-from backend.vision import UnsupportedImage, prepare_image
+from backend.vision import UnsupportedImage, analyze_case, prepare_image
 from ecg_engine.feature_columns import FEATURE_COLUMNS
 from ecg_engine.raw_extractor import RAW_TO_531_STATUS, RawECGExtractor
 from ecg_engine.schema import ECGSchemaError, read_ecg531_csv, read_feature_mapping
@@ -61,13 +61,17 @@ def test_raw_extractor_does_not_emit_features():
     assert response.json()["features"] is None
 
 
-def test_image_is_not_masked_or_reencoded_and_pdf_is_rejected(monkeypatch):
+def test_image_is_not_masked_or_reencoded_and_pdf_stays_intact(monkeypatch):
     original = b"\x89PNG\r\n\x1a\nfake"
     returned, mime = prepare_image(original, "trace.png", "image/png")
     assert returned is original
     assert mime == "image/png"
-    with pytest.raises(UnsupportedImage):
-        prepare_image(b"%PDF-1.4", "sheet.pdf", "application/pdf")
+    sheet = b"%PDF-1.4\n1 0 obj<<>>endobj\n%%EOF"
+    returned_pdf, pdf_mime = prepare_image(sheet, "sheet.pdf", "application/pdf")
+    assert returned_pdf is sheet
+    assert pdf_mime == "application/pdf"
+    with pytest.raises(UnsupportedImage, match="не похож"):
+        prepare_image(b"not-a-pdf", "sheet.pdf", "application/pdf")
     monkeypatch.delenv("LLM_API_KEY", raising=False)
     monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
     with TestClient(app) as client:
@@ -77,3 +81,70 @@ def test_image_is_not_masked_or_reencoded_and_pdf_is_rejected(monkeypatch):
         )
     assert response.status_code == 503
     assert "LLM_API_KEY" in response.json()["detail"]
+
+
+def _quiet_models(monkeypatch):
+    def complete(model, content):
+        if isinstance(content, list):
+            return '{"schema_version":"ecg.vision.v1","measurements":{},"findings":[]}'
+        return "Запись\nлента"
+
+    monkeypatch.setattr("backend.vision._completion", complete)
+
+
+def test_pdf_reaches_the_eyes_model_without_raster(monkeypatch):
+    seen = {}
+
+    def complete(model, content):
+        if isinstance(content, list):
+            seen["content"] = content
+            return '{"schema_version":"ecg.vision.v1","measurements":{},"findings":[]}'
+        return "Запись\nлист"
+
+    monkeypatch.setattr("backend.vision._completion", complete)
+    sheet = b"%PDF-1.4\n1 0 obj<<>>endobj\n%%EOF"
+    result = analyze_case(image=sheet, filename="sheet.pdf", mime_type="application/pdf")
+    url = seen["content"][1]["image_url"]["url"]
+    assert url.startswith("data:application/pdf;base64,")
+    assert "without blur" in seen["content"][0]["text"]
+    assert result["input_kind"] == "pdf"
+    assert result["reencoded"] is False
+    assert result["edge_mask_applied"] is False
+
+
+def test_strip_frames_are_one_recording(monkeypatch):
+    seen = {}
+
+    def complete(model, content):
+        if isinstance(content, list):
+            seen["content"] = content
+            return '{"schema_version":"ecg.vision.v1","measurements":{},"findings":[]}'
+        return "Запись\nлента"
+
+    monkeypatch.setattr("backend.vision._completion", complete)
+    png = b"\x89PNG\r\n\x1a\nfake"
+    result = analyze_case(images=[(png, "a.png", "image/png"), (png, "b.png", "image/png")])
+    pictures = [part for part in seen["content"] if part.get("type") == "image_url"]
+    assert len(pictures) == 2
+    assert "one recording" in seen["content"][0]["text"]
+    assert result["input_kind"] == "strip"
+    assert result["reencoded"] is False
+    with pytest.raises(UnsupportedImage, match="шести"):
+        analyze_case(images=[(png, f"{i}.png", "image/png") for i in range(7)])
+
+
+def test_analyze_route_accepts_strip_frames(monkeypatch):
+    _quiet_models(monkeypatch)
+    png = b"\x89PNG\r\n\x1a\nfake"
+    with TestClient(app) as client:
+        response = client.post(
+            "/api/ecg/analyze",
+            files=[
+                ("frames", ("a.png", png, "image/png")),
+                ("frames", ("b.png", png, "image/png")),
+            ],
+        )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["input_kind"] == "strip"
+    assert body["reencoded"] is False

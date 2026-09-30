@@ -1,0 +1,20 @@
+family,total_features,exact,close,different,missing,not_reproducible,coverage,notes
+PQ_Int,39,39,0,0,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+PR_Int,39,39,0,0,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+P_Amp,36,0,0,0,0,36,0.0,"Amplitude reads the signal matrix at a fiducial. The matrix filter and baseline used by PTB-XL+ are unknown, so the raw sample was not substituted."
+P_DurFull,36,36,0,0,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+P_Dur,3,3,0,0,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+P_Morph,36,0,0,0,0,36,0.0,"The fiducial files contain wave boundaries, not morphology codes -3..3. Get_P_Morphology was not reimplemented."
+Q_Amp,36,0,0,0,0,36,0.0,"Amplitude reads the signal matrix at a fiducial. The matrix filter and baseline used by PTB-XL+ are unknown, so the raw sample was not substituted."
+QRS_Dur,39,39,0,0,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+QT_IntCorr,36,0,0,0,0,36,0.0,ECGDeli computes Framingham on the synchronised QT and RR only. A per-lead correction was not added.
+QT_IntFramingham,3,1,0,2,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+QT_Int,39,39,0,0,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+R_Amp,36,0,0,0,0,36,0.0,"Amplitude reads the signal matrix at a fiducial. The matrix filter and baseline used by PTB-XL+ are unknown, so the raw sample was not substituted."
+RR_Mean,3,3,0,0,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+S_Amp,36,0,0,0,0,36,0.0,"Amplitude reads the signal matrix at a fiducial. The matrix filter and baseline used by PTB-XL+ are unknown, so the raw sample was not substituted."
+ST_Elev,36,0,0,0,0,36,0.0,"The files contain an L point marked for STEMI. They do not contain Gaussian parameters, and ECGDeli does not export an ST amplitude from that point."
+T_Amp,36,0,0,0,0,36,0.0,"Amplitude reads the signal matrix at a fiducial. The matrix filter and baseline used by PTB-XL+ are unknown, so the raw sample was not substituted."
+T_DurFull,36,36,0,0,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+T_Dur,3,3,0,0,0,0,1.0,interval formulas from ExtractIntervalFeaturesFromFPT
+HA,3,0,0,0,0,3,0.0,"No elHA input is present in the fiducial files, and ECGDeli v1.1 has no heart-axis function."

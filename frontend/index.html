@@ -1,190 +1,348 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Doctor Opus ECG Engine</title>
+  <meta name="theme-color" content="#143d32">
+  <title>ECG Opus</title>
   <style>
-    :root { color-scheme: light; --ink: #1c2430; --line: #d5dbe3; --paper: #f4f7f8; --accent: #0f6e6e; }
+    :root {
+      color-scheme: light;
+      --ink: #17352c;
+      --muted: #4e6b60;
+      --line: #b7dcc8;
+      --page: #e4f2ea;
+      --card: #f7fbf8;
+      --field: #f3faf6;
+      --sage: #d7efe3;
+      --forest: #143d32;
+      --forest-press: #0b241c;
+      --on-forest: #f4fff8;
+      --accent: #143d32;
+    }
     * { box-sizing: border-box; }
     [hidden] { display: none !important; }
-    body { margin: 0; font: 16px/1.45 "Iowan Old Style", Palatino, Georgia, serif; color: var(--ink); background: var(--paper); }
-    main { max-width: 1080px; margin: 0 auto; padding: 28px 20px 64px; }
-    h1 { font-size: 1.8rem; margin: 0 0 8px; }
-    .note { color: #4d5968; max-width: 68ch; }
-    .modes { display: flex; gap: 8px; margin: 22px 0; }
-    button, .file input { font: inherit; }
-    .modes button, .primary { border: 1px solid var(--line); background: white; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
-    .modes button.active { background: var(--accent); color: white; border-color: var(--accent); }
-    .primary { background: var(--accent); color: white; border-color: var(--accent); }
-    section { display: block; margin-top: 16px; background: white; border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+    body { margin: 0; font: 19px/1.45 "Iowan Old Style", Palatino, Georgia, serif; color: var(--ink); background: var(--page); }
+    main { max-width: 1120px; margin: 0 auto; padding: 28px 20px 72px; }
+    h1 { font-size: 1.85rem; margin: 0; color: var(--on-forest); }
+    h2 { font-size: 1.35rem; margin: 0 0 6px; color: var(--forest); }
+    .note { color: var(--muted); max-width: 68ch; margin: 6px 0 0; }
+    ul.note { padding-left: 1.2em; }
+    ul.note li { margin: 4px 0; }
+    .mast {
+      display: flex; flex-direction: column; gap: 14px;
+      margin-bottom: 20px; padding: 22px 22px 18px;
+      border-radius: 24px; background: var(--forest);
+      box-shadow: 0 12px 28px rgba(20, 61, 50, 0.16);
+    }
+    .mast .note { color: var(--sage); }
+    .workspace { display: grid; gap: 16px; }
+    button, .file input, input, select, textarea { font: inherit; }
+    button, label.file {
+      min-height: 52px;
+      border: 1px solid var(--line);
+      background: var(--sage);
+      color: var(--forest);
+      border-radius: 14px;
+      padding: 14px 18px;
+      cursor: pointer;
+    }
+    button:hover, label.file:hover { background: #c9e8d8; }
+    button:active, label.file:active {
+      background: var(--forest);
+      color: var(--on-forest);
+      border-color: var(--forest);
+      transform: translateY(1px);
+    }
+    button:disabled { opacity: 0.55; cursor: wait; transform: none; }
+    .primary { background: var(--forest); color: var(--on-forest); border-color: var(--forest); }
+    .primary:hover { background: #1b5243; }
+    .primary:active { background: var(--forest-press); border-color: var(--forest-press); }
+    section { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 18px 16px 20px; }
     .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 12px 0; }
-    label.file { display: inline-block; }
-    textarea { width: 100%; min-height: 72px; font: inherit; padding: 8px; }
+    label.file { position: relative; display: inline-flex; align-items: center; justify-content: center; text-align: center; }
+    label.file input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+    textarea, input:not([type="radio"]), select {
+      width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--field); color: var(--ink);
+    }
+    textarea { min-height: 96px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
     th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
     .score { font-variant-numeric: tabular-nums; text-align: right; }
     .stage { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 16px; }
     .preview-wrap { position: relative; overflow: auto; border: 1px solid var(--line); background: #fff; }
     .preview-wrap img { display: block; max-width: 100%; }
+    .preview-wrap iframe { display: block; width: 100%; height: 720px; border: 0; background: #fff; }
     .preview-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .handle { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: #0f6e6e; border: 2px solid white; cursor: grab; }
+    .handle { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--forest); border: 2px solid white; cursor: grab; }
     .error { color: #8d1d1d; }
-    .report h3 { margin: 18px 0 6px; font-size: 1.05rem; color: var(--accent); }
+    .report h3 { margin: 18px 0 6px; font-size: 1.05rem; color: var(--forest); }
     .report p, .report li { max-width: 68ch; margin: 0 0 8px; }
     .report ul { margin: 0 0 8px; padding-left: 1.2rem; }
-    label.field { display: flex; flex-direction: column; gap: 4px; min-width: 12rem; }
-    label.field input, label.field select { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: white; }
+    label.field { display: flex; flex-direction: column; gap: 6px; min-width: 12rem; flex: 1; }
+    #patient-card .patient-with-qr { display: flex; flex-direction: column; gap: 8px; }
+    .bridge { display: flex; gap: 12px; align-items: flex-start; margin: 4px 0 0; width: auto; min-width: 0; }
+    .bridge img { display: block; width: 148px; height: 148px; flex: none; background: white; border: 1px solid var(--line); border-radius: 8px; }
+    .bridge figcaption, .bridge p { margin: 0; max-width: 28ch; font-size: 0.9rem; }
     .protocol-sheet { margin-top: 8px; }
     .protocol-sheet h2 { margin: 0 0 4px; font-size: 1.35rem; }
     .protocol-head p { margin: 0 0 2px; }
-    #signal-trace { width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
-    button.guide { border: 1px solid var(--line); background: white; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+    #intake-trace { width: 100%; height: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+    button.mic { min-height: 36px; padding: 6px 12px; border-radius: 10px; }
+    button.mic[aria-pressed="true"] { background: var(--forest); color: var(--on-forest); }
+    .context-label { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
+    .context-caption { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .lang { display: flex; align-items: center; gap: 8px; color: var(--sage); }
+    .lang select { width: auto; min-width: 11rem; color: var(--ink); background: var(--card); }
     .connect-guide { margin: 4px 0 14px; padding: 4px 2px 2px; }
     .connect-guide h2 { margin: 0 0 8px; font-size: 1.25rem; }
-    .connect-guide h3 { margin: 18px 0 6px; font-size: 1.05rem; color: var(--accent); }
+    .connect-guide h3 { margin: 18px 0 6px; font-size: 1.05rem; color: var(--forest); }
     .connect-guide p, .connect-guide li { max-width: 68ch; }
-    .choice { margin: 14px 0; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: #fbfcfd; }
-    .choice h3 { margin: 0 0 6px; font-size: 1.05rem; }
-    .choice ol { margin: 8px 0 12px; padding-left: 1.3rem; }
-    .choice li { max-width: 68ch; }
-    .beta-panel { position: relative; }
-    .beta-mark { margin: 0 0 12px; padding: 8px 12px; border-radius: 10px; background: #fff6d8; border: 1px solid #e4d39a; font-weight: 600; }
-    .beta-veil { filter: blur(5px); opacity: 0.55; pointer-events: none; user-select: none; }
     @media print {
       body { background: white; }
-      main > h1, main > .note, #patient-card, #panel-signal, #panel-image > h2, #panel-image > .note,
-      #panel-image .row, #panel-image label, #panel-image .stage, #image-error,
-      #interpretation, #protocol-actions, #share-actions, #protocol-status { display: none !important; }
+      .mast, #patient-card, #panel-image > h2, #panel-image > .note,
+      #panel-image .row, #panel-image label, #panel-image .stage, #strip-frames, #image-error,
+      #interpretation, #protocol-actions, #share-actions, #protocol-status, #intake-signal, #file-guide, #pair-guide { display: none !important; }
       #panel-image { border: 0; padding: 0; }
       #protocol { display: block !important; }
     }
+    .strip-frames { display: flex; gap: 8px; overflow-x: auto; margin: 8px 0 12px; }
+    .strip-frames img { height: 92px; width: auto; border: 1px solid var(--line); background: white; }
+    .strip-player { position: fixed; width: 2px; height: 2px; opacity: 0; pointer-events: none; }
     .coming { background: #eef3f3; }
-    @media (max-width: 800px) { .stage { grid-template-columns: 1fr; } }
+    @media (max-width: 879px) {
+      .stage { grid-template-columns: 1fr; }
+      .row { flex-direction: column; }
+      button, label.file, label.field { width: 100%; }
+    }
+    @media (min-width: 880px) {
+      .mast { flex-direction: row; align-items: center; justify-content: space-between; padding: 22px 28px; }
+      .workspace { grid-template-columns: minmax(320px, 0.92fr) minmax(380px, 1.08fr); gap: 20px; align-items: start; }
+      #patient-card .row { display: grid; grid-template-columns: 1fr 1fr; }
+      #sources { display: grid; grid-template-columns: 1fr 1fr; }
+      #analyze-image { grid-column: 1 / -1; }
+    }
   </style>
 </head>
 <body>
 <main>
-  <h1>Doctor Opus ECG</h1>
-  <p class="note">Снимок или текст разбирают Gemini 3.8 Flash и Opus 5.5. Цифровая запись с аппарата помечена как бета и на экране закрыта. Это поддержка решения, не диагноз.</p>
-
+  <header class="mast">
+    <div>
+      <h1>ECG Opus</h1>
+      <p class="note" data-i18n="support">Decision support, not a diagnosis.</p>
+    </div>
+    <label class="lang"><span data-i18n="language">Language</span>
+      <select id="locale-select" aria-label="Language"></select>
+    </label>
+  </header>
+  <div class="workspace">
   <section id="patient-card">
-    <h2>Шапка протокола</h2>
-    <p class="note">ФИО, возраст и пол остаются на этом компьютере и в модель не отправляются. Возраст считается из года рождения и даты снятия.</p>
+    <h2 data-i18n="patient">Patient</h2>
+    <p class="note" data-i18n="fioStays">The name stays on this computer and is not sent into the reading.</p>
+    <div class="patient-with-qr">
     <div class="row">
-      <label class="field">ФИО <input id="patient-name" type="text" autocomplete="name"></label>
-      <label class="field">Год рождения <input id="patient-year" type="number" inputmode="numeric" min="1900" max="2100" step="1"></label>
-      <label class="field">Пол
+      <label class="field"><span data-i18n="fio">Name</span> <input id="patient-name" type="text" autocomplete="name"></label>
+      <label class="field"><span data-i18n="birthYear">Year of birth</span> <input id="patient-year" type="number" inputmode="numeric" min="1900" max="2100" step="1"></label>
+      <label class="field"><span data-i18n="sex">Sex</span>
         <select id="patient-sex">
-          <option value="">не указан</option>
-          <option value="муж.">муж.</option>
-          <option value="жен.">жен.</option>
+          <option value="" data-i18n="sexUnset">not stated</option>
+          <option value="муж." data-i18n="sexMale">male</option>
+          <option value="жен." data-i18n="sexFemale">female</option>
         </select>
       </label>
-      <label class="field">Дата снятия ЭКГ <input id="patient-date" type="date"></label>
+      <label class="field"><span data-i18n="studyDate">ECG date</span> <input id="patient-date" type="date"></label>
     </div>
+    <figure class="bridge">
+      <img id="bridge-qr" alt="" width="168" height="168">
+      <figcaption data-i18n="qrCaption">Phone code, same Wi-Fi.</figcaption>
+      <p id="bridge-status" class="note"></p>
+    </figure>
+    </div>
+    <div class="row">
+      <button id="pair-guide-toggle" class="guide" type="button" aria-expanded="false" aria-controls="pair-guide" data-i18n="pair">Pair the phone</button>
+    </div>
+    <article id="pair-guide" class="connect-guide" hidden>
+      <h2 data-i18n="pairWhy">Why</h2>
+      <p data-i18n="pairWhyText">The phone photographs a sheet or opens a file where there is no computer. The card and the file intake stay here. A reading on the phone does not arrive by itself.</p>
+      <h2 data-i18n="pairHow">How to link</h2>
+      <ol>
+        <li data-i18n="pair1">The phone and this computer are on the same Wi-Fi.</li>
+        <li data-i18n="pair2">Point the phone camera at the code under the card fields.</li>
+        <li data-i18n="pair3">Review on the phone scores the recording on the phone and does not send it.</li>
+        <li data-i18n="pair4">Send to computer is a separate press. A file lands in File, a clip in Strip video. Press Review here yourself.</li>
+      </ol>
+      <p data-i18n="pairEnd">The name reaches this computer only through Send. It is not sent into the model.</p>
+    </article>
   </section>
 
   <section id="panel-image" class="active">
-    <h2>ЭКГ</h2>
-    <p class="note">Можно приложить снимок, вставить текст или сделать и то и другое. Снимок на сервере не перекодируется и края не закрашиваются. PDF сюда не входит.</p>
-    <div class="row">
-      <label class="file">Изображение <input id="image-file" type="file" accept="image/jpeg,image/png,image/gif,image/webp"></label>
-      <button class="primary" id="analyze-image" type="button">Разобрать</button>
+    <h2 data-i18n="ecg">ECG</h2>
+    <p class="note" data-i18n="ecgHint">Choose a file and press Review. If the format does not open, the reason appears under the button.</p>
+    <div class="row" id="sources">
+      <label class="file"><span data-i18n="file">File</span> <input id="record-file" type="file"></label>
+      <label><span data-i18n="rate">Rate, if the file has none</span> <input id="intake-fs" type="number" min="1" step="1" value="500"></label>
+      <label class="file"><span data-i18n="video">Strip video</span> <input id="strip-video" type="file" accept="video/mp4,video/quicktime,video/webm,video/*"></label>
+      <button class="primary" id="analyze-image" type="button" data-i18n="review">Review</button>
     </div>
-    <label>Текст: измерения, описание кривой, заключение аппарата<br><textarea id="notes"></textarea></label>
-    <label>Клинический контекст без фамилии и контактов<br><textarea id="context"></textarea></label>
+    <p class="note" data-i18n="videoHint">A clip along the strip is a separate button: frames of one recording are taken from the video.</p>
+    <div class="row">
+      <button id="file-guide-toggle" class="guide" type="button" aria-expanded="false" aria-controls="file-guide" data-i18n="formats">Guide and formats</button>
+    </div>
+    <article id="file-guide" class="connect-guide" hidden>
+      <h2>How to use it</h2>
+      <ol>
+        <li>Press File and choose a recording from the machine, or a picture.</li>
+        <li>Press Review.</li>
+        <li>If the file has no sampling rate, type it in the field beside File. CSV and MAT need this when the rate is not inside the file. Usual values are 500, 250, or 1000 Hz. A paper speed of 25 mm/s is not the sampling rate.</li>
+        <li>A tracing of about 10 seconds goes to the calculation. A PDF, a photo, or a sheet goes to the picture and text reading.</li>
+        <li>If a format does not open, the reason is written under Review.</li>
+      </ol>
+      <h2>Files that open</h2>
+      <h3>CSV</h3>
+      <p>A lead table. BTL, Schiller, and GE programs often export this when CSV is available. The first row needs the lead names. If the file has only I, II, and V1–V6, the other four leads are derived. Checked on a PTB-XL recording, including that short set.</p>
+      <h3>EDF</h3>
+      <p>Holter recorders and some electrocardiographs, including Contec after conversion to EDF. Checked on a Contec ECG90A recording: the chest leads in that file were a flat line because they were not attached.</p>
+      <h3>WFDB</h3>
+      <p>A .hea and .dat pair in one zip, format 16. This is the PhysioNet exchange form, not a button on the machine. Checked on PTB-XL.</p>
+      <h3>MAT</h3>
+      <p>MATLAB 5, one matrix of 12 leads. PhysioNet Challenge sets are published this way. Checked on recording HR00001. MATLAB 7.3 is not read.</p>
+      <h3>XML</h3>
+      <p>HL7 aECG, used in clinical studies, and Philips PageWriter. Both were checked: a rhythm of about 10 seconds reaches the calculation. XML without samples goes to the text reading.</p>
+      <h3>SCP-ECG</h3>
+      <p>The standard of many European machines, including Schiller, when the file is uncompressed or uses the standard Huffman table. Two such files were checked and the calculation ran.</p>
+      <h3>DICOM</h3>
+      <p>A waveform from PACS and from machines that write a DICOM waveform: Philips, GE. One waveform file was checked. If the DICOM object is a picture rather than a waveform, it goes to the picture reading.</p>
+      <h3>Archive</h3>
+      <p>A zip with one file from the list above opens as that file. Checked on a CSV inside a zip. A WFDB pair in a zip is described above. A zip inside a zip is not taken.</p>
+      <h3>PDF and photos</h3>
+      <p>PDF, PNG, JPEG, GIF, WEBP. A printout or a photograph from any machine, including when its own waveform file is not read. A phone picture in HEIC or HEIF is converted to JPEG and goes to the picture reading.</p>
+      <h2>Russian machines</h2>
+      <p>Neurosoft Poly-Spectrum-SM exports a Holter recording as WFDB. That file is accepted when it is a .hea and .dat pair in one zip, format 16. A full day is longer than 10 seconds, so the whole recording is not scored.</p>
+      <p>Altonika Alton-106 sends the recording to the Kardis program. Axion EK1T-1/3-07 writes to a memory card and to a computer program. The maker does not name those file formats, and they were not checked here. If the machine prints a sheet, PDF or a photo works.</p>
+      <h2>What is not accepted</h2>
+      <ul>
+        <li>ZQECG, ZQ machines. There is no public layout.</li>
+        <li>Contec’s own file with the extension .ECG. Their CSV with empty cells written as None is not read either. A PDF or EDF from that machine can be loaded separately.</li>
+        <li>Healforce, including Prince 180D. The file is recognized, but the recordings that were checked are 3 leads and shorter than a second. The calculation expects about 10 seconds and 12 leads.</li>
+        <li>SCP-ECG with its own Huffman table, with bimodal compression, or with reference-beat subtraction.</li>
+        <li>XML from GE MUSE, Mindray, and Mortara. Those XML kinds are not turned into a tracing.</li>
+        <li>A lone .hea or .dat file without its pair in a zip.</li>
+      </ul>
+    </article>
+    <div id="strip-frames" class="strip-frames" hidden></div>
+    <video id="strip-player" class="strip-player" playsinline muted></video>
+    <label class="context-label">
+      <span class="context-caption"><span data-i18n="context">Clinical context, no name or contact details</span> <button id="context-mic" class="mic" type="button" aria-pressed="false">Voice</button></span>
+      <textarea id="context"></textarea>
+    </label>
     <div class="stage">
       <div>
         <div class="preview-wrap" id="preview-box" hidden>
-          <img id="preview" alt="Загруженная ЭКГ">
+          <img id="preview" alt="">
+          <iframe id="pdf-view" title="ECG PDF" hidden></iframe>
           <svg id="caliper"></svg>
           <div class="handle" id="handle-a"></div>
           <div class="handle" id="handle-b"></div>
         </div>
       </div>
       <div>
-        <h3>Линейка</h3>
-        <p class="note">Калибровка вручную: сколько пикселей в 1 мм сетки. Скорость меняет время, усиление меняет напряжение. Сетка сама не распознаётся.</p>
-        <label>Пикселей на 1 мм <input id="px-per-mm" type="number" min="0.1" step="0.1" value="4"></label>
+        <h3 data-i18n="ruler">Caliper</h3>
+        <p class="note" data-i18n="caliperNote">Set it by hand: how many pixels are in 1 mm of the grid. Speed changes time, gain changes voltage. The grid is not detected.</p>
+        <label><span data-i18n="px">Pixels per 1 mm</span> <input id="px-per-mm" type="number" min="0.1" step="0.1" value="4"></label>
         <div class="row">
-          <label><input type="radio" name="speed" value="25" checked> 25 мм/с</label>
-          <label><input type="radio" name="speed" value="50"> 50 мм/с</label>
+          <label><input type="radio" name="speed" value="25" checked> 25 mm/s</label>
+          <label><input type="radio" name="speed" value="50"> 50 mm/s</label>
         </div>
-        <label>Усиление, мм/мВ <input id="gain" type="number" min="1" step="1" value="10"></label>
-        <p id="caliper-readout">Интервал: — · Амплитуда: —</p>
+        <label><span data-i18n="gainLabel">Gain, mm/mV</span> <input id="gain" type="number" min="1" step="1" value="10"></label>
+        <p id="caliper-readout">Interval: — · Amplitude: —</p>
       </div>
     </div>
     <p id="analyze-status" class="note"></p>
     <p id="image-error" class="error"></p>
+    <div id="intake-signal" hidden>
+      <p id="intake-format" class="note"></p>
+      <h3 id="intake-trace-title" hidden data-i18n="trace">Tracing</h3>
+      <canvas id="intake-trace" hidden></canvas>
+      <p id="intake-trace-note" class="note" hidden data-i18n="gridNote">The grid is only a guide. It is not a 25 mm/s calibration.</p>
+      <h3 id="intake-measure-title" hidden data-i18n="delineation">Measurements</h3>
+      <table id="intake-measure-table" hidden>
+        <thead><tr><th data-i18n="param">Item</th><th data-i18n="value">Value</th></tr></thead>
+        <tbody id="intake-measures"></tbody>
+      </table>
+      <div class="row">
+        <button class="primary" id="intake-conclude" type="button" hidden data-i18n="conclude">Write the conclusion</button>
+      </div>
+      <p id="intake-conclusion-status" class="note"></p>
+      <article id="intake-conclusion" class="report protocol-sheet" hidden></article>
+    </div>
     <article id="interpretation" class="report"></article>
     <div class="row" id="protocol-actions" hidden>
-      <button class="primary" id="make-protocol" type="button">Сформировать протокол</button>
+      <button class="primary" id="make-protocol" type="button" data-i18n="makeProtocol">Write the protocol</button>
     </div>
     <p id="protocol-status" class="note"></p>
     <article id="protocol" class="report protocol-sheet" hidden></article>
     <div class="row" id="share-actions" hidden>
-      <button id="print-protocol" type="button">Печать</button>
-      <button id="download-protocol" type="button">Скачать Word</button>
-      <button id="share-protocol" type="button">Поделиться</button>
+      <button id="print-protocol" type="button" data-i18n="print">Print</button>
+      <button id="download-protocol" type="button" data-i18n="download">Download Word</button>
+      <button id="share-protocol" type="button" data-i18n="share">Share</button>
     </div>
   </section>
-
-  <section id="panel-signal" class="beta-panel">
-    <p class="beta-mark">Бета. С аппарата файл CSV и кабель пока не снимают запись.</p>
-    <div class="beta-veil" inert>
-    <h2>Цифровая ЭКГ</h2>
-    <div class="choice">
-      <h3>1. Анализ готового файла CSV с внешнего устройства</h3>
-      <p>Аппарат уже сохранил запись. Выберите файл и нажмите зелёную кнопку.</p>
-      <div class="row">
-        <label class="file">Файл <input id="signal-file" type="file" accept=".csv,text/csv"></label>
-        <label>Частота, Гц <input id="signal-fs" type="number" min="1" step="1" value="500"></label>
-        <button class="primary" id="score-signal" type="button">Начать обработку</button>
-        <button id="score-example" type="button">Пример записи</button>
-      </div>
-    </div>
-    <div class="choice">
-      <h3>2. Подключить аппарат ЭКГ</h3>
-      <ol>
-        <li>Вставьте кабель аппарата в компьютер.</li>
-        <li>Нажмите «Подключить».</li>
-        <li>В окне выберите строку, которой не было до кабеля.</li>
-        <li>Нажмите «Подключение».</li>
-      </ol>
-      <button id="score-cable" type="button">Подключить</button>
-      <p id="cable-note" class="note"></p>
-    </div>
-    <p id="signal-error" class="error"></p>
-    <p id="signal-status" class="note"></p>
-    <h3 id="trace-title" hidden>Кривая</h3>
-    <canvas id="signal-trace" hidden></canvas>
-    <p id="trace-note" class="note" hidden>Сетка условная. Это не калибр 25 мм/с.</p>
-    <h3 id="measure-title" hidden>Разметка</h3>
-    <p id="measure-description"></p>
-    <table id="measure-table" hidden>
-      <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
-      <tbody id="signal-measures"></tbody>
-    </table>
-    <div class="row">
-      <button class="primary" id="signal-conclude" type="button" hidden>Сформировать заключение</button>
-    </div>
-    <p id="signal-conclusion-status" class="note"></p>
-    <article id="signal-conclusion" class="report protocol-sheet" hidden></article>
-    <div class="row" id="signal-share-actions" hidden>
-      <button id="download-signal-protocol" type="button">Скачать Word</button>
-      <button id="share-signal-protocol" type="button">Поделиться</button>
-    </div>
-    <div class="row">
-      <button id="connect-guide-toggle" class="guide" type="button" aria-expanded="false" aria-controls="connect-guide">Инструкция по подключению ЭКГ</button>
-    </div>
-    <article id="connect-guide" class="connect-guide" hidden></article>
-    </div>
-  </section>
-  </section>
+  </div>
 </main>
-<script src="/cable.js"></script>
+<script src="/i18n.js"></script>
 <script>
+function t(key) {
+  return (window.ECG_I18N && ECG_I18N.text(key)) || "";
+}
+function pageLocale() {
+  return (window.ECG_I18N && ECG_I18N.locale) || "en";
+}
+document.getElementById("context-mic").textContent = t("voice");
+document.getElementById("caliper-readout").textContent = `${t("intervalWord")}: — · ${t("amplitudeWord")}: —`;
+
+function displayMeasure(name, value) {
+  const text = String(value ?? "");
+  if (pageLocale() === "ru") return [name, text];
+  const labels = {
+    "Ритм": "Rhythm",
+    "ЧСС": "Rate",
+    "Электрическая ось сердца": "QRS axis",
+    "Зубец P": "P wave",
+    "Интервал PQ": "PQ interval",
+    "Комплекс QRS": "QRS complex",
+    "Сегмент ST": "ST segment",
+    "Зубец T": "T wave",
+    "Интервал QT": "QT interval",
+    "Внеочередные комплексы": "Premature beats",
+  };
+  const phrases = [
+    ["зубец P перед QRS не устойчив", "P before QRS is not stable"],
+    ["зубец P перед QRS не выделен", "P before QRS was not delineated"],
+    ["зубец P перед QRS", "P before QRS"],
+    ["из них с QRS шире 120 мс:", "of them with QRS wider than 120 ms:"],
+    ["внеочередных комплексов", "premature beats"],
+    ["интервалы RR близки", "RR intervals are close"],
+    ["интервалы RR различаются", "RR intervals differ"],
+    ["отрицательной фазы нет", "no negative phase"],
+    ["около изолинии", "near the baseline"],
+    ["ед. сигнала, точка", "signal units, point"],
+    ["отведение II", "lead II"],
+    ["ед. сигнала", "signal units"],
+    ["не выделено", "not delineated"],
+    ["не выделен", "not delineated"],
+    ["не вычислено", "not calculated"],
+    ["не вычислена", "not calculated"],
+    ["не вычислен", "not calculated"],
+    ["положительный", "positive"],
+    ["отрицательный", "negative"],
+    ["уд/мин", "/min"],
+    ["мс", "ms"],
+  ];
+  if (text === "нет") return [labels[name] || name, "none"];
+  let shown = text;
+  phrases.forEach(([from, to]) => { shown = shown.split(from).join(to); });
+  return [labels[name] || name, shown];
+}
 const preview = document.getElementById("preview");
 const box = document.getElementById("preview-box");
 const svg = document.getElementById("caliper");
@@ -201,20 +359,20 @@ function placeHandles() {
   handleA.style.top = points[0].y + "px";
   handleB.style.left = points[1].x + "px";
   handleB.style.top = points[1].y + "px";
-  svg.innerHTML = `<line x1="${points[0].x}" y1="${points[0].y}" x2="${points[1].x}" y2="${points[1].y}" stroke="#0f6e6e" stroke-width="2"/>`;
+  svg.innerHTML = `<line x1="${points[0].x}" y1="${points[0].y}" x2="${points[1].x}" y2="${points[1].y}" stroke="#143d32" stroke-width="2"/>`;
   const pxPerMm = Number(document.getElementById("px-per-mm").value);
   const speed = Number(document.querySelector("input[name=speed]:checked").value);
   const gain = Number(document.getElementById("gain").value);
   const dx = Math.abs(points[1].x - points[0].x);
   const dy = Math.abs(points[1].y - points[0].y);
   if (!(pxPerMm > 0) || !(speed > 0) || !(gain > 0)) {
-    document.getElementById("caliper-readout").textContent = "Нужна калибровка px/мм, скорость и усиление.";
+    document.getElementById("caliper-readout").textContent = "Set pixels per mm, speed, and gain.";
     return;
   }
   const timeMs = dx / pxPerMm * (1000 / speed);
   const milliVolts = dy / pxPerMm / gain;
   document.getElementById("caliper-readout").textContent =
-    `Интервал: ${timeMs.toFixed(0)} мс · Амплитуда: ${milliVolts.toFixed(2)} мВ`;
+    `${t("intervalWord")}: ${timeMs.toFixed(0)} ${t("ms")} · ${t("amplitudeWord")}: ${milliVolts.toFixed(2)} ${t("mv")}`;
 }
 
 function bindHandle(node, index) {
@@ -240,13 +398,368 @@ document.getElementById("px-per-mm").oninput = placeHandles;
 document.getElementById("gain").oninput = placeHandles;
 document.querySelectorAll("input[name=speed]").forEach((node) => { node.onchange = placeHandles; });
 
-document.getElementById("image-file").onchange = () => {
-  const file = document.getElementById("image-file").files[0];
-  document.getElementById("image-error").textContent = "";
-  if (!file) return;
-  preview.src = URL.createObjectURL(file);
+function readyImageBytes(bytes) {
+  if (bytes[0] === 0xff && bytes[1] === 0xd8) return true;
+  if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47) return true;
+  if (bytes[0] === 0x47 && bytes[1] === 0x49 && bytes[2] === 0x46) return true;
+  return bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x46
+    && bytes[8] === 0x57 && bytes[9] === 0x45 && bytes[10] === 0x42 && bytes[11] === 0x50;
+}
+
+function jpegFile(source, name) {
+  const canvas = document.createElement("canvas");
+  canvas.width = source.width;
+  canvas.height = source.height;
+  canvas.getContext("2d").drawImage(source, 0, 0);
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        reject(new Error("jpeg"));
+        return;
+      }
+      const stem = (name || "ecg").replace(/\.[^.]+$/, "") || "ecg";
+      resolve(new File([blob], stem + ".jpg", { type: "image/jpeg" }));
+    }, "image/jpeg", 0.92);
+  });
+}
+
+function openImage(file) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    const url = URL.createObjectURL(file);
+    image.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve(image);
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error("decode"));
+    };
+    image.src = url;
+  });
+}
+
+async function imageForReview(file) {
+  const bytes = new Uint8Array(await file.slice(0, 16).arrayBuffer());
+  if (readyImageBytes(bytes)) return file;
+  return jpegFile(await openImage(file), file.name);
+}
+
+let reviewImage = null;
+let pdfUrl = "";
+let reviewReady = Promise.resolve();
+let stripFrames = [];
+let stripReady = Promise.resolve();
+let stripUrls = [];
+
+function releasePdf() {
+  const frame = document.getElementById("pdf-view");
+  frame.hidden = true;
+  frame.removeAttribute("src");
+  if (pdfUrl) URL.revokeObjectURL(pdfUrl);
+  pdfUrl = "";
+  preview.hidden = false;
+  svg.hidden = false;
+  handleA.hidden = false;
+  handleB.hidden = false;
+}
+
+function showPdf(file) {
+  if (pdfUrl) URL.revokeObjectURL(pdfUrl);
+  pdfUrl = URL.createObjectURL(file);
+  const frame = document.getElementById("pdf-view");
+  frame.src = pdfUrl;
+  frame.hidden = false;
+  preview.hidden = true;
+  svg.hidden = true;
+  handleA.hidden = true;
+  handleB.hidden = true;
   box.hidden = false;
-  preview.onload = placeHandles;
+}
+
+function clearStrip() {
+  stripFrames = [];
+  stripReady = Promise.resolve();
+  stripUrls.forEach((url) => URL.revokeObjectURL(url));
+  stripUrls = [];
+  const frames = document.getElementById("strip-frames");
+  frames.replaceChildren();
+  frames.hidden = true;
+  const video = document.getElementById("strip-video");
+  if (video) video.value = "";
+}
+
+function showStrip(files) {
+  stripUrls.forEach((url) => URL.revokeObjectURL(url));
+  stripUrls = files.map((file) => URL.createObjectURL(file));
+  const frames = document.getElementById("strip-frames");
+  frames.replaceChildren();
+  stripUrls.forEach((url, index) => {
+    const image = document.createElement("img");
+    image.src = url;
+    image.alt = "Frame " + (index + 1);
+    frames.append(image);
+  });
+  frames.hidden = files.length === 0;
+  if (files.length) {
+    preview.src = stripUrls[0];
+    box.hidden = false;
+    preview.onload = placeHandles;
+  }
+}
+
+function seekStrip(player, time) {
+  return new Promise((resolve, reject) => {
+    const target = Math.min(Math.max(time, 0), Math.max(player.duration - 0.05, 0));
+    const finish = () => {
+      player.removeEventListener("seeked", finish);
+      player.removeEventListener("error", fail);
+      resolve();
+    };
+    const fail = () => {
+      player.removeEventListener("seeked", finish);
+      player.removeEventListener("error", fail);
+      reject(new Error("seek"));
+    };
+    if (Math.abs(player.currentTime - target) < 0.03) {
+      resolve();
+      return;
+    }
+    player.addEventListener("seeked", finish);
+    player.addEventListener("error", fail);
+    player.currentTime = target;
+  });
+}
+
+function paintStrip(player) {
+  if (!player.videoWidth || !player.videoHeight) throw new Error("video");
+  const scale = Math.min(1, 1100 / player.videoWidth);
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.round(player.videoWidth * scale));
+  canvas.height = Math.max(1, Math.round(player.videoHeight * scale));
+  canvas.getContext("2d").drawImage(player, 0, 0, canvas.width, canvas.height);
+  return canvas;
+}
+
+function stripThumb(canvas) {
+  const sample = document.createElement("canvas");
+  sample.width = 24;
+  sample.height = 16;
+  const context = sample.getContext("2d", { willReadFrequently: true });
+  context.drawImage(canvas, 0, 0, sample.width, sample.height);
+  const data = context.getImageData(0, 0, sample.width, sample.height).data;
+  const gray = new Uint8Array(sample.width * sample.height);
+  for (let i = 0; i < gray.length; i += 1) {
+    gray[i] = (data[i * 4] + data[i * 4 + 1] + data[i * 4 + 2]) / 3;
+  }
+  return gray;
+}
+
+function stripDifference(left, right) {
+  let total = 0;
+  for (let i = 0; i < left.length; i += 1) total += Math.abs(left[i] - right[i]);
+  return total / left.length;
+}
+
+function stripSharpness(canvas) {
+  const sample = document.createElement("canvas");
+  sample.width = 48;
+  sample.height = 32;
+  const context = sample.getContext("2d", { willReadFrequently: true });
+  context.drawImage(canvas, 0, 0, sample.width, sample.height);
+  const data = context.getImageData(0, 0, sample.width, sample.height).data;
+  let energy = 0;
+  let count = 0;
+  for (let y = 0; y < sample.height; y += 1) {
+    for (let x = 1; x < sample.width; x += 1) {
+      const here = (y * sample.width + x) * 4;
+      const prev = here - 4;
+      energy += Math.abs((data[here] + data[here + 1] + data[here + 2]) - (data[prev] + data[prev + 1] + data[prev + 2]));
+      count += 1;
+    }
+  }
+  return energy / count;
+}
+
+function chooseStrip(candidates) {
+  const kept = [];
+  candidates.forEach((item) => {
+    const last = kept[kept.length - 1];
+    if (last && stripDifference(last.thumb, item.thumb) < 10) {
+      if (item.sharp > last.sharp) kept[kept.length - 1] = item;
+      return;
+    }
+    kept.push(item);
+  });
+  if (kept.length <= 6) return kept;
+  const picked = [];
+  for (let i = 0; i < 6; i += 1) {
+    picked.push(kept[Math.round((i * (kept.length - 1)) / 5)]);
+  }
+  return picked;
+}
+
+function canvasJpeg(canvas, index) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        reject(new Error("jpeg"));
+        return;
+      }
+      resolve(new File([blob], "strip-" + (index + 1) + ".jpg", { type: "image/jpeg" }));
+    }, "image/jpeg", 0.74);
+  });
+}
+
+async function framesFromStrip(file) {
+  const player = document.getElementById("strip-player");
+  const url = URL.createObjectURL(file);
+  try {
+    await new Promise((resolve, reject) => {
+      player.onloadedmetadata = resolve;
+      player.onerror = () => reject(new Error("video"));
+      player.src = url;
+      player.load();
+    });
+    const duration = player.duration;
+    if (!Number.isFinite(duration) || duration <= 0) throw new Error("video");
+    const span = Math.min(duration, 25);
+    const count = Math.min(12, Math.max(4, Math.round(span / 0.5)));
+    const candidates = [];
+    for (let i = 0; i < count; i += 1) {
+      const time = (span * (i + 0.5)) / count;
+      await seekStrip(player, time);
+      const canvas = paintStrip(player);
+      candidates.push({
+        time,
+        canvas,
+        thumb: stripThumb(canvas),
+        sharp: stripSharpness(canvas),
+      });
+    }
+    const chosen = chooseStrip(candidates);
+    const files = [];
+    for (let i = 0; i < chosen.length; i += 1) files.push(await canvasJpeg(chosen[i].canvas, i));
+    return files;
+  } finally {
+    player.removeAttribute("src");
+    player.load();
+    URL.revokeObjectURL(url);
+  }
+}
+
+function hideIntakeSignal() {
+  const block = document.getElementById("intake-signal");
+  block.hidden = true;
+  document.getElementById("intake-conclude").hidden = true;
+  document.getElementById("intake-conclusion").hidden = true;
+  document.getElementById("intake-conclusion").replaceChildren();
+  document.getElementById("intake-conclusion-status").textContent = "";
+  document.getElementById("intake-measures").replaceChildren();
+}
+
+function showIntakeSignal(payload) {
+  const block = document.getElementById("intake-signal");
+  const measureBody = document.getElementById("intake-measures");
+  block.hidden = false;
+  document.getElementById("intake-format").textContent = "Waveform stream, format " + (payload.format || "") + ".";
+  measureBody.replaceChildren();
+  drawTrace(payload.trace || [], { canvas: "intake-trace", title: "intake-trace-title", note: "intake-trace-note" });
+  const shownLines = new Set(["Ритм", "ЧСС", "Электрическая ось сердца", "Зубец P", "Интервал PQ", "Комплекс QRS", "Сегмент ST", "Зубец T", "Интервал QT", "Внеочередные комплексы"]);
+  const measurements = payload.measurements || {};
+  (measurements.lines || []).filter((item) => shownLines.has(item.name)).forEach((item) => {
+    const tr = document.createElement("tr");
+    const name = document.createElement("td");
+    const value = document.createElement("td");
+    const shown = displayMeasure(item.name, item.value);
+    name.textContent = shown[0];
+    value.textContent = shown[1];
+    tr.append(name, value);
+    measureBody.appendChild(tr);
+  });
+  const hasRows = measureBody.children.length > 0;
+  document.getElementById("intake-measure-title").hidden = !hasRows;
+  document.getElementById("intake-measure-table").hidden = !hasRows;
+  if (measurements.available && payload.scores && payload.scores.length) {
+    digitalReading = { measurements, scores: payload.scores };
+    document.getElementById("intake-conclude").hidden = false;
+  }
+  block.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.getElementById("record-file").onchange = () => {
+  const file = document.getElementById("record-file").files[0];
+  const error = document.getElementById("image-error");
+  const status = document.getElementById("analyze-status");
+  error.textContent = "";
+  status.textContent = "";
+  reviewImage = null;
+  clearStrip();
+  releasePdf();
+  document.getElementById("strip-video").value = "";
+  stripFrames = [];
+  if (!file) {
+    reviewReady = Promise.resolve();
+    box.hidden = true;
+    return;
+  }
+  const name = (file.name || "").toLowerCase();
+  const pdf = file.type === "application/pdf" || name.endsWith(".pdf");
+  const image = (file.type || "").startsWith("image/") || /\.(jpe?g|png|gif|webp|heic|heif)$/.test(name);
+  if (pdf) {
+    reviewImage = file;
+    reviewReady = Promise.resolve();
+    showPdf(file);
+    status.textContent = t("fileChosen");
+    return;
+  }
+  if (image) {
+    reviewReady = imageForReview(file).then((ready) => {
+      reviewImage = ready;
+      preview.src = URL.createObjectURL(ready);
+      box.hidden = false;
+      preview.onload = placeHandles;
+      status.textContent = t("fileChosen");
+    }).catch(() => {
+      reviewImage = null;
+      box.hidden = true;
+      error.textContent = t("photoFail");
+    });
+    return;
+  }
+  reviewReady = Promise.resolve();
+  box.hidden = true;
+      status.textContent = t("fileChosen");
+};
+
+document.getElementById("strip-video").onchange = () => {
+  const file = document.getElementById("strip-video").files[0];
+  const error = document.getElementById("image-error");
+  const status = document.getElementById("analyze-status");
+  error.textContent = "";
+  reviewImage = null;
+  reviewReady = Promise.resolve();
+  releasePdf();
+  document.getElementById("record-file").value = "";
+  stripFrames = [];
+  if (!file) {
+    clearStrip();
+    return;
+  }
+  status.textContent = t("stripBusy");
+  setBusy(true);
+  stripReady = framesFromStrip(file).then((frames) => {
+    stripFrames = frames;
+    showStrip(frames);
+    status.textContent = frames.length ? "Strip frames: " + frames.length + "." : "";
+  }).catch(() => {
+    stripFrames = [];
+    showStrip([]);
+    error.textContent = t("stripFail");
+    status.textContent = "";
+  }).finally(() => {
+    setBusy(false);
+  });
 };
 
 function errorText(payload, fallback) {
@@ -264,27 +777,128 @@ function setBusy(busy) {
   document.getElementById("make-protocol").disabled = busy;
 }
 
+document.getElementById("intake-conclude").onclick = async () => {
+  const status = document.getElementById("intake-conclusion-status");
+  const conclusion = document.getElementById("intake-conclusion");
+  const button = document.getElementById("intake-conclude");
+  status.textContent = "";
+  if (!digitalReading) {
+    status.textContent = t("concludeNeed");
+    return;
+  }
+  button.disabled = true;
+  status.textContent = t("concluding");
+  try {
+    const response = await fetch("/api/ecg/signal/conclusion", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...digitalReading, locale: pageLocale() }),
+    });
+    const payload = await response.json();
+    if (!response.ok) {
+      status.textContent = (payload && payload.detail) || t("concludeFail");
+      return;
+    }
+    signalProtocolText = payload.protocol || "";
+    conclusion.hidden = false;
+    conclusion.replaceChildren();
+    const title = document.createElement("h2");
+    title.textContent = t("protocolTitle");
+    conclusion.appendChild(title);
+    fillProtocolHead(conclusion);
+    renderReport(signalProtocolText, "intake-conclusion", false);
+    conclusion.scrollIntoView({ behavior: "smooth", block: "start" });
+  } catch (requestError) {
+    status.textContent = t("concludeFail");
+  } finally {
+    button.disabled = false;
+    status.textContent = signalProtocolText.trim() ? "" : status.textContent;
+  }
+};
+
 document.getElementById("analyze-image").onclick = async () => {
-  const file = document.getElementById("image-file").files[0];
-  const notes = document.getElementById("notes").value.trim();
+  await reviewReady;
+  await stripReady;
+  const record = document.getElementById("record-file").files[0];
+  const phonePhoto = record && (/heic|heif/i.test(record.name) || record.type === "image/heic" || record.type === "image/heif");
+  if (record && !phonePhoto) {
+    const error = document.getElementById("image-error");
+    const status = document.getElementById("analyze-status");
+    error.textContent = "";
+    setBusy(true);
+    status.textContent = t("opening");
+    hideIntakeSignal();
+    const body = new FormData();
+    body.append("file", record);
+    body.append("sampling_rate", document.getElementById("intake-fs").value);
+    body.append("clinical_context", document.getElementById("context").value);
+    body.append("locale", pageLocale());
+    try {
+      const response = await fetch("/api/ecg/intake", { method: "POST", body });
+      const payload = await response.json();
+      if (!response.ok) {
+        error.textContent = errorText(payload, t("fileFail"));
+        return;
+      }
+      if (payload.stream === "signal") {
+        showIntakeSignal(payload);
+        status.textContent = "";
+        return;
+      }
+      shownConclusion = payload.interpretation || "";
+      shownExtraction = payload.extraction || null;
+      protocolText = "";
+      document.getElementById("protocol").replaceChildren();
+      document.getElementById("protocol").hidden = true;
+      document.getElementById("share-actions").hidden = true;
+      document.getElementById("protocol-status").textContent = "";
+      renderReport(shownConclusion, "interpretation");
+      document.getElementById("protocol-actions").hidden = !shownConclusion.trim();
+      document.getElementById("interpretation").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (requestError) {
+      error.textContent = t("fileFail");
+    } finally {
+      status.textContent = "";
+      setBusy(false);
+    }
+    return;
+  }
+  hideIntakeSignal();
+  const pickedVideo = document.getElementById("strip-video").files[0];
+  const frames = stripFrames.slice();
+  const file = frames.length ? null : reviewImage;
   const error = document.getElementById("image-error");
   const status = document.getElementById("analyze-status");
   error.textContent = "";
-  if (!file && !notes) {
-    error.textContent = "Нужен снимок или текст.";
+  if (pickedVideo && !frames.length) {
+    error.textContent = t("stripFail");
     return;
   }
+  if (phonePhoto && !file && !frames.length) {
+    error.textContent = t("phonePhotoFail");
+    return;
+  }
+  if (!file && !frames.length) {
+    error.textContent = t("needFile");
+    return;
+  }
+  const pdfSheet = file && ((file.type === "application/pdf") || (file.name || "").toLowerCase().endsWith(".pdf"));
   setBusy(true);
-  status.textContent = "Разбираю снимок. Это занимает около минуты.";
+  status.textContent = frames.length
+    ? "Reviewing the strip. This takes about a minute."
+    : pdfSheet
+      ? "Reviewing the PDF. This takes about a minute."
+      : "Reviewing the picture. This takes about a minute.";
   const body = new FormData();
+  frames.forEach((frame) => body.append("frames", frame));
   if (file) body.append("file", file);
-  body.append("notes", notes);
   body.append("clinical_context", document.getElementById("context").value);
+  body.append("locale", pageLocale());
   try {
     const response = await fetch("/api/ecg/analyze", { method: "POST", body });
     const payload = await response.json();
     if (!response.ok) {
-      error.textContent = errorText(payload, "Разбор не выполнен.");
+      error.textContent = errorText(payload, t("reviewFail"));
       return;
     }
     shownConclusion = payload.interpretation || "";
@@ -298,7 +912,7 @@ document.getElementById("analyze-image").onclick = async () => {
     document.getElementById("protocol-actions").hidden = !shownConclusion.trim();
     document.getElementById("interpretation").scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (requestError) {
-    error.textContent = "Разбор прервался. Нажмите «Разобрать» ещё раз.";
+    error.textContent = t("reviewFail");
   } finally {
     status.textContent = "";
     setBusy(false);
@@ -309,25 +923,25 @@ document.getElementById("make-protocol").onclick = async () => {
   const status = document.getElementById("protocol-status");
   const source = shownConclusion.trim() || document.getElementById("interpretation").innerText.trim();
   if (!source) {
-    status.textContent = "Сначала дождитесь заключения по кнопке «Разобрать».";
+    status.textContent = t("protocolNeed");
     return;
   }
   setBusy(true);
-  status.textContent = "Собираю протокол. Это отдельный шаг и тоже занимает время.";
+  status.textContent = t("protocolBusy");
   try {
     const response = await fetch("/api/ecg/protocol", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ interpretation: source, extraction: shownExtraction }),
+      body: JSON.stringify({ interpretation: source, extraction: shownExtraction, locale: pageLocale() }),
     });
     const payload = await response.json();
     if (!response.ok) {
-      status.textContent = errorText(payload, "Протокол не собран.");
+      status.textContent = errorText(payload, t("protocolFail"));
       return;
     }
     protocolText = payload.protocol || "";
     if (!protocolText.trim()) {
-      status.textContent = "Протокол пришёл пустым.";
+      status.textContent = t("protocolEmpty");
       return;
     }
     renderProtocol(protocolText);
@@ -335,7 +949,7 @@ document.getElementById("make-protocol").onclick = async () => {
     document.getElementById("share-actions").hidden = false;
     document.getElementById("protocol").scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (requestError) {
-    status.textContent = "Протокол не собрался. Нажмите кнопку ещё раз.";
+    status.textContent = t("protocolFail");
   } finally {
     setBusy(false);
   }
@@ -380,7 +994,72 @@ const SECTION_TITLES = {
   "патологические зубцы": "Патологические зубцы",
 };
 
+const SECTION_EN = {
+  "technical parameters": "Recording",
+  "findings": "What is visible",
+  "differential diagnosis": "What to compare",
+  "clinical correlation needed": "What to check with the patient",
+  "impression": "Conclusion",
+  "recommendations": "What to do",
+  "recording": "Recording",
+  "what is visible": "What is visible",
+  "what to compare": "What to compare",
+  "what to check with the patient": "What to check with the patient",
+  "conclusion": "Conclusion",
+  "what to do": "What to do",
+  "rhythm": "Rhythm",
+  "rate": "Rate",
+  "intervals": "Intervals",
+  "waves": "Waves",
+  "important ratios": "Important ratios",
+  "st depression and elevation": "ST depression and elevation",
+  "abnormal waves": "Abnormal waves",
+  "minnesota": "Minnesota",
+  "запись": "Recording",
+  "что видно": "What is visible",
+  "с чем сравнивать": "What to compare",
+  "что проверить у пациента": "What to check with the patient",
+  "заключение": "Conclusion",
+  "что делать": "What to do",
+  "ритм": "Rhythm",
+  "чсс": "Rate",
+  "интервалы": "Intervals",
+  "зубцы": "Waves",
+  "важные соотношения": "Important ratios",
+  "депрессии и элевации": "ST depression and elevation",
+  "патологические зубцы": "Abnormal waves",
+  "миннесота": "Minnesota",
+};
+
+[
+  "Registro", "Qué se ve", "Con qué comparar", "Qué comprobar en el paciente", "Conclusión", "Qué hacer",
+  "Enregistrement", "Ce qui se voit", "À quoi comparer", "À vérifier chez le patient", "Que faire",
+  "التسجيل", "ما يظهر", "بماذا يُقارن", "ما يُفحص عند المريض", "الخلاصة", "ماذا يُفعل",
+  "रिकॉर्ड", "क्या दिखता है", "किससे तुलना करें", "रोगी में क्या जाँचें", "निष्कर्ष", "क्या करें",
+  "O que se vê", "Com o que comparar", "O que verificar no paciente", "O que fazer",
+  "Rekaman", "Yang terlihat", "Pembanding", "Yang diperiksa pada pasien", "Kesimpulan", "Yang dilakukan",
+  "Rakaman", "Yang kelihatan", "Perbandingan", "Yang diperiksa pada pesakit", "Tindakan",
+  "Kayıt", "Ne görünüyor", "Neyle karşılaştırmalı", "Hastada ne kontrol edilmeli", "Sonuç", "Ne yapılmalı",
+  "记录", "可见内容", "对照", "需向患者核实", "结论", "处理",
+  "Ritmo", "FC", "Intervalos", "Ondas", "Cocientes importantes", "Depresiones y elevaciones", "Ondas patológicas",
+  "Rythme", "Rapports importants", "Dépressions et sus-décalages", "Ondes pathologiques",
+  "النظم", "معدل القلب", "الفترات", "الموجات", "النسب المهمة", "الانخفاضات والارتفاعات", "الموجات المرضية", "مينيسوتا",
+  "लय", "हृदय दर", "अंतराल", "तरंगें", "महत्वपूर्ण अनुपात", "अवनमन और उन्नयन", "रोगात्मक तरंगें", "मिनेसोटा",
+  "Relações importantes", "Depressões e elevações", "Ondas patológicas",
+  "Irama", "Laju", "Interval", "Gelombang", "Rasio penting", "Depresi dan elevasi", "Gelombang abnormal",
+  "Kadar", "Selang", "Nisbah penting",
+  "Ritim", "Hız", "Aralıklar", "Dalgalar", "Önemli oranlar", "Depresyon ve elevasyon", "Patolojik dalgalar",
+  "节律", "心率", "间期", "波", "重要比值", "压低与抬高", "异常波", "明尼苏达",
+].forEach((title) => { SECTION_EN[title.toLowerCase()] = title; });
+
+function sectionHeading(bare) {
+  const key = String(bare || "").toLowerCase();
+  if (pageLocale() === "ru") return SECTION_TITLES[key] || null;
+  return SECTION_EN[key] || null;
+}
+
 function ageText(years) {
+  if (pageLocale() !== "ru") return `${years} ${t("years")}`;
   const n = years % 100;
   const last = n % 10;
   if (n > 10 && n < 20) return `${years} лет`;
@@ -403,19 +1082,20 @@ function patientLines() {
     const years = Number(recorded.slice(0, 4)) - Number(birth);
     if (years >= 0 && years <= 130) age = ageText(years);
   }
+  const sexLabel = document.getElementById("patient-sex").selectedOptions[0];
   const lines = [
-    ["ФИО", document.getElementById("patient-name").value.trim()],
-    ["Возраст", age],
+    [t("fio"), document.getElementById("patient-name").value.trim()],
+    [t("age"), age],
   ];
-  if (!age && birth) lines.push(["Год рождения", birth]);
-  if (sex) lines.push(["Пол", sex]);
-  lines.push(["Дата снятия ЭКГ", recordedText]);
+  if (!age && birth) lines.push([t("birthYear"), birth]);
+  if (sex) lines.push([t("sex"), sexLabel ? sexLabel.textContent : sex]);
+  lines.push([t("studyDate"), recordedText]);
   return lines;
 }
 
 function protocolDocument(body) {
   const head = patientLines().map(([label, value]) => `${label}: ${value}`).join("\n");
-  return `Протокол описания ЭКГ\n${head}\n\n${String(body).trim()}`.replace(/\*\*/g, "").replace(/\*/g, "");
+  return `${t("protocolTitle")}\n${head}\n\n${String(body).trim()}`.replace(/\*\*/g, "").replace(/\*/g, "");
 }
 
 function crc32(data) {
@@ -515,14 +1195,14 @@ async function shareProtocol(body, status) {
   const text = protocolDocument(body);
   if (navigator.share) {
     try {
-      await navigator.share({ title: "Протокол описания ЭКГ", text });
+      await navigator.share({ title: t("protocolTitle"), text });
       return;
     } catch (shareError) {
       if (shareError && shareError.name === "AbortError") return;
     }
   }
   await navigator.clipboard.writeText(text);
-  status.textContent = "Текст протокола скопирован.";
+  status.textContent = t("copied");
 }
 
 function fillProtocolHead(root) {
@@ -544,9 +1224,9 @@ function fillProtocolHead(root) {
 
 ["patient-name", "patient-year", "patient-date", "patient-sex"].forEach((id) => {
   document.getElementById(id).addEventListener("input", () => {
-    ["protocol", "signal-conclusion"].forEach((targetId) => {
+    ["protocol", "intake-conclusion"].forEach((targetId) => {
       const root = document.getElementById(targetId);
-      if (!root.hidden && root.querySelector(".protocol-head")) fillProtocolHead(root);
+      if (root && !root.hidden && root.querySelector(".protocol-head")) fillProtocolHead(root);
     });
   });
 });
@@ -556,7 +1236,7 @@ function renderProtocol(text) {
   root.hidden = false;
   root.replaceChildren();
   const title = document.createElement("h2");
-  title.textContent = "Протокол описания ЭКГ";
+  title.textContent = t("protocolTitle");
   root.append(title);
   fillProtocolHead(root);
   renderReport(text, "protocol", false);
@@ -574,7 +1254,7 @@ function renderReport(text, targetId = "interpretation", clear = true) {
       return;
     }
     const bare = line.replace(/:$/, "");
-    const title = SECTION_TITLES[bare.toLowerCase()];
+    const title = sectionHeading(bare);
     if (title) {
       list = null;
       const heading = document.createElement("h3");
@@ -604,10 +1284,10 @@ function renderReport(text, targetId = "interpretation", clear = true) {
 let digitalReading = null;
 let signalProtocolText = "";
 
-function drawTrace(trace) {
-  const canvas = document.getElementById("signal-trace");
-  const title = document.getElementById("trace-title");
-  const note = document.getElementById("trace-note");
+function drawTrace(trace, target) {
+  const canvas = document.getElementById((target && target.canvas) || "intake-trace");
+  const title = document.getElementById((target && target.title) || "intake-trace-title");
+  const note = document.getElementById((target && target.note) || "intake-trace-note");
   if (!trace || !trace.length) {
     canvas.hidden = true;
     title.hidden = true;
@@ -666,197 +1346,134 @@ function drawTrace(trace) {
   note.hidden = false;
 }
 
-async function scoreDigital(load) {
-  const error = document.getElementById("signal-error");
-  const status = document.getElementById("signal-status");
-  const measureBody = document.getElementById("signal-measures");
-  const measureTable = document.getElementById("measure-table");
-  const measureTitle = document.getElementById("measure-title");
-  const measureDescription = document.getElementById("measure-description");
-  const button = document.getElementById("score-signal");
-  const conclude = document.getElementById("signal-conclude");
-  const conclusion = document.getElementById("signal-conclusion");
-  const conclusionStatus = document.getElementById("signal-conclusion-status");
-  error.textContent = "";
-  status.textContent = "";
-  measureDescription.textContent = "";
-  conclusionStatus.textContent = "";
-  conclusion.hidden = true;
-  conclusion.replaceChildren();
-  document.getElementById("signal-share-actions").hidden = true;
-  signalProtocolText = "";
-  conclude.hidden = true;
-  digitalReading = null;
-  measureBody.replaceChildren();
-  measureTable.hidden = true;
-  measureTitle.hidden = true;
-  document.getElementById("signal-trace").hidden = true;
-  document.getElementById("trace-title").hidden = true;
-  document.getElementById("trace-note").hidden = true;
-  button.disabled = true;
-  document.getElementById("score-example").disabled = true;
-  document.getElementById("score-cable").disabled = true;
-  status.textContent = "Считаю кривую и разметку.";
-  try {
-    const response = await load();
-    const payload = await response.json();
-    if (!response.ok) {
-      error.textContent = payload.detail || "Запись не посчиталась.";
-      return;
-    }
-    const measurements = payload.measurements || {};
-    drawTrace(payload.trace || []);
-    const shownLines = new Set(["Ритм", "ЧСС", "Электрическая ось сердца", "Зубец P", "Интервал PQ", "Комплекс QRS", "Сегмент ST", "Зубец T", "Интервал QT", "Внеочередные комплексы"]);
-    (measurements.lines || []).filter((item) => shownLines.has(item.name)).forEach((item) => {
-      const tr = document.createElement("tr");
-      const name = document.createElement("td");
-      const value = document.createElement("td");
-      name.textContent = item.name;
-      value.textContent = item.value;
-      tr.append(name, value);
-      measureBody.appendChild(tr);
-    });
-    if (measureBody.children.length) {
-      measureTitle.hidden = false;
-      measureTable.hidden = false;
-    }
-    if (measurements.available && payload.scores && payload.scores.length) {
-      digitalReading = { measurements, scores: payload.scores };
-      conclude.hidden = false;
-    }
-  } catch (requestError) {
-    error.textContent = "Запись не посчиталась. Нажмите кнопку ещё раз.";
-  } finally {
-    button.disabled = false;
-    document.getElementById("score-example").disabled = false;
-    document.getElementById("score-cable").disabled = false;
-    status.textContent = "";
-  }
-}
-
-function postSelectedCsv() {
-  const file = document.getElementById("signal-file").files[0];
-  if (!file) {
-    document.getElementById("signal-error").textContent = "Сначала выберите файл.";
+document.getElementById("context-mic").onclick = () => {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const button = document.getElementById("context-mic");
+  const field = document.getElementById("context");
+  if (!SpeechRecognition) {
+    button.textContent = t("voiceNo");
     return;
   }
-  const form = new FormData();
-  form.append("file", file);
-  form.append("sampling_rate", document.getElementById("signal-fs").value);
-  scoreDigital(() => fetch("/api/ecg/signal/csv", { method: "POST", body: form }));
-}
-
-document.getElementById("score-signal").onclick = () => postSelectedCsv();
-
-document.getElementById("score-cable").onclick = async () => {
-  const error = document.getElementById("signal-error");
-  const note = document.getElementById("cable-note");
-  error.textContent = "";
-  if (!window.cable || !window.cable.serialAvailable()) {
-    note.textContent = "Кабель открывается в Chrome или Edge на компьютере. Здесь выберите файл и нажмите «Начать обработку».";
+  if (button._recognition) {
+    button._recognition.stop();
     return;
   }
-  const taught = window.cable.profileNames();
-  if (taught.length === 1) {
-    try {
-      const recording = await window.cable.captureCableRecording(taught[0]);
-      const csv = window.cable.samplesToCsv(recording.columns);
-      const form = new FormData();
-      form.append("file", new Blob([csv], { type: "text/csv" }), "cable.csv");
-      form.append("sampling_rate", String(recording.samplingRate));
-      document.getElementById("signal-fs").value = String(recording.samplingRate);
-      await scoreDigital(() => fetch("/api/ecg/signal/csv", { method: "POST", body: form }));
-    } catch (captureError) {
-      if (captureError && captureError.name === "NotFoundError") {
-        note.textContent = "Окно закрыто. Вставьте кабель и нажмите «Подключить» снова.";
-        return;
-      }
-      error.textContent = (captureError && captureError.message) || "Запись с кабеля не собралась.";
+  const recognition = new SpeechRecognition();
+  button._recognition = recognition;
+  recognition.lang = (window.ECG_I18N && ECG_I18N.speechCode()) || "en-US";
+  recognition.interimResults = true;
+  recognition.continuous = false;
+  const start = field.value.trim();
+  let spoken = "";
+  recognition.onstart = () => {
+    button.setAttribute("aria-pressed", "true");
+    button.textContent = t("voiceOn");
+  };
+  recognition.onresult = (event) => {
+    let interim = "";
+    for (let i = event.resultIndex; i < event.results.length; i += 1) {
+      const chunk = event.results[i][0].transcript;
+      if (event.results[i].isFinal) spoken += chunk;
+      else interim += chunk;
     }
-    return;
-  }
-  note.textContent = "В окне выберите строку, которой не было до кабеля. Затем нажмите «Подключение».";
-  try {
-    await navigator.serial.requestPort();
-    note.textContent = "Строка выбрана. Кривая с кабеля пока не строится. Если запись сохранена файлом, нажмите «Начать обработку».";
-  } catch (portError) {
-    if (portError && portError.name === "NotFoundError") {
-      note.textContent = "Окно закрыто. Вставьте кабель и нажмите «Подключить» снова.";
-      return;
-    }
-    error.textContent = "Окно со списком не открылось.";
-  }
+    const phrase = `${spoken}${interim}`.trim();
+    field.value = start && phrase ? `${start} ${phrase}` : (phrase || start);
+    field.dispatchEvent(new Event("input"));
+  };
+  const finish = () => {
+    button._recognition = null;
+    button.setAttribute("aria-pressed", "false");
+    button.textContent = t("voice");
+  };
+  recognition.onerror = finish;
+  recognition.onend = finish;
+  recognition.start();
 };
 
-document.getElementById("connect-guide-toggle").onclick = async () => {
-  const guide = document.getElementById("connect-guide");
-  const button = document.getElementById("connect-guide-toggle");
+document.getElementById("pair-guide-toggle").onclick = () => {
+  const guide = document.getElementById("pair-guide");
+  const button = document.getElementById("pair-guide-toggle");
   const willOpen = guide.hidden;
-  if (willOpen) {
-    try {
-      const response = await fetch("/ecg-connect.html", { cache: "no-store" });
-      if (!response.ok) throw new Error("missing");
-      guide.innerHTML = await response.text();
-    } catch (loadError) {
-      guide.textContent = "Инструкция не открылась. Нажмите кнопку ещё раз.";
-    }
-  }
   guide.hidden = !willOpen;
   button.setAttribute("aria-expanded", willOpen ? "true" : "false");
 };
 
-document.getElementById("score-example").onclick = () => {
-  document.getElementById("panel-signal").scrollIntoView({ behavior: "smooth", block: "start" });
-  scoreDigital(() => fetch("/api/ecg/signal/example", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ sampling_rate: Number(document.getElementById("signal-fs").value) }),
-  }));
+document.getElementById("file-guide-toggle").onclick = () => {
+  const guide = document.getElementById("file-guide");
+  const button = document.getElementById("file-guide-toggle");
+  const willOpen = guide.hidden;
+  guide.hidden = !willOpen;
+  button.setAttribute("aria-expanded", willOpen ? "true" : "false");
 };
 
-document.getElementById("signal-conclude").onclick = async () => {
-  const status = document.getElementById("signal-conclusion-status");
-  const conclusion = document.getElementById("signal-conclusion");
-  const button = document.getElementById("signal-conclude");
-  status.textContent = "";
-  if (!digitalReading) {
-    status.textContent = "Сначала посчитайте запись.";
-    return;
-  }
-  button.disabled = true;
-  status.textContent = "Собираю заключение.";
+let bridgeToken = "";
+let bridgeSince = 0;
+
+function applyBridgePatient(event) {
+  if (event.name) document.getElementById("patient-name").value = event.name;
+  if (event.year) document.getElementById("patient-year").value = event.year;
+  if (event.sex) document.getElementById("patient-sex").value = event.sex;
+  if (event.study_date) document.getElementById("patient-date").value = event.study_date;
+  document.getElementById("patient-name").dispatchEvent(new Event("input"));
+}
+
+async function applyBridgeFile(event) {
+  const response = await fetch(`/api/bridge/file/${event.id}?token=${encodeURIComponent(bridgeToken)}`);
+  if (!response.ok) return;
+  const blob = await response.blob();
+  const file = new File([blob], event.filename || "ecg", { type: event.mime || blob.type });
+  const name = (event.filename || "").toLowerCase();
+  const video = (event.mime || "").startsWith("video/") || /\.(mp4|mov|webm|m4v)$/.test(name);
+  const input = document.getElementById(video ? "strip-video" : "record-file");
+  const transfer = new DataTransfer();
+  transfer.items.add(file);
+  input.files = transfer.files;
+  input.dispatchEvent(new Event("change"));
+  return video;
+}
+
+async function pollBridge() {
+  if (!bridgeToken) return;
+  const status = document.getElementById("bridge-status");
   try {
-    const response = await fetch("/api/ecg/signal/conclusion", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(digitalReading),
-    });
-    const payload = await response.json();
+    const response = await fetch(`/api/bridge/events?token=${encodeURIComponent(bridgeToken)}&since=${bridgeSince}`);
+    const payload = await response.json().catch(() => ({}));
     if (!response.ok) {
-      status.textContent = (payload && payload.detail) || "Заключение не собралось.";
+      status.textContent = payload.detail || t("refreshCode");
       return;
     }
-    signalProtocolText = payload.protocol || "";
-    conclusion.hidden = false;
-    conclusion.replaceChildren();
-    const title = document.createElement("h2");
-    title.textContent = "Протокол описания ЭКГ";
-    conclusion.appendChild(title);
-    fillProtocolHead(conclusion);
-    renderReport(signalProtocolText, "signal-conclusion", false);
-    document.getElementById("signal-share-actions").hidden = !signalProtocolText.trim();
-    status.textContent = "";
-  } catch (requestError) {
-    status.textContent = "Заключение не собралось. Нажмите кнопку ещё раз.";
-  } finally {
-    button.disabled = false;
+    for (const event of payload.events || []) {
+      bridgeSince = Math.max(bridgeSince, Number(event.id) || 0);
+      if (event.kind === "patient") {
+        applyBridgePatient(event);
+        status.textContent = t("phoneCard");
+      }
+      if (event.kind === "file") {
+        const video = await applyBridgeFile(event);
+        status.textContent = video ? t("videoLanded") : t("fileLanded");
+      }
+    }
+  } catch (pollError) {
+    status.textContent = t("phoneLost");
   }
-};
+}
 
-document.getElementById("download-signal-protocol").onclick = () => downloadProtocol(signalProtocolText);
-document.getElementById("share-signal-protocol").onclick = () => {
-  shareProtocol(signalProtocolText, document.getElementById("signal-conclusion-status"));
-};
+async function startBridge() {
+  const status = document.getElementById("bridge-status");
+  try {
+    const response = await fetch("/api/bridge/session", { method: "POST" });
+    const payload = await response.json();
+    if (!response.ok || !payload.token) throw new Error("session");
+    bridgeToken = payload.token;
+    document.getElementById("bridge-qr").src = `/api/bridge/qr.png?token=${encodeURIComponent(bridgeToken)}`;
+    status.textContent = t("waitingPhone");
+    window.setInterval(pollBridge, 2000);
+  } catch (startError) {
+    status.textContent = t("phoneCodeFail");
+  }
+}
+
+startBridge();
 </script>
 </body>
 </html>

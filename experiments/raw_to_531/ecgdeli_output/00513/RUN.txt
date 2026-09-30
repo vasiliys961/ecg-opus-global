@@ -1,0 +1,13 @@
+ECGDeli 1.1 did not start on record 00513.
+
+Checked on 2026-09-28:
+- command matlab: absent
+- command octave: absent
+- MATLAB application bundle: absent
+- MATLAB Runtime directory: absent
+
+No delineation files were written.
+NeuroKit2, BioSPPy, wfdb and a Python port of ECGDeli were not used.
+Published fiducial points were not converted into features.
+
+exit_code: not_started
